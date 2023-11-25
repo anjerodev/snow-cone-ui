@@ -1,0 +1,33 @@
+---
+interface Props {
+  title: string
+  subtitle: string
+  img: string
+  darkImg?: string
+}
+
+const { title, subtitle, img, darkImg } = Astro.props
+const image = `url(${img})`
+const darkImage = `url(${darkImg})`
+---
+
+<header
+  id="pageHeader"
+  class="mx-auto mb-10 flex max-w-[1760px] items-center space-y-2 rounded-xl bg-cover bg-center bg-no-repeat p-8 text-onSurface transition-[background] sm:mb-14 sm:p-14 xl:min-h-[544px]"
+>
+  <div class="max-w-4xl">
+    <h1 class="mb-2 sm:text-8xl xl:text-9xl">{title}</h1>
+    <h3 class="balance text-body-lg dark:drop-shadow-sm sm:text-title-lg">
+      {subtitle}
+    </h3>
+  </div>
+</header>
+
+<style define:vars={{ image, darkImage }}>
+  #pageHeader {
+    background-image: var(--image);
+  }
+  :global(.dark) #pageHeader {
+    background-image: var(--darkImage);
+  }
+</style>

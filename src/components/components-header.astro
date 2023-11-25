@@ -1,0 +1,58 @@
+---
+interface Props {
+  title: string
+  subtitle: string
+  thumbnail: string
+  thumbnailDark?: string
+  bgImage?: string
+  bgImageDark?: string
+}
+
+const { title, subtitle, bgImage, bgImageDark, thumbnail, thumbnailDark } =
+  Astro.props
+
+const thumb = `url(${thumbnail})`
+const thumbDark = `url(${thumbnailDark})`
+const bg = `url(${bgImage})`
+const bgDark = `url(${bgImageDark})`
+---
+
+<header class="mb-10 grid grid-flow-row grid-cols-2 gap-2 sm:mb-14">
+  <section
+    class="col-span-2 flex w-full items-center rounded-2xl bg-surfaceContainer p-8 sm:p-14 xl:col-span-1 xl:min-h-[544px]"
+  >
+    <div>
+      <h1
+        class="mb-2 text-5xl sm:text-[5.5rem] sm:leading-[5.5rem] xl:text-[7rem] xl:leading-[7rem]"
+      >
+        {title}
+      </h1>
+      <h2 class="balance text-base sm:text-headline-sm">{subtitle}</h2>
+    </div>
+  </section>
+  <div
+    id="thumbnail-container"
+    class="relative z-0 col-span-2 flex w-full justify-center overflow-hidden rounded-2xl border border-surfaceVariant bg-surfaceContainer bg-cover p-14 pb-[45%] transition-[background] xl:col-span-1"
+  >
+    <div
+      id="thumbnail"
+      class="absolute inset-0 z-10 flex items-stretch justify-center bg-cover bg-center bg-no-repeat transition-[background]"
+    >
+    </div>
+  </div>
+</header>
+
+<style define:vars={{ thumb, thumbDark, bg, bgDark }}>
+  #thumbnail-container {
+    background-image: var(--bg);
+  }
+  :global(.dark) #thumbnail-container {
+    background-image: var(--bgDark);
+  }
+  #thumbnail {
+    background-image: var(--thumb);
+  }
+  :global(.dark) #thumbnail {
+    background-image: var(--thumbDark);
+  }
+</style>

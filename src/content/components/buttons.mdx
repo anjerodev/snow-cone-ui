@@ -1,0 +1,252 @@
+---
+title: 'Buttons'
+subtitle: 'Common buttons prompt most actions in a UI'
+bgImage: 'https://m3.material.io/static/assets/m3-green-theming-thumbnail.jpg'
+bgImageDark: 'https://m3.material.io/static/assets/m3-green-theming-thumbnail-dark.jpg'
+thumbnail: 'https://lh3.googleusercontent.com/xYmJkoIrC47RYwJaptDaYrcMmxj6RWn0pvbScYBvf2sClwna4rUK1C1nKcwKgqovljJyKozN0h_5d5WOgp1NEFaFSZAGHajlRdXo88Y3D5bo9XX-OY4=w2400'
+thumbnailDark: 'https://lh3.googleusercontent.com/yYWebI9s8fFKcxIipQS2ckwLZSOThvpA7widXxcdTqjNzRV38KkIc8iUD1xMNRIyscOI_Kv1eszK6FiMCWbmtjpS6ZOhgWSe2XUC-rCqTFtwLJRV2OY=w2400'
+---
+
+import {
+  Button,
+  buttonVariants,
+  stateLayerVariants,
+} from '@/components/ui/button.tsx'
+import { CircularProgress } from '@/components/ui/circular-progress.tsx'
+import { Icon } from '@/components/ui/icon.tsx'
+import ComponentContainer from '@/components/component-container.astro'
+import ComponentSource from '@/components/component-source.astro'
+import Step from '@/components/step.astro'
+import Steps from '@/components/steps.astro'
+
+## Instalation
+
+<Steps>
+
+<Step>
+#### Run the following command if is not already installed:
+
+```bash
+pnpm add @radix-ui/react-slot -E
+```
+
+</Step>
+
+<Step>
+  #### Copy and paste the following code into your project.
+  <ComponentSource name="button" />
+</Step>
+
+<Step>
+#### Update the import paths to match your project setup.
+
+</Step>
+
+</Steps>
+
+## Examples
+
+### Filled buttons
+
+Filled buttons have the most visual impact after the FAB, and should be used for important, final actions that complete a flow, like Save, Join now, or Confirm.
+
+<ComponentContainer>
+<div className='p-6'>
+  <Button>Make payment</Button>
+</div>
+
+```tsx
+import { Button } from '@/components/ui/button'
+
+export const FilledButton = () => {
+  return <Button>Make payment</Button>
+}
+```
+
+</ComponentContainer>
+
+### Tonal buttons
+
+A filled tonal button is an alternative middle ground between filled and outlined buttons. They're useful in contexts where a lower-priority button requires slightly more emphasis than an outline would give, such as "Next" in an onboarding flow. Tonal buttons use the secondary color mapping.
+
+<ComponentContainer>
+<div className='p-6'>
+  <Button variant='tonal'>Visit site</Button>
+</div>
+
+```tsx
+import { Button } from '@/components/ui/button'
+
+export const TonalButton = () => {
+  return <Button variant="tonal">Visit site</Button>
+}
+```
+
+</ComponentContainer>
+
+### Elevated buttons
+
+Elevated buttons are essentially filled tonal buttons with a shadow. To prevent shadow creep, only use them when absolutely necessary, such as when the button requires visual separation from a patterned background.
+
+<ComponentContainer>
+<div className='p-6'>
+  <Button variant='elevated'>Explore</Button>
+</div>
+
+```tsx
+import { Button } from '@/components/ui/button'
+
+export const ElevatedButton = () => {
+  return <Button variant="elevated">Explore</Button>
+}
+```
+
+</ComponentContainer>
+
+### Outlined buttons
+
+Outlined buttons are medium-emphasis buttons. They contain actions that are important, but aren't the primary action in an app.
+
+Outlined buttons pair well with filled buttons to indicate an alternative, secondary action.
+
+<ComponentContainer>
+<div className='p-6'>
+  <Button variant='outlined'>Next</Button>
+</div>
+
+```tsx
+import { Button } from '@/components/ui/button'
+
+export const OutlinedButton = () => {
+  return <Button variant="outlined">Next</Button>
+}
+```
+
+</ComponentContainer>
+
+### Text buttons
+
+Text buttons are used for the lowest priority actions, especially when presenting multiple options.
+
+Text buttons can be placed on a variety of backgrounds. Until the button is interacted with, its container isn't visible.
+
+Text buttons are often embedded in components like cards, dialogs, and snackbars. Because text buttons don't have a visible container in their default state, they don't distract from nearby content.
+
+<ComponentContainer>
+<div className='p-6'>
+  <Button variant='text'>Retry</Button>
+</div>
+
+```tsx
+import { Button } from '@/components/ui/button'
+
+export const TextButton = () => {
+  return <Button variant="text">Retry</Button>
+}
+```
+
+</ComponentContainer>
+
+### Destructive buttons
+
+Destructive buttons are used to indicate destructive actions, such as deleting an item.
+
+<ComponentContainer>
+<div className='p-6'>
+  <Button variant='destructive'>Remove account</Button>
+</div>
+
+```tsx
+import { Button } from '@/components/ui/button'
+
+export const DestructiveButton = () => {
+  return <Button variant="destructive">Remove account</Button>
+}
+```
+
+</ComponentContainer>
+
+### With icon
+
+Icons visually communicate the button's action and help draw attention. They should be placed on the leading side of the button, before the label text.
+
+<ComponentContainer>
+<div className='p-6'>
+  <Button className='pl-4'>
+    <Icon symbol='add' className="mr-2 text-[20px] group-hover:font-emphasis" />
+    New document
+  </Button>
+</div>
+
+```tsx
+import { Button } from '@/components/ui/button'
+import { Icon } from '@/components/ui/icon'
+
+export const ButtonWithIcon = () => {
+  return (
+    <Button className="pl-4">
+      <Icon
+        symbol="add"
+        className="group-hover:font-emphasis mr-2 text-[20px]"
+      />
+      New document
+    </Button>
+  )
+}
+```
+
+</ComponentContainer>
+
+### Loading buttons
+
+Loading buttons indicate an action is in progress. The button should be disabled while loading.
+
+<ComponentContainer>
+<div className='p-6'>
+  <Button disabled className='pl-4'>
+    <CircularProgress className="mr-2 h-5 w-5 text-onSurface/38" />
+    Loading
+  </Button>
+</div>
+
+```tsx
+import { Button } from '@/components/ui/button'
+import { CircularProgress } from '@/components/ui/circular-progress'
+
+export const LoadingButton = () => {
+  return (
+    <Button disabled className="pl-4">
+      <CircularProgress className="text-onSurface/38 mr-2 h-5 w-5" />
+      Loading
+    </Button>
+  )
+}
+```
+
+</ComponentContainer>
+
+### As child
+
+With **asChild** prop, you can make a link looks like a button.
+
+<ComponentContainer>
+<div className='p-6'>
+    <a href='/components/buttons' class={buttonVariants()}>
+      Go to Buttons
+      <span class={stateLayerVariants()}/>
+    </a>
+</div>
+
+```tsx
+import { Button } from '@/components/ui/button'
+
+export const AsChildButton = () => {
+  return (
+    <Button asChild className="pl-4">
+      <Link href="/components/buttons">Go to Buttons</Link>
+    </Button>
+  )
+}
+```
+
+</ComponentContainer>

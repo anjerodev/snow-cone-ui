@@ -1,0 +1,40 @@
+---
+import { ThemeToggle } from '@/components/react/theme-toggle.tsx'
+---
+
+<ThemeToggle client:visible />
+
+<script is:inline>
+  const STORAGE_KEY = 'theme'
+
+  const theme = (() => {
+    if (
+      typeof localStorage !== 'undefined' &&
+      localStorage.getItem(STORAGE_KEY)
+    ) {
+      return localStorage.getItem(STORAGE_KEY)
+    }
+
+    if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+      return 'dark'
+    }
+
+    return 'light'
+  })()
+
+  localStorage.setItem(STORAGE_KEY, theme)
+
+  function toggleTheme(activeTheme) {
+    const isDarkMode = activeTheme === 'dark'
+
+    document.documentElement.classList.toggle('dark', isDarkMode)
+    document.documentElement.classList.toggle('light', !isDarkMode)
+  }
+
+  toggleTheme(theme)
+
+  document.addEventListener('astro:after-swap', function () {
+    if (localStorage.getItem(STORAGE_KEY) === 'dark')
+      document.documentElement.classList.toggle('dark', true)
+  })
+</script>

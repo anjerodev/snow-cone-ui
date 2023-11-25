@@ -1,0 +1,44 @@
+---
+import { ROUTES } from '@/constants/routes'
+
+import { Icon } from '@/components/ui/icon'
+import { NavigationRail, styles } from '@/components/ui/navigation-rail'
+import ThemeIcon from '@/components/theme-icon.astro'
+
+const navigationItem = (url: string, icon: string, label: string) => ({
+  url,
+  icon,
+  label,
+})
+
+const navigationItems = [
+  navigationItem(ROUTES.HOME, 'home', 'Home'),
+  navigationItem(ROUTES.FONTS, 'font_download', 'Fonts'),
+  navigationItem(ROUTES.STYLES, 'palette', 'Styles'),
+  navigationItem(ROUTES.COMPONENTS, 'add_circle', 'Components'),
+]
+const { pathname } = Astro.url
+const [, section] = pathname.split('/')
+---
+
+<NavigationRail>
+  <NavigationRail.Container>
+    {
+      navigationItems.map(({ url, icon, label }) => (
+        <NavigationRail.Item
+          key={url}
+          href={url}
+          active={url === `/${section}`}
+        >
+          <NavigationRail.ItemIcon>
+            <Icon symbol={icon} className={styles.icon} />
+          </NavigationRail.ItemIcon>
+          <NavigationRail.ItemLabel>{label}</NavigationRail.ItemLabel>
+        </NavigationRail.Item>
+      ))
+    }
+  </NavigationRail.Container>
+  <div class="hidden grow flex-col items-center justify-end md:flex">
+    <ThemeIcon />
+  </div>
+</NavigationRail>

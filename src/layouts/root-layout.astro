@@ -1,0 +1,48 @@
+---
+import '@fontsource-variable/outfit'
+import '@fontsource/outfit'
+import '@fontsource-variable/material-symbols-rounded/full.css'
+import '@/styles/base.css'
+
+import { ViewTransitions } from 'astro:transitions'
+
+import { SnackbarManager } from '@/components/ui/snackbar'
+import DevToolbar from '@/components/dev-toolbar.astro'
+import NavigationSideBar from '@/components/navigation-side-bar.astro'
+
+interface Props {
+  title: string
+}
+
+const { title } = Astro.props
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="description" content="Astro description" />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="generator" content={Astro.generator} />
+    <title>{title}</title>
+    <ViewTransitions />
+  </head>
+  <body
+    class="min-h-[100dvh] bg-background font-sans text-onBackground antialiased selection:bg-primary/30 dark:selection:text-surface"
+  >
+    <NavigationSideBar />
+    <div class="flex flex-1 flex-col md:ml-[88px]">
+      <section class="p-2 pb-20">
+        <slot />
+      </section>
+    </div>
+    <DevToolbar />
+    <SnackbarManager client:only />
+    <style is:global id="theme">
+      :root {
+        --font-symbols: 'Material Symbols Rounded Variable';
+      }
+    </style>
+  </body>
+</html>

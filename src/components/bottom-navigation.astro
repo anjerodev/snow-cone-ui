@@ -1,0 +1,45 @@
+---
+import { cn } from '@/lib/utils'
+import { buttonVariants, stateLayerVariants } from '@/components/ui/button'
+import { Icon } from '@/components/ui/icon'
+
+interface Props {
+  prev: { title: string; url: string } | null
+  next: { title: string; url: string } | null
+}
+
+const { prev, next } = Astro.props
+---
+
+<div class="flex flex-wrap items-center gap-2 py-12">
+  {
+    prev && (
+      <a
+        href={prev.url}
+        class={cn(buttonVariants({ variant: 'outlined' }), 'pl-4')}
+      >
+        <Icon
+          symbol="arrow_back"
+          className="mr-2 text-[20px] transition-[font-variation-settings,transform] group-hover:font-emphasis group-hover:-translate-x-1"
+        />
+        {prev.title}
+        <span class={stateLayerVariants({ variant: 'outlined' })} />
+      </a>
+    )
+  }
+  {
+    next && (
+      <a
+        href={next.url}
+        class={cn(buttonVariants({ variant: 'outlined' }), 'ml-auto pr-4')}
+      >
+        {next.title}
+        <Icon
+          symbol="arrow_forward"
+          className="ml-2 text-[20px] transition-[font-variation-settings,transform] group-hover:font-emphasis group-hover:translate-x-1"
+        />
+        <span class={stateLayerVariants({ variant: 'outlined' })} />
+      </a>
+    )
+  }
+</div>

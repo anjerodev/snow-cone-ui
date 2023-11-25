@@ -1,0 +1,72 @@
+---
+import { ROUTES } from '@/constants/routes'
+import { getCollection } from 'astro:content'
+
+import { siteConfig } from '@/config/site'
+import RootLayout from '@/layouts/root-layout.astro'
+import BottomNavigation from '@/components/bottom-navigation.astro'
+import ComponentsHeader from '@/components/components-header.astro'
+import OnThisPage from '@/components/on-this-page.astro'
+import Pre from '@/components/pre.astro'
+
+export async function getStaticPaths() {
+  const docsEntries = await getCollection('components')
+  return docsEntries.map((entry) => ({
+    params: { slug: entry.slug },
+    props: { entry },
+  }))
+}
+
+const { entry } = Astro.props
+const { Content, headings: contentHeadings } = await entry.render()
+const {
+  data: { title, subtitle, thumbnail, thumbnailDark, bgImage, bgImageDark },
+  slug,
+} = entry
+
+const headings = contentHeadings.filter(
+  (heading) => heading.depth > 1 && heading.depth <= 3
+)
+
+const prevAndNext = (() => {
+  const navItems = siteConfig.sideNav[ROUTES.COMPONENTS]
+  const currentIndex = navItems.findIndex((item) => item.slug === slug)
+
+  const prev = currentIndex === 0 ? null : navItems[currentIndex - 1]
+  const next =
+    currentIndex === navItems.length - 1 ? null : navItems[currentIndex + 1]
+
+  return {
+    prev: prev
+      ? { title: prev.title, url: ROUTES.COMPONENTS + '/' + prev.slug }
+      : null,
+    next: next
+      ? { title: next.title, url: ROUTES.COMPONENTS + '/' + next.slug }
+      : null,
+  }
+})()
+---
+
+<RootLayout title={`Components - ${title}`}>
+  <main>
+    <ComponentsHeader
+      title={title}
+      subtitle={subtitle}
+      thumbnail={thumbnail}
+      thumbnailDark={thumbnailDark}
+      bgImage={bgImage}
+      bgImageDark={bgImageDark}
+    />
+    <div class="flex w-full">
+      <section class="mdx z-0 max-w-5xl flex-1 px-4 xl:ml-40">
+        <Content
+          components={{
+            pre: Pre,
+          }}
+        />
+        <BottomNavigation {...prevAndNext} />
+      </section>
+      <OnThisPage title={title} links={headings} />
+    </div>
+  </main>
+</RootLayout>

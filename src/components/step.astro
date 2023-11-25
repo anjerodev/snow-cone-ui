@@ -1,0 +1,31 @@
+<div
+  class="step last:bg-0 border-l pb-8 pl-8 last:border-l-0 [&>h4]:text-title-sm [&>h4]:before:font-mono"
+>
+  <slot />
+</div>
+
+<style is:global>
+  .step h4 {
+    counter-increment: step;
+    margin-top: 0;
+  }
+
+  .step h4::before {
+    position: absolute;
+    display: inline-flex;
+    height: 36px;
+    width: 36px;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    border: 4px solid hsl(var(--background));
+    background-color: hsl(var(--primaryContainer));
+    text-align: center;
+    text-indent: -1px;
+    color: hsl(var(--onPrimaryContainer));
+    margin-left: -50px;
+    margin-top: -8px;
+    font-weight: 600;
+    content: counter(step);
+  }
+</style>

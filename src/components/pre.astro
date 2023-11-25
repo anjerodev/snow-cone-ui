@@ -1,0 +1,12 @@
+---
+import { ClipboardButton } from './react/clipboard-button'
+
+const props = Astro.props
+---
+
+<div class="copyable-container relative w-full">
+  <pre {...props}><slot /></pre>
+  <div class="absolute right-3 top-3 flex">
+    <ClipboardButton client:visible />
+  </div>
+</div>

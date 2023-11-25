@@ -1,0 +1,54 @@
+---
+import CategoryCard from './category-card.astro'
+
+interface Props {
+  root: string
+  bg: {
+    default: string
+    dark?: string
+  }
+  color: {
+    default: string
+    dark: string
+  }
+  items: {
+    title: string
+    description: string
+    slug: string
+    thumbnail: {
+      default: string
+      dark?: string
+    }
+  }[]
+}
+
+const { root, items, bg, color } = Astro.props
+const lightBg = color.default
+const darkBg = color.dark
+---
+
+<section class="grid grid-cols-1 gap-2 sm:grid-cols-2 xl:grid-cols-3">
+  {
+    items.map(({ title, description, slug, thumbnail }) => (
+      <CategoryCard
+        title={title}
+        description={description}
+        url={root + '/' + slug}
+        imgUrl={{
+          default: thumbnail.default,
+          dark: thumbnail.dark,
+        }}
+        bgImgUrl={{
+          default: bg.default,
+          dark: bg.dark,
+        }}
+        styles={{
+          action: 'action',
+          imageContainer: 'image-container',
+        }}
+      />
+    ))
+  }
+</section>
+
+<style define:vars={{ lightBg, darkBg }}></style>

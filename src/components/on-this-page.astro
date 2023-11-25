@@ -1,0 +1,54 @@
+---
+import { OnPageNavigation } from '@/components/react/on-page-navigation'
+
+interface Props {
+  title: string
+  links?: {
+    text: string
+    slug: string
+    depth: number
+  }[]
+}
+
+const { title, links = [] } = Astro.props
+---
+
+<div class="relative z-10 block shrink-0">
+  <div class="sticky right-4 top-4">
+    <OnPageNavigation client:only title={title} items={links} />
+    <aside
+      class="absolute right-0 top-0 mr-6 hidden w-[256px] p-4 lg:relative lg:mx-auto lg:block"
+    >
+      <p class="px-4 text-label-md">On this page</p>
+      <p class="px-4 text-headline-md">{title}</p>
+      <nav>
+        <ul>
+          {
+            links.map((link) => (
+              <li>
+                <a
+                  href={'#' + link.slug}
+                  class="block w-full rounded-full bg-transparent px-4 py-2 transition-colors hover:bg-inverseSurface/4"
+                >
+                  {link.text}
+                </a>
+              </li>
+            ))
+          }
+        </ul>
+      </nav>
+    </aside>
+  </div>
+</div>
+
+<style>
+  :global(html) {
+    scroll-behavior: smooth;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    :global(html) {
+      scroll-behavior: auto;
+    }
+  }
+</style>

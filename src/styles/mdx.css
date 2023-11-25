@@ -1,0 +1,147 @@
+:not(pre) > code {
+  @apply relative rounded bg-primaryContainer/50 px-[0.3rem] py-[0.2rem] font-mono text-sm before:hidden after:hidden;
+}
+
+.mdx {
+  h2 {
+    @apply mb-6 mt-20 text-display-md first:mt-0;
+  }
+  h3 {
+    @apply mb-3 mt-10 text-headline-md;
+  }
+
+  h4 {
+    @apply my-3 text-title-md;
+  }
+
+  p {
+    @apply my-4;
+  }
+}
+
+/* Prism styles */
+:not(pre) > code[class*='language-'],
+pre[class*='language-'] {
+  background-color: theme(colors.surfaceContainer);
+  border-radius: theme(borderRadius.lg);
+  color: theme(colors.onSurface);
+  width: 100%;
+  padding: 2em;
+  border: 1px solid theme(colors.outlineVariant);
+  font-size: theme(fontSize.sm);
+  overflow: auto;
+}
+
+.preview :not(pre) > code[class*='language-'],
+.preview pre[class*='language-'] {
+  background-color: theme(colors.surfaceVariant / 0.4);
+  border-radius: 0;
+  margin: 0;
+  border: none;
+}
+
+:not(pre) > code[class*='language-'] {
+  padding: 0.1em;
+  border-radius: theme(borderRadius.lg);
+  white-space: normal;
+}
+
+code[class*='language-'] {
+  display: block;
+  width: 0;
+}
+
+.token.comment,
+.token.prolog,
+.token.doctype,
+.token.cdata {
+  color: theme(colors.outline);
+}
+
+.token.punctuation {
+  color: theme(colors.onSurface);
+}
+
+.token.namespace {
+  opacity: 0.7;
+}
+
+.token.property,
+.token.tag,
+.token.boolean,
+.token.number,
+.token.constant,
+.token.symbol,
+.token.deleted {
+  color: theme(colors.secondary);
+}
+
+.token.selector,
+.token.attr-name,
+.token.string,
+.token.char,
+.token.builtin,
+.token.inserted {
+  color: hsl(96, 42%, 30%);
+}
+
+.dark .token.selector,
+.dark .token.attr-name,
+.dark .token.string,
+.dark .token.char,
+.dark .token.builtin,
+.dark .token.inserted {
+  color: hsl(96, 38%, 58%);
+}
+
+.token.operator,
+.token.entity,
+.token.url,
+.language-css .token.string,
+.style .token.string {
+  color: theme(colors.primary);
+}
+
+.token.atrule,
+.token.attr-value,
+.token.keyword {
+  color: theme(colors.tertiary);
+}
+
+.token.function,
+.token.class-name {
+  color: hsl(348, 71%, 41%);
+}
+
+.dark {
+  .token.function,
+  .token.class-name {
+    color: hsl(348, 68%, 58%);
+  }
+}
+
+.token.regex,
+.token.important,
+.token.variable {
+  color: hsl(39, 90%, 35%);
+}
+
+.dark {
+  .token.regex,
+  .token.important,
+  .token.variable {
+    color: hsl(39, 100%, 47%);
+  }
+}
+
+.token.important,
+.token.bold {
+  font-weight: bold;
+}
+.token.italic {
+  font-style: italic;
+}
+
+.token.entity {
+  cursor: help;
+}

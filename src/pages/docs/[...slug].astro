@@ -1,0 +1,28 @@
+---
+import { getCollection } from 'astro:content'
+
+import RootLayout from '@/layouts/root-layout.astro'
+
+export async function getStaticPaths() {
+  const docsEntries = await getCollection('docs')
+  return docsEntries.map((entry) => ({
+    params: { slug: entry.slug },
+    props: { entry },
+  }))
+}
+
+const { entry } = Astro.props
+const { Content } = await entry.render()
+---
+
+<RootLayout title={`Docs - ${entry.data.title}`}>
+  <main class="container space-y-4 py-4">
+    <header class="rounded-2xl bg-surfaceContainer p-14">
+      <h1 class="text-8xl">{entry.data.title}</h1>
+      <h2 class="text-headline-sm">{entry.data.subtitle}</h2>
+    </header>
+    <div class="prose dark:prose-invert">
+      <Content />
+    </div>
+  </main>
+</RootLayout>

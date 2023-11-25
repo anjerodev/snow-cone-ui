@@ -1,0 +1,99 @@
+---
+import { cn } from '@/lib/utils'
+import { Card } from '@/components/ui/card'
+
+interface Props {
+  title: string
+  description: string
+  url: string
+  imgUrl: {
+    default: string
+    dark?: string
+  }
+  bgImgUrl?: {
+    default: string
+    dark?: string
+  }
+  styles?: {
+    card?: string
+    action?: string
+    imageContainer?: string
+  }
+}
+
+const { title, description, url, imgUrl, bgImgUrl, styles } = Astro.props
+const bgImage = `url(${bgImgUrl?.default})`
+const darkBgImage = `url(${bgImgUrl?.dark ?? bgImgUrl?.default})`
+const previewImage = `url(${imgUrl.default})`
+const darkPreviewImage = `url(${imgUrl?.dark ?? imgUrl.default})`
+---
+
+<Card className={cn('flex overflow-hidden rounded-lg', styles?.card)}>
+  <a
+    href={url}
+    class={cn(
+      'group h-full w-full bg-transparent transition-colors',
+      styles?.action
+    )}
+  >
+    <div
+      id="image-container"
+      class={cn(
+        'relative h-[200px] w-full overflow-hidden rounded-lg',
+        styles?.imageContainer
+      )}
+    >
+      {
+        bgImgUrl && (
+          <div
+            id="bgImage"
+            class="absolute inset-0 bg-cover bg-no-repeat opacity-0 transition-opacity duration-300 group-hover:opacity-100"
+          />
+        )
+      }
+      {
+        imgUrl && (
+          <div
+            id="thumbnail"
+            class="absolute inset-0 bg-cover bg-center bg-no-repeat"
+          />
+        )
+      }
+    </div>
+    <Card.Header>
+      <Card.Title>{title}</Card.Title>
+      <Card.Description className="text-body-lg">
+        {description}
+      </Card.Description>
+    </Card.Header>
+  </a>
+</Card>
+
+<style define:vars={{ bgImage, darkBgImage, previewImage, darkPreviewImage }}>
+  #bgImage {
+    background-image: var(--bgImage);
+  }
+  :global(.dark) #bgImage {
+    background-image: var(--darkBgImage);
+  }
+  #thumbnail {
+    background-image: var(--previewImage);
+  }
+  :global(.dark) #thumbnail {
+    background-image: var(--darkPreviewImage);
+  }
+
+  /* Classes added from category-cards-group.astro */
+  .action:hover {
+    background-color: var(--lightBg);
+  }
+  :global(.dark) .action:hover {
+    background-color: var(--darkBg);
+  }
+  .image-container {
+    background-color: var(--lightBg);
+  }
+  :global(.dark) .image-container {
+    background-color: var(--darkBg);
+  }
+</style>

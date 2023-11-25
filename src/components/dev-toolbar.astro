@@ -1,0 +1,20 @@
+---
+import { DEBUG } from '@/lib/utils'
+---
+
+{
+  DEBUG && (
+    <div class="fixed bottom-0 right-0 z-50 flex items-center m-2 gap-0.5 rounded-full bg-onBackground/10 backdrop-blur-sm">
+      <div class="m-1 flex h-10 w-10 items-center justify-center rounded-full bg-onBackground/5 font-mono text-sm text-onBackground">
+        <div class="block sm:hidden">xs</div>
+        <div class="hidden sm:block md:hidden lg:hidden xl:hidden 2xl:hidden">
+          sm
+        </div>
+        <div class="hidden md:block lg:hidden xl:hidden 2xl:hidden">md</div>
+        <div class="hidden lg:block xl:hidden 2xl:hidden">lg</div>
+        <div class="hidden xl:block 2xl:hidden">xl</div>
+        <div class="hidden 2xl:block">2xl</div>
+      </div>
+    </div>
+  )
+}

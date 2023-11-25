@@ -1,0 +1,179 @@
+@import 'tailwindcss/base';
+@import './mdx.css';
+
+@import 'tailwindcss/components';
+
+@import 'tailwindcss/utilities';
+
+@layer base {
+  :root {
+    --primary: theme(colors.palette.primary.40);
+    --onPrimary: theme(colors.palette.primary.100);
+    --primaryContainer: theme(colors.palette.primary.90);
+    --onPrimaryContainer: theme(colors.palette.primary.10);
+    --secondary: theme(colors.palette.secondary.40);
+    --onSecondary: theme(colors.palette.secondary.100);
+    --secondaryContainer: theme(colors.palette.secondary.90);
+    --onSecondaryContainer: theme(colors.palette.secondary.10);
+    --tertiary: theme(colors.palette.tertiary.40);
+    --onTertiary: theme(colors.palette.tertiary.100);
+    --tertiaryContainer: theme(colors.palette.tertiary.90);
+    --onTertiaryContainer: theme(colors.palette.tertiary.10);
+    --error: theme(colors.palette.error.40);
+    --onError: theme(colors.palette.error.100);
+    --errorContainer: theme(colors.palette.error.90);
+    --onErrorContainer: theme(colors.palette.error.10);
+    --background: theme(colors.palette.neutral.98);
+    --onBackground: theme(colors.palette.neutral.10);
+    --surface: theme(colors.palette.neutral.98);
+    --onSurface: theme(colors.palette.neutral.10);
+    --surfaceVariant: theme(colors.palette.neutralVariant.90);
+    --onSurfaceVariant: theme(colors.palette.neutralVariant.30);
+    --outline: theme(colors.palette.neutralVariant.50);
+    --outlineVariant: theme(colors.palette.neutralVariant.80);
+    --shadow: theme(colors.palette.neutral.0);
+    --scrim: theme(colors.palette.neutral.0);
+    --inverseSurface: theme(colors.palette.neutral.20);
+    --inverseOnSurface: theme(colors.palette.neutral.95);
+    --inversePrimary: theme(colors.palette.primary.80);
+    --surfaceDim: theme(colors.palette.neutral.87);
+    --surfaceBright: theme(colors.palette.neutral.98);
+    --surfaceContainerLowest: theme(colors.palette.neutral.100);
+    --surfaceContainerLow: theme(colors.palette.neutral.96);
+    --surfaceContainer: theme(colors.palette.neutral.94);
+    --surfaceContainerHigh: theme(colors.palette.neutral.92);
+    --surfaceContainerHighest: theme(colors.palette.neutral.90);
+    --success: theme(colors.palette.success.40);
+    --onSuccess: theme(colors.palette.success.100);
+    --successContainer: theme(colors.palette.success.90);
+    --onSuccessContainer: theme(colors.palette.success.10);
+    --info: theme(colors.palette.info.40);
+    --onInfo: theme(colors.palette.info.100);
+    --infoContainer: theme(colors.palette.info.90);
+    --onInfoContainer: theme(colors.palette.info.10);
+    --warning: theme(colors.palette.warning.40);
+    --onWarning: theme(colors.palette.warning.100);
+    --warningContainer: theme(colors.palette.warning.90);
+    --onWarningContainer: theme(colors.palette.warning.10);
+
+    --primaryFixed: theme(colors.palette.primary.90);
+    --primaryFixedDim: theme(colors.palette.primary.80);
+    --onPrimaryFixed: theme(colors.palette.primary.10);
+    --onPrimaryFixedVariant: theme(colors.palette.primary.30);
+    --secondaryFixed: theme(colors.palette.secondary.90);
+    --secondaryFixedDim: theme(colors.palette.secondary.80);
+    --onSecondaryFixed: theme(colors.palette.secondary.10);
+    --onSecondaryFixedVariant: theme(colors.palette.secondary.30);
+    --tertiaryFixed: theme(colors.palette.tertiary.90);
+    --tertiaryFixedDim: theme(colors.palette.tertiary.80);
+    --onTertiaryFixed: theme(colors.palette.tertiary.10);
+    --onTertiaryFixedVariant: theme(colors.palette.tertiary.30);
+    --radius: 12px;
+  }
+  .dark {
+    --primary: theme(colors.palette.primary.80);
+    --onPrimary: theme(colors.palette.primary.20);
+    --primaryContainer: theme(colors.palette.primary.30);
+    --onPrimaryContainer: theme(colors.palette.primary.90);
+    --secondary: theme(colors.palette.secondary.80);
+    --onSecondary: theme(colors.palette.secondary.20);
+    --secondaryContainer: theme(colors.palette.secondary.30);
+    --onSecondaryContainer: theme(colors.palette.secondary.90);
+    --tertiary: theme(colors.palette.tertiary.80);
+    --onTertiary: theme(colors.palette.tertiary.20);
+    --tertiaryContainer: theme(colors.palette.tertiary.30);
+    --onTertiaryContainer: theme(colors.palette.tertiary.90);
+    --error: theme(colors.palette.error.80);
+    --onError: theme(colors.palette.error.20);
+    --errorContainer: theme(colors.palette.error.30);
+    --onErrorContainer: theme(colors.palette.error.90);
+    --background: theme(colors.palette.neutral.6);
+    --onBackground: theme(colors.palette.neutral.90);
+    --surface: theme(colors.palette.neutral.6);
+    --onSurface: theme(colors.palette.neutral.90);
+    --surfaceVariant: theme(colors.palette.neutralVariant.30);
+    --onSurfaceVariant: theme(colors.palette.neutralVariant.80);
+    --outline: theme(colors.palette.neutralVariant.60);
+    --outlineVariant: theme(colors.palette.neutralVariant.30);
+    --shadow: theme(colors.palette.neutral.0);
+    --scrim: theme(colors.palette.neutral.0);
+    --inverseSurface: theme(colors.palette.neutral.90);
+    --inverseOnSurface: theme(colors.palette.neutral.20);
+    --inversePrimary: theme(colors.palette.primary.40);
+    --surfaceDim: theme(colors.palette.neutral.6);
+    --surfaceBright: theme(colors.palette.neutral.24);
+    --surfaceContainerLowest: theme(colors.palette.neutral.4);
+    --surfaceContainerLow: theme(colors.palette.neutral.10);
+    --surfaceContainer: theme(colors.palette.neutral.12);
+    --surfaceContainerHigh: theme(colors.palette.neutral.17);
+    --surfaceContainerHighest: theme(colors.palette.neutral.22);
+    --success: theme(colors.palette.success.80);
+    --onSuccess: theme(colors.palette.success.20);
+    --successContainer: theme(colors.palette.success.30);
+    --onSuccessContainer: theme(colors.palette.success.90);
+    --info: theme(colors.palette.info.80);
+    --onInfo: theme(colors.palette.info.20);
+    --infoContainer: theme(colors.palette.info.30);
+    --onInfoContainer: theme(colors.palette.info.90);
+    --warning: theme(colors.palette.warning.80);
+    --onWarning: theme(colors.palette.warning.20);
+    --warningContainer: theme(colors.palette.warning.30);
+    --onWarningContainer: theme(colors.palette.warning.90);
+  }
+
+  * {
+    border-color: theme(colors.outline);
+  }
+
+  body {
+    font-feature-settings:
+      'rlig' 1,
+      'calt' 1;
+  }
+
+  h1 {
+    @apply text-display-md sm:text-display-lg;
+  }
+
+  h2 {
+    @apply text-headline-md sm:text-display-md;
+  }
+
+  code {
+    font-family:
+      Menlo,
+      Monaco,
+      Lucida Console,
+      Liberation Mono,
+      DejaVu Sans Mono,
+      Bitstream Vera Sans Mono,
+      Courier New,
+      monospace;
+  }
+
+  i {
+    font-family: var(--font-symbols);
+    font-style: normal;
+    line-height: 1;
+    letter-spacing: normal;
+    text-transform: none;
+    white-space: nowrap;
+    word-wrap: normal;
+    direction: ltr;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+    font-feature-settings: 'liga';
+
+    user-select: none;
+    background-repeat: no-repeat;
+    display: inline-block;
+    overflow: hidden;
+  }
+}
+
+@layer utilities {
+  .balance {
+    text-wrap: balance;
+  }
+}
