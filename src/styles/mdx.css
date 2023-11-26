@@ -4,7 +4,7 @@
 
 .mdx {
   h2 {
-    @apply mb-6 mt-20 text-display-md first:mt-0;
+    @apply mb-6 mt-20 text-display-md first-of-type:mt-0;
   }
   h3 {
     @apply mb-3 mt-10 text-headline-md;

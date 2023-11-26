@@ -5,7 +5,7 @@ import { cva, type VariantProps } from 'class-variance-authority'
 import { cn } from '@/lib/utils'
 
 const buttonVariants = cva(
-  'flex items-center justify-center relative no-underline select-none group w-fit overflow-hidden text-label-lg font-medium rounded-2xl transition outline-none disabled:pointer-events-none disabled:text-onSurface/38 disabled:shadow-none active:scale-[0.98]',
+  'flex items-center z-0 justify-center relative no-underline select-none group w-fit overflow-hidden text-label-lg font-medium rounded-2xl transition outline-none disabled:pointer-events-none disabled:text-onSurface/38 disabled:shadow-none active:scale-[0.98]',
   {
     variants: {
       size: {
@@ -34,7 +34,7 @@ const buttonVariants = cva(
 )
 
 const stateLayerVariants = cva(
-  'transition-opacity absolute inset-0 z-0 opacity-0 group-hover:opacity-8 group-focus:opacity-12 group-active:opacity-12',
+  'transition-opacity absolute inset-0 z-[-1] opacity-0 group-hover:opacity-8 group-focus:opacity-12 group-active:opacity-12',
   {
     variants: {
       variant: {
@@ -69,7 +69,7 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
         {...props}
       >
         <Slottable>{children}</Slottable>
-        <span className={cn(stateLayerVariants({ variant }))} />
+        <span className={stateLayerVariants({ variant })} />
       </Comp>
     )
   }

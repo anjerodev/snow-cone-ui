@@ -17,6 +17,9 @@ const componentsCollection = defineCollection({
     thumbnailDark: z.string().optional(),
     bgImage: z.string(),
     bgImageDark: z.string().optional(),
+    guidelines: z.string().optional(),
+    shadcn: z.string().optional(),
+    radix: z.string().optional(),
   }),
 })
 

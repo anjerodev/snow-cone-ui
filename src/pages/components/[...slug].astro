@@ -4,10 +4,14 @@ import { getCollection } from 'astro:content'
 
 import { siteConfig } from '@/config/site'
 import RootLayout from '@/layouts/root-layout.astro'
+import { Icon } from '@/components/ui/icon'
+import { CreditsChip } from '@/components/react/credits-chip'
 import BottomNavigation from '@/components/bottom-navigation.astro'
 import ComponentsHeader from '@/components/components-header.astro'
 import OnThisPage from '@/components/on-this-page.astro'
 import Pre from '@/components/pre.astro'
+import RadixIcon from '@/components/radix-icon.astro'
+import ShadcnIcon from '@/components/shadcn-icon.astro'
 
 export async function getStaticPaths() {
   const docsEntries = await getCollection('components')
@@ -20,7 +24,17 @@ export async function getStaticPaths() {
 const { entry } = Astro.props
 const { Content, headings: contentHeadings } = await entry.render()
 const {
-  data: { title, subtitle, thumbnail, thumbnailDark, bgImage, bgImageDark },
+  data: {
+    title,
+    subtitle,
+    thumbnail,
+    thumbnailDark,
+    bgImage,
+    bgImageDark,
+    guidelines,
+    shadcn,
+    radix,
+  },
   slug,
 } = entry
 
@@ -59,6 +73,29 @@ const prevAndNext = (() => {
     />
     <div class="flex w-full">
       <section class="mdx z-0 max-w-5xl flex-1 px-4 xl:ml-40">
+        <div class="flex w-full flex-wrap gap-3 py-4">
+          {
+            shadcn && (
+              <CreditsChip href={shadcn} label="Shadcn UI">
+                <ShadcnIcon />
+              </CreditsChip>
+            )
+          }
+          {
+            radix && (
+              <CreditsChip href={radix} label="Radix UI">
+                <RadixIcon />
+              </CreditsChip>
+            )
+          }
+          {
+            guidelines && (
+              <CreditsChip href={guidelines} label="Guidelines">
+                <Icon symbol="design_services" />
+              </CreditsChip>
+            )
+          }
+        </div>
         <Content
           components={{
             pre: Pre,
