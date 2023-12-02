@@ -1,5 +1,6 @@
 ---
 import { ROUTES } from '@/constants/routes'
+import { componentsSections } from '@/content/config'
 import { getCollection } from 'astro:content'
 
 import { siteConfig } from '@/config/site'
@@ -25,12 +26,11 @@ const { entry } = Astro.props
 const { Content, headings: contentHeadings } = await entry.render()
 const {
   data: {
+    group,
     title,
     subtitle,
     thumbnail,
     thumbnailDark,
-    bgImage,
-    bgImageDark,
     guidelines,
     shadcn,
     radix,
@@ -66,10 +66,11 @@ const prevAndNext = (() => {
     <ComponentsHeader
       title={title}
       subtitle={subtitle}
-      thumbnail={thumbnail}
-      thumbnailDark={thumbnailDark}
-      bgImage={bgImage}
-      bgImageDark={bgImageDark}
+      thumbnail={{
+        default: thumbnail,
+        dark: thumbnailDark,
+      }}
+      bgImage={componentsSections[group as keyof typeof componentsSections].bg}
     />
     <div class="flex w-full">
       <section class="mdx z-0 max-w-5xl flex-1 px-4 xl:ml-40">
