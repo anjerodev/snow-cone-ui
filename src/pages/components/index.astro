@@ -1,5 +1,6 @@
 ---
-import { ROUTES } from '@/constants/routes'
+import { componentsSections } from '@/content/config'
+import { getCollection } from 'astro:content'
 
 import RootLayout from '@/layouts/root-layout.astro'
 import CategoryCardsGroup from '@/components/category-cards-group.astro'
@@ -15,39 +16,45 @@ const componentCard = (
   title,
   description,
   slug,
-  thumbnail: { default: defaultThumbnail, dark: darkThumbnail },
+  thumbnail: {
+    default: defaultThumbnail,
+    dark: darkThumbnail ?? defaultThumbnail,
+  },
 })
 
-const buttons = [
-  componentCard(
-    'Common Buttons',
-    'Common buttons prompt most of actions in a UI.',
-    'buttons',
-    'https://lh3.googleusercontent.com/y-iSBZGCAdoZXLngFRyrz1yT-izR5A0jLcpGNSTsqWPlqDugm7L2G4xNhexzC3DXnaEXN5jj00Yef5tQzRE23URZu4Ei9g9eCAjuvJdi5iOyAduMBUM=s0',
-    'https://lh3.googleusercontent.com/pDygLGeX2CF9lCF4-4Pd4qc8pMRJ2pWVyfy7iFr6YDeaJdtcaIfq0RCMn_zEyis06GNXIBWu78qHB6LC9e7o8eV8x8PCx4_SpYOxWMTgf36qtpNE9Fw=s0'
-  ),
-  componentCard(
-    'Extended FAB',
-    'Extended floating action buttons (extended FABs) help people take primary actions',
-    'extended-fab',
-    'https://lh3.googleusercontent.com/3XYuqAU7H8BcxwCqQbSrSd6IvDDN4jGFwDcX_n-vMF0aK6HimL_9fAHaUIpX46-9PsA9OTY4gmtPMfBOinZIui2MRdPAjsC3CJvDljkVngftvx9TOOg=s0',
-    'https://lh3.googleusercontent.com/6ISAbxxjnI_TB5AupSmKy0cQyzRCs5IgOxpTWOUotgOsY_QPHwXG2xX2mgp_OeOZlEDGwzNeWg3qTA12ZOzjmOH3LQAtmDau8XVSnf8zJdCt9h8I6sw=s0'
-  ),
-  componentCard(
-    'Floating action buttons',
-    'Floating action buttons (FABs) help people take primary actions',
-    'fab',
-    'https://lh3.googleusercontent.com/NA51Mxr5tMauLRyd-9TyknRH1Orp4_ZAu56-HZO5_3m1orcJxl-yzp8CAtKvtD7H8KIkPUTcGA0BeegRh3kxCQqJW5c2GzqFdpGa0s3vP0YcUU_RTFZ7=s0',
-    'https://lh3.googleusercontent.com/jMc3vPL0yg_IUu6ee2YZd8XVJB3lbMe2SQWQx10HYMfKSgMyoirVyH105JIRkNsaBKq1cfytJzTezgLj26HgvUNGrZoDMtyQ2Ab3Q0lEajYeh8WUXwU=s0'
-  ),
-  componentCard(
-    'Icon buttons',
-    'Icon buttons help people take minor actions with one tap',
-    'icon-buttons',
-    'https://lh3.googleusercontent.com/aF3wUerLyBaxFOPZ1xh13e_V4edmAb93KZR4nUo0z7OrLsPP50IpfpXjsuSpAbVoastRziOlT4j4UuRgNX9C2q0N0cHkp9euXiFMUf3C3QEwItMojQ=s0',
-    'https://lh3.googleusercontent.com/Uea2g1C9fq64WzquEmwAM-CnS5lSB5trvvEFEYe6po_XK5lkVDqlWtHx20HfoHvkp2Z1GJKVPdKvEa2djmzxMptjAfoS57N93Zgwi50FKdrCmmT10cI=s0'
-  ),
-]
+const groups = Object.keys(componentsSections)
+
+const getGroupComponents = async (group: string) => {
+  const componentsData = await getCollection('components', ({ data }) => {
+    return data.group === group
+  })
+
+  const components = componentsData.map(({ data, slug }) =>
+    componentCard(
+      data.title,
+      data.subtitle,
+      slug,
+      data.preview,
+      data.previewDark
+    )
+  )
+
+  return { [group]: components }
+}
+
+const componentsPromises = groups.map(getGroupComponents)
+
+const components = Object.assign({}, ...(await Promise.all(componentsPromises)))
+
+const sections = Object.entries(componentsSections).map(([name, info]) => ({
+  name: name.replaceAll('-', ' '),
+  description: info.description,
+  components: components?.[name as keyof typeof components] ?? [],
+  style: {
+    bg: info.bg,
+    color: info.color,
+  },
+}))
 ---
 
 <RootLayout title="Solstice Components">
@@ -55,29 +62,26 @@ const buttons = [
     <PageHeader
       title="Components"
       subtitle="Components are interactive building blocks for creating an user interface. They can be organized into categories based on their purpose: Action, containment, communication, navigation, selection, and text input."
-      img="https://lh3.googleusercontent.com/wle2URFsybXPDp10jnrUay6k4sw14Hg8Ajb91djUCIHa1Z7hBDFAbjPhnm-mCmjeoI-6_FPQYW6G9H2Z8kL5LfXfx_FpDlAS3DZX4wZjrbEEe2arzQ=w2400-rj"
-      darkImg="https://lh3.googleusercontent.com/c99jeUlUnlUjl7U2J3e1V9suxZUao9TxYb93TYU4Ry9eHfg4q3em21KVFHTFcoIpvU2Ubwhs9VgHWzk6cRUnjzQSaRdkDJmZfC5ylmQoXN7ap4DSrQ=w2400-rj"
+      img={{
+        default:
+          'https://lh3.googleusercontent.com/wle2URFsybXPDp10jnrUay6k4sw14Hg8Ajb91djUCIHa1Z7hBDFAbjPhnm-mCmjeoI-6_FPQYW6G9H2Z8kL5LfXfx_FpDlAS3DZX4wZjrbEEe2arzQ=w2400-rj',
+        dark: 'https://lh3.googleusercontent.com/c99jeUlUnlUjl7U2J3e1V9suxZUao9TxYb93TYU4Ry9eHfg4q3em21KVFHTFcoIpvU2Ubwhs9VgHWzk6cRUnjzQSaRdkDJmZfC5ylmQoXN7ap4DSrQ=w2400-rj',
+      }}
     />
-    <section class="container p-0">
-      <div class="p-6">
-        <h2>Actions</h2>
-        <p class="sm:text-title-lg">
-          Action components help people achieve an aim.
-        </p>
-      </div>
-      <CategoryCardsGroup
-        root={ROUTES.COMPONENTS}
-        bg={{
-          default:
-            'https://m3.material.io/static/assets/m3-green-theming-thumbnail.jpg',
-          dark: 'https://m3.material.io/static/assets/m3-green-theming-thumbnail-dark.jpg',
-        }}
-        color={{
-          default: '#d9e7cb',
-          dark: '#3e4a36',
-        }}
-        items={buttons}
-      />
-    </section>
+    {
+      sections.map(({ name, description, components, style }) => (
+        <section class="container p-0">
+          <div class="p-6">
+            <h2 class="capitalize">{name}</h2>
+            <p class="sm:text-title-lg">{description}</p>
+          </div>
+          <CategoryCardsGroup
+            bg={style.bg}
+            color={style.color}
+            items={components}
+          />
+        </section>
+      ))
+    }
   </main>
 </RootLayout>
