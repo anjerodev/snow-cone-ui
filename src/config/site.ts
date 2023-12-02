@@ -15,9 +15,9 @@ export const siteConfig = {
     [ROUTES.STYLES]: [],
     [ROUTES.COMPONENTS]: [
       navItem('Buttons', 'buttons'),
-      navItem('Extended FAB', 'extended-fab'),
       navItem('Floating Action Buttons', 'fab'),
       navItem('Icon buttons', 'icon-buttons'),
+      navItem('Segmented buttons', 'segmented-buttons'),
     ],
   },
 }
