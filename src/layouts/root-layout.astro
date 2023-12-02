@@ -1,8 +1,8 @@
 ---
 import '@fontsource-variable/outfit'
 import '@fontsource/outfit'
-import '@fontsource-variable/material-symbols-rounded/full.css'
 import '@/styles/base.css'
+import 'material-symbols/rounded.css'
 
 import { ViewTransitions } from 'astro:transitions'
 
@@ -41,7 +41,7 @@ const { title } = Astro.props
     <SnackbarManager client:only />
     <style is:global id="theme">
       :root {
-        --font-symbols: 'Material Symbols Rounded Variable';
+        --font-symbols: 'Material Symbols Rounded';
       }
     </style>
   </body>
