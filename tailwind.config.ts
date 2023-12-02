@@ -370,6 +370,7 @@ const config = {
         'body-sm': ['0.75rem', { lineHeight: '1rem' }],
       },
       boxShadow: {
+        xs: '0px 1px 2px 0px hsl(var(--shadow) / 0.15), 0px 1px 2px 0px hsl(var(--shadow) / 0.2)',
         sm: '0px 1px 4px 1px hsl(var(--shadow) / 0.1), 0px 1px 3px 0px hsl(var(--shadow) / 0.15)',
         md: '0px 2px 6px 2px hsl(var(--shadow) / 0.1), 0px 1px 3px 0px hsl(var(--shadow) / 0.2)',
         lg: '0px 4px 8px 3px hsl(var(--shadow) / 0.15), 0px 1px 3px 0px hsl(var(--shadow) / 0.3)',
