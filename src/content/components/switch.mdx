@@ -1,0 +1,132 @@
+---
+group: 'selection'
+title: 'Switch'
+subtitle: 'Checkboxes let users select one or more items from a list, or turn an item on or off'
+preview: 'https://lh3.googleusercontent.com/vVnBoZ6BPrUL-fZuhqpl3MacbRVwPIv2P4JKrBywsM3wFZ38hgK-xAs40ddZFNUPnbZNLHjSCsrqaTlirO8zBR3L1Ha2DMaib5iUeoaPii_IO0tuoA=s0'
+previewDark: 'https://lh3.googleusercontent.com/2iWMrPJvG6dSvOtcaCkvUuflRLsw-igbtX2lpZ94ONDfi6IA8VNvkXVnVe_xh7iswn3CsXc0Gx8ALawXyiOBRVRFwB5QqR7Qfq0zlwY3k1AT7niOWd6V=s0'
+thumbnail: 'https://lh3.googleusercontent.com/6A2HR2XR9GmLhDlWHdFt03Y-VWGlxMtnluGLqskh4YReHP1zpdLGlkGBygLbaN8i8pgCP7_BHx5Tzp8YU-a4ju_zjdKd-vQI1ry2dqjLQ5OV6Xp9IQE=w2400'
+thumbnailDark: 'https://lh3.googleusercontent.com/ZKHp9BLmavEN9mP67Gvs9cPEbygeEa59KkODsQ3exhPbr94rjkAZTCa9LS0lR54ISC6RViN3Ko63X08N0m_GrTR0n_o-7WmxQ6mdOHF5rOD4VNz1Hwff=w2400'
+guidelines: 'https://m3.material.io/components/switch/guidelines'
+shadcn: 'https://ui.shadcn.com/docs/components/switch'
+---
+
+import {
+  SimpleSwitch,
+  SwitchWithCheckedIcon,
+  SwitchWithCustomIcons,
+  SwitchWithIcons,
+} from '@/components/react/examples/switch.tsx'
+import ComponentContainer from '@/components/component-container.astro'
+import ComponentSource from '@/components/component-source.astro'
+import Step from '@/components/step.astro'
+import Steps from '@/components/steps.astro'
+
+## Usage
+
+Switches are best used to adjust settings and other standalone options. They make a binary selection, like on and off or true and false.
+
+The effects of a switch should start immediately without needing to save.
+
+## Instalation
+
+<Steps>
+
+<Step>
+#### Run the following command if is not already installed:
+
+```bash
+pnpm add @radix-ui/react-switch
+```
+
+</Step>
+
+<Step>
+  #### Copy and paste the following code into your project.
+  <ComponentSource name="switch" />
+</Step>
+
+<Step>
+#### Update the import paths to match your project setup.
+
+</Step>
+
+</Steps>
+
+## Examples
+
+### Simple switch
+
+<ComponentContainer>
+  <SimpleSwitch slot='preview' client:visible/>
+
+```tsx
+import { Switch } from '@/components/ui/switch'
+
+export const SimpleSwitch = () => {
+  return <Switch />
+}
+```
+
+</ComponentContainer>
+
+### With selected icon
+
+The switch handle can contain an optional icon.
+
+<ComponentContainer>
+  <SwitchWithCheckedIcon slot='preview' client:visible/>
+
+```tsx
+import { Switch } from '@/components/ui/switch'
+
+export const SwitchWithCheckedIcon = () => {
+  return <Switch widthIconOnChecked />
+}
+```
+
+</ComponentContainer>
+
+### With icons
+
+Icons can be used to visually emphasize the switch's selected state.
+
+<ComponentContainer>
+  <SwitchWithIcons slot='preview' client:visible/>
+
+```tsx
+import { Switch } from '@/components/ui/switch'
+
+export const SwitchWithIcons = () => {
+  return <Switch withIcons />
+}
+```
+
+</ComponentContainer>
+
+### With custom icons
+
+The icon's meaning should be clear and unambiguous to help the user understand whether switch is on or off.
+
+<ComponentContainer>
+  <SwitchWithCustomIcons
+    slot='preview' 
+    client:visible
+  />
+
+```tsx
+import { Switch } from '@/components/ui/switch'
+
+export const SimpleSwitch = () => {
+  return (
+    <Switch
+      withIcons
+      customIcons={{
+        unChecked: <Icon symbol="check_indeterminate_small" />,
+        checked: <Icon symbol="check" />,
+      }}
+    />
+  )
+}
+```
+
+</ComponentContainer>

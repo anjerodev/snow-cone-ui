@@ -1,0 +1,125 @@
+---
+group: 'selection'
+title: 'Checkbox'
+subtitle: 'Checkboxes let users select one or more items from a list, or turn an item on or off'
+preview: 'https://lh3.googleusercontent.com/7jCC115ZEbqj1dpQMaBHWyysniAcYnIhk4Xyse7lURBUq1GqW9weeJBIop0B2FgtsHqUFlxRjeZG-tWxnQP9e4SdzUyNQ8oxN8L32raEsdxjaqBpmA=s0'
+previewDark: 'https://lh3.googleusercontent.com/Brc_zitMhWKqn8nyIiD14lRGzK2ptW9Fl8GPsILV3MLBAv0MctABmv8PAJk4sCAKMuBKh6WeHBFrMadMCeqQ1wvZ5ODoYltptiKGfOdH-C-TnzzbGyM=s0'
+thumbnail: 'https://lh3.googleusercontent.com/Gz84-5LIak2YnDPME_ohdKGEquhCBOlvnvQbcaMVRk3q2gqujpJDg4SiqtL6kbWSzH8ElsCz_Ni9OkbRbWbh_YH5vU4slG8c-phyksjc2ttEbq60KqM=w2400'
+thumbnailDark: 'https://lh3.googleusercontent.com/jkFWnktzAdSqwzWdaiaE0005L5PDpGMfdN-YGm9Z6Zh0kkqvegoywq_0f6-e_ZW39Qielpg-LvUPAQ-THSjLwr5WCrz26A5Qdudhb_GyKUFiPtYXbjz5=w1200'
+guidelines: 'https://m3.material.io/components/checkbox/guidelines'
+shadcn: 'https://ui.shadcn.com/docs/components/checkbox'
+---
+
+import {
+  CustomIconCheckbox,
+  DefaultCheckbox,
+} from '@/components/react/examples/checkbox.tsx'
+import ComponentContainer from '@/components/component-container.astro'
+import ComponentSource from '@/components/component-source.astro'
+import Step from '@/components/step.astro'
+import Steps from '@/components/steps.astro'
+
+## Usage
+
+Checkboxes should be used instead of switches if multiple, related options can be selected from a list. Checkboxes visually group similar items effectively and take up less space than switches.
+
+## Instalation
+
+<Steps>
+
+<Step>
+#### Run the following command:
+
+```bash
+pnpm add @radix-ui/react-checkbox
+```
+
+</Step>
+
+<Step>
+  #### Copy and paste the following code into your project.
+  <ComponentSource name="checkbox" />
+</Step>
+
+<Step>
+#### Update the import paths to match your project setup.
+
+</Step>
+
+</Steps>
+
+## Examples
+
+### Default checkbox
+
+<ComponentContainer>
+  <DefaultCheckbox slot='preview' client:visible/>
+
+```tsx
+import { Checkbox } from '@/components/ui/checkbox'
+
+export const DefaultCheckbox = () => {
+  return (
+    <div className="space-y-4">
+      <div className="flex items-center gap-x-6">
+        <Checkbox id="terms" />
+        <label
+          htmlFor="terms"
+          className="text-label-lg peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+        >
+          Pickles
+        </label>
+      </div>
+      <div className="flex items-center gap-x-6">
+        <Checkbox id="terms" disabled />
+        <label
+          htmlFor="terms"
+          className="text-label-lg peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+        >
+          Tomato
+        </label>
+      </div>
+      <div className="flex items-center gap-x-6">
+        <Checkbox id="terms" disabled checked />
+        <label
+          htmlFor="terms"
+          className="text-label-lg peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+        >
+          Lettuce
+        </label>
+      </div>
+    </div>
+  )
+}
+```
+
+</ComponentContainer>
+
+### With custom icon
+
+<ComponentContainer>
+  <CustomIconCheckbox slot='preview' client:visible/>
+
+```tsx
+import { Checkbox } from '@/components/ui/checkbox'
+import { Icon } from '@/components/ui/icon'
+
+export const CustomIconCheckbox = () => {
+  return (
+    <div className="flex items-center gap-x-6">
+      <Checkbox
+        id="receive-emails"
+        customIcon={<Icon symbol="horizontal_rule" />}
+      />
+      <label
+        htmlFor="receive-emails"
+        className="text-label-lg peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+      >
+        Receive emails
+      </label>
+    </div>
+  )
+}
+```
+
+</ComponentContainer>

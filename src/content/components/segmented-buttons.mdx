@@ -1,0 +1,126 @@
+---
+group: 'actions'
+title: 'Segmented buttons'
+subtitle: 'Segmented buttons help people select options, switch views, or sort elements'
+preview: 'https://lh3.googleusercontent.com/eH7oCjIgw1uT-xo-nnN09bxjGHVyN2hIOWka0iIk-q1eRrKMoPhFZqOXho9WkqohxeDQtq1b_lDJR2zt4B7hXIf1zkSRYkxmx9N0pZpXISluy1JwG4A=s0'
+previewDark: 'https://lh3.googleusercontent.com/vSr4I7BAcFIiD9weoZcOM6auxwyTP8gKpF8NFln0e09tEc6o982lBn3Ece0z7AIHjYWmAEdUpGtyaykJolL6VUUOnsJBvaTdEsA78qMO_3yjH6MgOg=s0'
+thumbnail: 'https://lh3.googleusercontent.com/sXqlijWlzcm7AKXwWKWycLXJsyB-haPUBUuFOCCRM7DI8wIsdlh9KCBsT_4dyE7rdTZzQpWO2cJWpzMgdFaNiA15Xga6_LqLzbv7yl_MnC3SQ1WBcA=w2400'
+thumbnailDark: 'https://lh3.googleusercontent.com/mUoEkW056XrY5NNK5hEORIJbSGT7nvNchN6JAeLtKV96hJYuYk0cz4jq7Y4wkziQo9BbMfSU-K7GQVpJerioWFli-_N9VKZnmurr88N0bVlz90JLLzY=w2400'
+guidelines: 'https://m3.material.io/components/segmented-buttons/guidelines'
+---
+
+import {
+  MultipleSelectSegmentedButtons,
+  SingleSelectSegmentedButtons,
+} from '@/components/react/examples/segmented-buttons.tsx'
+import ComponentContainer from '@/components/component-container.astro'
+import ComponentSource from '@/components/component-source.astro'
+import Step from '@/components/step.astro'
+import Steps from '@/components/steps.astro'
+
+## Usage
+
+Segmented buttons help people select options, switch views, or sort elements.
+
+## Instalation
+
+<Steps>
+
+<Step>
+#### Run the following command if is not already installed:
+
+```bash
+pnpm add @radix-ui/react-checkbox
+```
+
+</Step>
+
+<Step>
+  #### Copy and paste the following code into your project.
+  <ComponentSource name="segmented-buttons-group" />
+</Step>
+
+<Step>
+#### Update the import paths to match your project setup.
+
+</Step>
+
+</Steps>
+
+## Examples
+
+### Single select
+
+Use a single-select segmented button to select one option from a set, switch between views, or sort elements from up to five options.
+
+<ComponentContainer>
+<SingleSelectSegmentedButtons client:visible slot='preview'/>
+
+```tsx
+import { useState } from 'react'
+
+import { Icon } from '@/components/ui/icon'
+import { SegmentedButtonsGroup } from '@/components/ui/segmented-buttons-group'
+
+export const MultipleSelectSegmentedButtons = () => {
+  const [selected, setSelected] = useState<string | string[]>('songs')
+
+  return (
+    <SegmentedButtonsGroup
+      className="max-w-sm"
+      value={selected}
+      onValueChange={setSelected}
+    >
+      <SegmentedButtonsGroup.Button id="songs" icon={<Icon symbol="genres" />}>
+        Songs
+      </SegmentedButtonsGroup.Button>
+      <SegmentedButtonsGroup.Button id="albums" icon={<Icon symbol="album" />}>
+        Albums
+      </SegmentedButtonsGroup.Button>
+      <SegmentedButtonsGroup.Button
+        id="podcasts"
+        icon={<Icon symbol="podcasts" />}
+      >
+        Podcasts
+      </SegmentedButtonsGroup.Button>
+    </SegmentedButtonsGroup>
+  )
+}
+```
+
+</ComponentContainer>
+
+### Multiple select
+
+Use a multi-select segmented button to select or sort from two to five options.
+
+<ComponentContainer>
+<MultipleSelectSegmentedButtons client:visible slot='preview'/>
+
+```tsx
+import { useState } from 'react'
+
+import { SegmentedButtonsGroup } from '@/components/ui/segmented-buttons-group'
+
+export const MultipleSelectSegmentedButtons = () => {
+  // For multiple selection the value have to be an array
+  const [selected, setSelected] = useState<string | string[]>(['$'])
+
+  return (
+    <SegmentedButtonsGroup
+      className="max-w-sm"
+      value={selected}
+      onValueChange={setSelected}
+    >
+      <SegmentedButtonsGroup.Button id="$">$</SegmentedButtonsGroup.Button>
+      <SegmentedButtonsGroup.Button id="$$">$$</SegmentedButtonsGroup.Button>
+      <SegmentedButtonsGroup.Button id="$$$">$$$</SegmentedButtonsGroup.Button>
+      <SegmentedButtonsGroup.Button id="$$$$">
+        $$$$
+      </SegmentedButtonsGroup.Button>
+    </SegmentedButtonsGroup>
+  )
+}
+```
+
+</ComponentContainer>

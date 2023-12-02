@@ -1,14 +1,27 @@
 ---
+group: 'actions'
 title: 'Floating Action Buttons'
 subtitle: 'Floating action buttons (FABs) help people take primary actions'
-bgImage: 'https://m3.material.io/static/assets/m3-green-theming-thumbnail.jpg'
-bgImageDark: 'https://m3.material.io/static/assets/m3-green-theming-thumbnail-dark.jpg'
-thumbnail: 'https://lh3.googleusercontent.com/xYmJkoIrC47RYwJaptDaYrcMmxj6RWn0pvbScYBvf2sClwna4rUK1C1nKcwKgqovljJyKozN0h_5d5WOgp1NEFaFSZAGHajlRdXo88Y3D5bo9XX-OY4=w2400'
-thumbnailDark: 'https://lh3.googleusercontent.com/yYWebI9s8fFKcxIipQS2ckwLZSOThvpA7widXxcdTqjNzRV38KkIc8iUD1xMNRIyscOI_Kv1eszK6FiMCWbmtjpS6ZOhgWSe2XUC-rCqTFtwLJRV2OY=w2400'
+preview: 'https://lh3.googleusercontent.com/NA51Mxr5tMauLRyd-9TyknRH1Orp4_ZAu56-HZO5_3m1orcJxl-yzp8CAtKvtD7H8KIkPUTcGA0BeegRh3kxCQqJW5c2GzqFdpGa0s3vP0YcUU_RTFZ7=s0'
+previewDark: 'https://lh3.googleusercontent.com/jMc3vPL0yg_IUu6ee2YZd8XVJB3lbMe2SQWQx10HYMfKSgMyoirVyH105JIRkNsaBKq1cfytJzTezgLj26HgvUNGrZoDMtyQ2Ab3Q0lEajYeh8WUXwU=s0'
+thumbnail: 'https://lh3.googleusercontent.com/7XxtdhIzfY9m4pA-t50S0o8GnH5gDZgC1uUM75B2LPjErWBKZhar9rYsRkLp5oOGp5VrXrgd4Y_sx_bhxafG-rn6LZW4DWRVj85IjHgg4VdP1SRYcczc=w2400'
+thumbnailDark: 'https://lh3.googleusercontent.com/XE5HUkGvjeDQ82Uv_k-y4r6XAbLK8GtwTn0l6Zop93kC-QsqHJeSptwXai6ckFaU47CEv2DN4rxuMAg96E9tJtYhCCShDs0tCdup5u5ptlysrwIpab4=w1200'
+guidelines: 'https://m3.material.io/components/floating-action-button/guidelines'
 ---
 
+import * as Fab from '@/components/react/examples/fab.tsx'
+import ComponentContainer from '@/components/component-container.astro'
+import ComponentSource from '@/components/component-source.astro'
 import Step from '@/components/step.astro'
 import Steps from '@/components/steps.astro'
+
+## Usage
+
+Use a FAB for the most important action on a screen. The FAB appears in front of all other content on screen, and is recognizable for its rounded shape and icon in the center.
+
+Only use a FAB for presenting a screen's primary action.
+
+The FAB can be aligned left, center, or right. It can be positioned above the navigation bar, or nested within the bar.
 
 ## Instalation
 
@@ -18,14 +31,14 @@ import Steps from '@/components/steps.astro'
 #### Run the following command if is not already installed:
 
 ```bash
-pnpm add @radix-ui/react-slot -E
+pnpm add @radix-ui/react-slot
 ```
 
 </Step>
 
 <Step>
-#### Copy and paste the following code into your project.
-
+  #### Copy and paste the following code into your project.
+  <ComponentSource name="fab" />
 </Step>
 
 <Step>
@@ -36,3 +49,123 @@ pnpm add @radix-ui/react-slot -E
 </Steps>
 
 ## Examples
+
+### Default FAB
+
+Use a FAB to represent the screen's primary action.
+
+<ComponentContainer>
+    <Fab.DefaultFAB slot='preview'/>
+
+```tsx
+import { Fab } from '@/components/ui/fab'
+import { Icon } from '@/components/ui/icon'
+
+export const DefaultFAB = () => {
+  return (
+    <Fab>
+      <Fab.Icon>
+        <Icon symbol="palette" />
+      </Fab.Icon>
+    </Fab>
+  )
+}
+```
+
+</ComponentContainer>
+
+### Small FAB
+
+A small FAB is used for a secondary, supporting action.
+
+<ComponentContainer>
+    <Fab.SmallFAB slot='preview'/>
+
+```tsx
+import { Fab } from '@/components/ui/fab'
+import { Icon } from '@/components/ui/icon'
+
+export const SmallFAB = () => {
+  return (
+    <Fab size="small">
+      <Fab.Icon>
+        <Icon symbol="palette" />
+      </Fab.Icon>
+    </Fab>
+  )
+}
+```
+
+</ComponentContainer>
+
+### Large FAB
+
+A large FAB is useful when the layout calls for a clear and prominent primary action.
+
+<ComponentContainer>
+    <Fab.LargeFAB slot='preview'/>
+
+```tsx
+import { Fab } from '@/components/ui/fab'
+import { Icon } from '@/components/ui/icon'
+
+export const LargeFAB = () => {
+  return (
+    <Fab size="large">
+      <Fab.Icon>
+        <Icon symbol="palette" className="text-[32px]" />
+      </Fab.Icon>
+    </Fab>
+  )
+}
+```
+
+</ComponentContainer>
+
+### Extended FAB
+
+Extended FAB is usually used in long scrollable screens.
+
+<ComponentContainer>
+    <Fab.ExtendedFAB slot='preview'/>
+
+```tsx
+import { Fab } from '@/components/ui/fab'
+import { Icon } from '@/components/ui/icon'
+
+export const ExtendedFAB = () => {
+  return (
+    <Fab>
+      <Fab.Icon>
+        <Icon symbol="edit" />
+      </Fab.Icon>
+      <Fab.Label>New task</Fab.Label>
+    </Fab>
+  )
+}
+```
+
+</ComponentContainer>
+
+### Responsive Extended FAB
+
+<ComponentContainer>
+    <Fab.ResponsiveExtendedFAB slot='preview'/>
+
+```tsx
+import { Fab } from '@/components/ui/fab'
+import { Icon } from '@/components/ui/icon'
+
+export const ResponsiveExtendedFAB = () => {
+  return (
+    <Fab variant="tertiary">
+      <Fab.Icon>
+        <Icon symbol="edit" />
+      </Fab.Icon>
+      <Fab.Label className="hidden sm:block">New task</Fab.Label>
+    </Fab>
+  )
+}
+```
+
+</ComponentContainer>

@@ -1,0 +1,273 @@
+---
+group: 'selection'
+title: 'Chips'
+subtitle: 'Chips help people enter information, make selections, filter content, or trigger actions'
+preview: 'https://lh3.googleusercontent.com/ga4_mVfzULYiSenIHlK7dEyy6EegFhN357rWYxgZbhy_wo2Ip03GcYfm5hFbqHhhlYlE4D_aZ5JkogBJhLaIIKllZmqM1_H_UrsxLsyCFtjimeNYGGM1=s0'
+previewDark: 'https://lh3.googleusercontent.com/cj43de0RXo2eJ7HDwRX0jvI-BXbI_xqucGZ_sbqTBw_bwFa74P_P124GWM-iM5tZNQ7VG8VByTcCnC8aCP_6lQjAQ07y0sVyQNN6nACadW85p3xJ-Q=s0'
+thumbnail: 'https://lh3.googleusercontent.com/KEW_CA4MM8tARar22P_forvR2xOl497pP-zBOfR2GnIljm6DGaZmlDKdC6AmNtFxvk8XonVvGMzf6yPzKSJfOyrsBpu_9hY7wX7yKnYbm0aqf9ZrnfY8=w2400'
+thumbnailDark: 'https://lh3.googleusercontent.com/H_a3IbUfIKfuZ-oudM9iR074Y7uIQ8F343c-CASwad4aR6FWJYLw0Wki9PE9Birpp6RwJoUbG8tbfK1rwFJI1I8Fdzk6aOrBI8WlCdoAOz3sLWNlEQ=w2400'
+guidelines: 'https://m3.material.io/components/chips/guidelines'
+---
+
+import {
+  AssistChip,
+  AssistChipWithAvatar,
+  FilterChip,
+  FilterChipWithMenu,
+  InputChip,
+  SuggestionChip,
+} from '@/components/react/examples/chips.tsx'
+import ComponentContainer from '@/components/component-container.astro'
+import ComponentSource from '@/components/component-source.astro'
+import Step from '@/components/step.astro'
+import Steps from '@/components/steps.astro'
+
+## Usage
+
+Chips help people enter information, make selections, filter content, or trigger actions. They're best used to help users accomplish their current task faster and easier.
+
+## Instalation
+
+<Steps>
+
+<Step>
+#### Run the following command if is not already installed:
+
+```bash
+pnpm add @radix-ui/react-slot
+```
+
+</Step>
+
+<Step>
+  #### Copy and paste the following code into your project.
+  <ComponentSource name="chip" />
+</Step>
+
+<Step>
+#### Update the import paths to match your project setup.
+
+</Step>
+
+</Steps>
+
+## Examples
+
+### Assist chips
+
+Assist chips represent smart or automated actions that can span multiple apps, such as opening a calendar event from the home screen.
+
+<ComponentContainer>
+  <AssistChip slot='preview'/>
+
+```tsx
+import { Chip } from '@/components/ui/chip'
+import { Icon } from '@/components/ui/icon'
+
+export const AssistChip = () => {
+  return (
+    <div className="grid w-full grid-cols-1 sm:grid-cols-2">
+      {/* Outlined Chip when using on solid background */}
+      <div className="flex w-full items-center justify-center p-6">
+        <Chip>
+          <Chip.Icon>
+            <Icon symbol="calendar_today" />
+          </Chip.Icon>
+          <Chip.Label>Add to my itinerary</Chip.Label>
+        </Chip>
+      </div>
+
+      {/* Elevated Chip when using on image background */}
+      <div className="relative flex w-full items-center justify-center overflow-hidden rounded-md bg-[url(https://images.unsplash.com/photo-1574484184081-afea8a62f9c0?q=80&w=3081&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D)] bg-cover bg-center p-6">
+        <span className="bg-black/4 absolute inset-0 z-0 rounded-md backdrop-blur-[2px]" />
+        <Chip variant="elevated" className="relative z-[1]">
+          <Chip.Icon>
+            <Icon symbol="calendar_today" />
+          </Chip.Icon>
+          <Chip.Label>Add to my itinerary</Chip.Label>
+        </Chip>
+      </div>
+    </div>
+  )
+}
+```
+
+</ComponentContainer>
+
+<ComponentContainer>
+  <AssistChipWithAvatar slot='preview' client:visible/>
+
+```tsx
+import { Avatar } from '@/components/ui/avatar'
+import { Chip } from '@/components/ui/chip'
+
+export const AssistChipWithAvatar = () => {
+  return (
+    <Chip className="rounded-full pl-1">
+      <Avatar className="h-6">
+        <Avatar.Image src="https://github.com/jepricreations.png" />
+        <Avatar.Fallback className="text-label-sm">JC</Avatar.Fallback>
+      </Avatar>
+      <Chip.Label>Share with JC</Chip.Label>
+    </Chip>
+  )
+}
+```
+
+</ComponentContainer>
+
+### Filter chips
+
+Filter chips use tags or descriptive words to filter content. They can be a good alternative to segmented buttons or checkboxes when viewing a list or search results.
+
+<ComponentContainer>
+  <FilterChip slot='preview' client:visible/>
+
+```tsx
+import { useState } from 'react'
+
+import { Chip } from '@/components/ui/chip'
+import { Icon } from '@/components/ui/icon'
+
+export const FilterChip = () => {
+  const [selected, setSelected] = useState(false)
+  return (
+    <Chip
+      variant="filter"
+      selected={selected}
+      onClick={() => setSelected(!selected)}
+    >
+      <Chip.Icon
+        className={`animate-out zoom-out-0 group-data-[selected]:animate-in group-data-[selected]:zoom-in-50`}
+      >
+        <Icon symbol="check" />
+      </Chip.Icon>
+      <Chip.Label>Filter chip</Chip.Label>
+    </Chip>
+  )
+}
+```
+
+</ComponentContainer>
+
+### Filter chip with menu
+
+Filter chips can open a menu for more filtering options.
+
+<ComponentContainer>
+  <FilterChipWithMenu slot='preview' client:visible/>
+
+```tsx
+import { useState } from 'react'
+
+import { Chip, ChipSelect } from '@/components/ui/chip'
+import { Icon } from '@/components/ui/icon'
+
+export const FilterChipWithMenu = () => {
+  const [selected, setSelected] = useState('running')
+
+  return (
+    <ChipSelect onValueChange={setSelected}>
+      <ChipSelect.Trigger>
+        <Chip variant="filter" selected>
+          <Chip.Icon>
+            <Icon symbol="check" />
+          </Chip.Icon>
+          <Chip.Label className="capitalize">{selected}</Chip.Label>
+          <Chip.Icon>
+            <Icon symbol="arrow_drop_down" />
+          </Chip.Icon>
+        </Chip>
+      </ChipSelect.Trigger>
+      <ChipSelect.Content align="start">
+        <ChipSelect.Item value="running">
+          <Icon symbol="directions_run" />
+          <ChipSelect.ItemText>Running</ChipSelect.ItemText>
+        </ChipSelect.Item>
+        <ChipSelect.Item value="walking">
+          <Icon symbol="directions_walk" />
+          <ChipSelect.ItemText>Walking</ChipSelect.ItemText>
+        </ChipSelect.Item>
+        <ChipSelect.Item value="hiking">
+          <Icon symbol="hiking" />
+          <ChipSelect.ItemText>Hiking</ChipSelect.ItemText>
+        </ChipSelect.Item>
+        <ChipSelect.Item value="cycling">
+          <Icon symbol="directions_bike" />
+          <ChipSelect.ItemText>Cycling</ChipSelect.ItemText>
+        </ChipSelect.Item>
+      </ChipSelect.Content>
+    </ChipSelect>
+  )
+}
+```
+
+</ComponentContainer>
+
+### Input chips
+
+Input chips represent discrete pieces of information entered by a user, such as Gmail contacts or filter options within a search field.
+
+<ComponentContainer>
+  <InputChip slot='preview' client:visible/>
+
+```tsx
+import { Chip } from '@/components/ui/chip'
+import { Icon } from '@/components/ui/icon'
+
+export const InputChip = () => {
+  const [selected, setSelected] = useState(true)
+
+  return (
+    <Chip
+      variant="input"
+      selected={selected}
+      onClick={() => setSelected(!selected)}
+    >
+      <Chip.Icon perennial>
+        <Icon symbol="calendar_month" />
+      </Chip.Icon>
+      <Chip.Label>Input chip</Chip.Label>
+      <Chip.Icon>
+        <Icon symbol="close" />
+      </Chip.Icon>
+    </Chip>
+  )
+}
+```
+
+</ComponentContainer>
+
+### Suggestion chips
+
+Suggestion chips help narrow a user's intent by presenting dynamically generated suggestions, such as possible responses or search filters.
+
+<ComponentContainer>
+  <SuggestionChip slot='preview' client:visible/>
+
+```tsx
+import { Chip } from '@/components/ui/chip'
+
+export const SuggestionChip = () => {
+  const [selected, setSelected] = useState(true)
+
+  return (
+    <div className="flex gap-2">
+      <Chip
+        variant="suggestion"
+        selected={selected}
+        onClick={() => setSelected(!selected)}
+      >
+        <Chip.Label>Suggestion chip</Chip.Label>
+      </Chip>
+      <Chip asChild variant="suggestion">
+        <a href="#">
+          <Chip.Label>Link chip</Chip.Label>
+        </a>
+      </Chip>
+    </div>
+  )
+}
+```
+
+</ComponentContainer>

@@ -1,14 +1,15 @@
 ---
+group: 'actions'
 title: 'Icon buttons'
 subtitle: 'Icon buttons help people take minor actions with one tap'
-bgImage: 'https://m3.material.io/static/assets/m3-green-theming-thumbnail.jpg'
-bgImageDark: 'https://m3.material.io/static/assets/m3-green-theming-thumbnail-dark.jpg'
+preview: 'https://lh3.googleusercontent.com/aF3wUerLyBaxFOPZ1xh13e_V4edmAb93KZR4nUo0z7OrLsPP50IpfpXjsuSpAbVoastRziOlT4j4UuRgNX9C2q0N0cHkp9euXiFMUf3C3QEwItMojQ=s0'
+previewDark: 'https://lh3.googleusercontent.com/Uea2g1C9fq64WzquEmwAM-CnS5lSB5trvvEFEYe6po_XK5lkVDqlWtHx20HfoHvkp2Z1GJKVPdKvEa2djmzxMptjAfoS57N93Zgwi50FKdrCmmT10cI=s0'
 thumbnail: 'https://lh3.googleusercontent.com/p8t7GWNxubm1DSTk0YFOWgef0NJCi5sU1jI0sFkKjhg6JE_kCyBckCntJyXnxy7vVRKda1VL2dvAUuv8Fs6MDelxA5FWLHjMUJnomP7Rf2nCKMxGnTv-=w2400'
 thumbnailDark: 'https://lh3.googleusercontent.com/eN43C-qiVaxUVzPmks4Mb7BjdoWXRjxLpBVzNGyARpyylOY3vJfC9ptBmx-B0QDQ5rLmWcqzXpohHrdtMoQxXWaC9Xpp4WVmK-40zwALtHNwLSL5jw=w1200'
+guidelines: 'https://m3.material.io/components/icon-buttons/guidelines'
 ---
 
-import { IconButton } from '@/components/ui/icon-button.tsx'
-import { Icon } from '@/components/ui/icon.tsx'
+import * as IconButton from '@/components/react/examples/icon-buttons.tsx'
 import ComponentContainer from '@/components/component-container.astro'
 import ComponentSource from '@/components/component-source.astro'
 import Step from '@/components/step.astro'
@@ -28,7 +29,7 @@ Icon buttons can be grouped together or they can stand alone.
 #### Run the following command if is not already installed:
 
 ```bash
-pnpm add @radix-ui/react-slot -E
+pnpm add @radix-ui/react-slot
 ```
 
 </Step>
@@ -52,11 +53,7 @@ pnpm add @radix-ui/react-slot -E
 Filled icon buttons have higher visual impact and are best for high emphasis actions.
 
 <ComponentContainer>
-<div className='p-6'>
-  <IconButton>
-    <Icon symbol="settings"/>
-  </IconButton>
-</div>
+  <IconButton.FilledIconButton slot='preview'/>
 
 ```tsx
 import { Icon } from '@/components/ui/icon'
@@ -78,17 +75,13 @@ export const FilledIconButton = () => {
 Filled tonal icon buttons are a middle ground between filled and outlined icon buttons. They're useful in contexts where the button requires slightly more emphasis than an outline would give, such as a secondary action paired with a high emphasis action.
 
 <ComponentContainer>
-<div className='p-6'>
-  <IconButton variant='tonal'>
-    <Icon symbol="settings"/>
-  </IconButton>
-</div>
+  <IconButton.FilledTonalIconButton slot='preview'/>
 
 ```tsx
 import { Icon } from '@/components/ui/icon'
 import { IconButton } from '@/components/ui/icon-button'
 
-export const FilledIconButton = () => {
+export const FilledTonalIconButton = () => {
   return (
     <IconButton variant="tonal">
       <Icon symbol="settings" />
@@ -104,17 +97,13 @@ export const FilledIconButton = () => {
 Outlined icon buttons are medium-emphasis buttons. They're useful when an icon button needs more emphasis than a standard icon button but less than a filled or filled tonal icon button.
 
 <ComponentContainer>
-<div className='p-6'>
-  <IconButton variant='outlined'>
-    <Icon symbol="settings"/>
-  </IconButton>
-</div>
+  <IconButton.OutlinedIconButton slot='preview'/>
 
 ```tsx
 import { Icon } from '@/components/ui/icon'
 import { IconButton } from '@/components/ui/icon-button'
 
-export const FilledIconButton = () => {
+export const OutlinedIconButton = () => {
   return (
     <IconButton variant="outlined">
       <Icon symbol="settings" />
@@ -130,17 +119,13 @@ export const FilledIconButton = () => {
 Standard icon buttons are small-emphasis buttons. They're useful when an icon button needs less emphasis than a contained button.
 
 <ComponentContainer>
-<div className='p-6'>
-  <IconButton variant='standard'>
-    <Icon symbol="settings"/>
-  </IconButton>
-</div>
+  <IconButton.StandardIconButton slot='preview'/>
 
 ```tsx
 import { Icon } from '@/components/ui/icon'
 import { IconButton } from '@/components/ui/icon-button'
 
-export const FilledIconButton = () => {
+export const StandardIconButton = () => {
   return (
     <IconButton variant="standard">
       <Icon symbol="settings" />
