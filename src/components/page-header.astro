@@ -2,13 +2,15 @@
 interface Props {
   title: string
   subtitle: string
-  img: string
-  darkImg?: string
+  img: {
+    default: string
+    dark?: string
+  }
 }
 
-const { title, subtitle, img, darkImg } = Astro.props
-const image = `url(${img})`
-const darkImage = `url(${darkImg})`
+const { title, subtitle, img } = Astro.props
+const image = `url(${img.default})`
+const darkImage = `url(${img?.dark ?? img.default})`
 ---
 
 <header

@@ -2,19 +2,22 @@
 interface Props {
   title: string
   subtitle: string
-  thumbnail: string
-  thumbnailDark?: string
-  bgImage?: string
-  bgImageDark?: string
+  thumbnail: {
+    default: string
+    dark?: string
+  }
+  bgImage?: {
+    default: string
+    dark?: string
+  }
 }
 
-const { title, subtitle, bgImage, bgImageDark, thumbnail, thumbnailDark } =
-  Astro.props
+const { title, subtitle, bgImage, thumbnail } = Astro.props
 
-const thumb = `url(${thumbnail})`
-const thumbDark = `url(${thumbnailDark})`
-const bg = `url(${bgImage})`
-const bgDark = `url(${bgImageDark})`
+const thumb = `url(${thumbnail.default})`
+const thumbDark = `url(${thumbnail?.dark ?? thumbnail.default})`
+const bg = `url(${bgImage?.default})`
+const bgDark = `url(${bgImage?.dark ?? bgImage?.default})`
 ---
 
 <header class="mb-10 grid grid-flow-row grid-cols-2 gap-2 sm:mb-14">
