@@ -10,10 +10,13 @@ const { className } = Astro.props
 <section
   class:list={[
     cn(
-      'preview grid place-items-center overflow-hidden rounded-lg border border-outlineVariant bg-surfaceContainer/80',
+      'preview mb-3 grid place-items-center overflow-hidden rounded-lg border border-outlineVariant bg-surfaceContainer/80',
       className
     ),
   ]}
 >
+  <div class="flex min-h-[120px] w-full items-center justify-center p-6">
+    <slot name="preview" />
+  </div>
   <slot />
 </section>

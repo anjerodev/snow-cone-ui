@@ -1,8 +1,9 @@
 ---
+import { ROUTES } from '@/constants/routes'
+
 import CategoryCard from './category-card.astro'
 
 interface Props {
-  root: string
   bg: {
     default: string
     dark?: string
@@ -22,7 +23,7 @@ interface Props {
   }[]
 }
 
-const { root, items, bg, color } = Astro.props
+const { items, bg, color } = Astro.props
 const lightBg = color.default
 const darkBg = color.dark
 ---
@@ -33,7 +34,7 @@ const darkBg = color.dark
       <CategoryCard
         title={title}
         description={description}
-        url={root + '/' + slug}
+        url={ROUTES.COMPONENTS + '/' + slug}
         imgUrl={{
           default: thumbnail.default,
           dark: thumbnail.dark,
