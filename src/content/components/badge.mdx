@@ -1,0 +1,87 @@
+---
+group: 'communication'
+title: 'Badges'
+subtitle: 'Badges show notifications, counts, or status information on navigation items and icons'
+preview: 'https://lh3.googleusercontent.com/v5zqsrv5u1BmUHJjOZsIvCB1-Al-bZB-9bHKY46YSPaIJScLVVjAGON9LY7PXEYvdAiwHhplkk1Apo3joUtINICM_fv3zDJuKMa3slQnx_MrpXGIdtuN=s0'
+previewDark: 'https://lh3.googleusercontent.com/d5JzvmJVMBWDtbCNU9zITaWR5mgc4aeOcfyZYaT0pfeRhYYhDGC7wthJclaWVmJEzmjrIkxwTGMeupU0asgBzfY5RJcesfRkLSVA4vRi4i_cY5l6VAH4=s0'
+thumbnail: 'https://lh3.googleusercontent.com/L4FvgXQdNOrvKnw7kKXJXaZ5sAspd0k2O9S4xp6VXnLciXPNhxN_jV-zEPEVokivMiqun0MctMSY-4IPIGyMW5MKMdgUEpJlGJ0yr03LRyh3gtPCkHc=w2400'
+thumbnailDark: 'https://lh3.googleusercontent.com/oQ5Ketwz0iE4v9PSMH4hxj4iHVLxVIhhDttqww3N0DGB-i101RNHPq9xxK2fURt3iaBcZKdyutnxNFVClUQSxurGvXWBUnJBiIMrZPVOwd5nB-6KzQ=w2400'
+guidelines: 'https://m3.material.io/components/badges/guidelines'
+---
+
+import { LargeBadge, SmallBadge } from '@/components/react/examples/badges.tsx'
+import ComponentContainer from '@/components/component-container.astro'
+import ComponentSource from '@/components/component-source.astro'
+import Step from '@/components/step.astro'
+import Steps from '@/components/steps.astro'
+
+## Usage
+
+Badges are used to indicate a notification, item count, or other information relating to a navigation destination. They are placed on the ending edge of icons, typically within other components.
+
+## Instalation
+
+<Steps>
+
+<Step>
+  #### Copy and paste the following code into your project.
+  <ComponentSource name="badge" />
+</Step>
+
+<Step>
+#### Update the import paths to match your project setup.
+
+</Step>
+
+</Steps>
+
+## Examples
+
+### Small
+
+A small badge is a simple circle, used to indicate an unread notification.
+
+<ComponentContainer>
+  <SmallBadge slot='preview' client:visible/>
+
+```tsx
+import { Badge } from '@/components/ui/badge'
+import { Icon } from '@/components/ui/icon'
+
+export const SmallBadge = () => {
+  return (
+    <Badge>
+      <Icon symbol="house" />
+    </Badge>
+  )
+}
+```
+
+</ComponentContainer>
+
+### Large
+
+A large badge contains label text communicating item count information.
+
+<ComponentContainer>
+  <LargeBadge slot='preview' client:visible/>
+
+```tsx
+import { Badge } from '@/components/ui/badge'
+import { Icon } from '@/components/ui/icon'
+
+export const LargeBadge = () => {
+  return (
+    <div className="flex gap-6">
+      <Badge size="large" content="3">
+        <Icon symbol="notifications" />
+      </Badge>
+      <Badge size="large" content="999+">
+        <Icon symbol="notifications" />
+      </Badge>
+    </div>
+  )
+}
+```
+
+</ComponentContainer>

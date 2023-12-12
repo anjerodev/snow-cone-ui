@@ -28,18 +28,18 @@ const previewImage = `url(${imgUrl.default})`
 const darkPreviewImage = `url(${imgUrl?.dark ?? imgUrl.default})`
 ---
 
-<Card className={cn('flex overflow-hidden rounded-lg', styles?.card)}>
+<Card className={cn('flex overflow-hidden rounded-xl pb-0', styles?.card)}>
   <a
     href={url}
     class={cn(
-      'group h-full w-full bg-transparent transition-colors',
+      'group h-full w-full bg-transparent transition-colors rounded-xl pb-4',
       styles?.action
     )}
   >
     <div
       id="image-container"
       class={cn(
-        'relative h-[200px] w-full overflow-hidden rounded-lg',
+        'relative h-[200px] w-full overflow-hidden rounded-xl',
         styles?.imageContainer
       )}
     >
@@ -61,10 +61,8 @@ const darkPreviewImage = `url(${imgUrl?.dark ?? imgUrl.default})`
       }
     </div>
     <Card.Header>
-      <Card.Title>{title}</Card.Title>
-      <Card.Description className="text-body-lg">
-        {description}
-      </Card.Description>
+      <Card.Headline>{title}</Card.Headline>
+      <Card.Subhead>{description}</Card.Subhead>
     </Card.Header>
   </a>
 </Card>

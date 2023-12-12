@@ -1,0 +1,80 @@
+---
+group: 'selection'
+title: 'Radio button'
+subtitle: 'Radio buttons let people select one option from a set of options'
+preview: 'https://lh3.googleusercontent.com/M75rwQ8i0MUbwt5AIuiNTp1bsq0mPOl9z9zowpnccfMhNGdXGyxhWbdA6XmD4YjL0ve4CYsBw1TdFkMpKdV48dzGoclrmDUnmD7CSOWPSli_y7laYA=s00'
+previewDark: 'https://lh3.googleusercontent.com/L59lQZC0LcefH3NWt7XncyU5scyC2-nPDHM2gS053sIYH8Loap-i2iMEUN3iQl0V3txSWIZd6zXLae3CB0YTqf-Xc-KpMiC-T2bOIPTxHLLRkjtYaQ8=s0'
+thumbnail: 'https://lh3.googleusercontent.com/PH_bgGLsKS35fPnUHwwBiqhujLw9qr1N-IM-l5xyca1kyP0N6K354VZub8ZTTGd2qtbQtI42KnHVIqhquWw1FB88AGkisCkpX0PebrTY4XN13un4H84=w2400'
+thumbnailDark: 'https://lh3.googleusercontent.com/Cm1A5nS_NEyK3dUkmZe3MWcnmk41pCFp7K_00xD1R07R36Z52VBAIirw_ewznCPhLjdToyJYzomY7vrb4xQmpXwR7m-R7ezZW6w2QezN_ftQM3Gq7i0=w2400'
+guidelines: 'https://m3.material.io/components/radio-button/guidelines'
+shadcn: 'https://ui.shadcn.com/docs/components/radio-group'
+---
+
+import { RadioButtonExample } from '@/components/react/examples/radio-button.tsx'
+import ComponentContainer from '@/components/component-container.astro'
+import ComponentSource from '@/components/component-source.astro'
+import Step from '@/components/step.astro'
+import Steps from '@/components/steps.astro'
+
+## Usage
+
+Radio buttons are the recommended way to allow users to make a single selection from a list of options.
+
+## Instalation
+
+<Steps>
+
+<Step>
+#### Run the following command:
+
+```bash
+npm i @radix-ui/react-radio-group
+```
+
+</Step>
+
+<Step>
+  #### Copy and paste the following code into your project.
+  <ComponentSource name="radio-button" />
+</Step>
+
+<Step>
+#### Update the import paths to match your project setup.
+
+</Step>
+
+</Steps>
+
+## Examples
+
+<ComponentContainer>
+  <RadioButtonExample slot='preview' client:visible/>
+
+```tsx
+import { Label } from '@/components/ui/label'
+import { RadioButton } from '@/components/ui/radio-button'
+
+export const RadioButtonExample = () => {
+  return (
+    <div>
+      <p className="text-label-lg mb-2">Language</p>
+      <RadioButton defaultValue="spanish">
+        <div className="flex items-center gap-x-4">
+          <RadioButton.Item value="english" id="r1" />
+          <Label htmlFor="r1">English</Label>
+        </div>
+        <div className="flex items-center gap-x-4">
+          <RadioButton.Item value="spanish" id="r2" />
+          <Label htmlFor="r2">Spanish</Label>
+        </div>
+        <div className="flex items-center gap-x-4">
+          <RadioButton.Item value="chinese" id="r3" />
+          <Label htmlFor="r3">Chinese (Mandarin)</Label>
+        </div>
+      </RadioButton>
+    </div>
+  )
+}
+```
+
+</ComponentContainer>

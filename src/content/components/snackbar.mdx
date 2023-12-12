@@ -1,0 +1,220 @@
+---
+group: 'communication'
+title: 'Snackbar'
+subtitle: 'Snackbars show short updates about app processes at the bottom of the screen'
+preview: 'https://lh3.googleusercontent.com/PdZI8N-Rse0ZEit35OosgHde3pTv4AVvmJnC98Yr2zzxegqu9MUsVU0e7g9m9zrWSkRyEucXNLJqDiLwBKWkHyl3IyM7_GEkVVbpp4Ks0OCToUbyKQ=s0'
+previewDark: 'https://lh3.googleusercontent.com/O4itJ4wO6Ot3GkMyLdGsw7GO6zk_Bqi3AgKv3xPMWPpVMWlB4frRzzt27yaqea9BQnc1B0yZfGdAMMNQP4JYKjE3yz3kv_GAZ0WaL0ev9TVO8DqHJg=s0'
+thumbnail: 'https://lh3.googleusercontent.com/EDDR5cEns-bHWywmh9JMuMrdut8hncyen4VyZT48gKUBTjmNndhfYhdcgu6KhkgM4u7WGlbqOTaqnBNzhpr_5DU4c5Nlek_nOHC8K-F0WWpzYVrCLfus=w2400'
+thumbnailDark: 'https://lh3.googleusercontent.com/nIuQ0lM6syi7piRRcteMse8qsS5rXHar8Fs9YiWQD0xda0EF__4nDktsUcvcCe6zlNDR7bUSBxPlGPXYwexbCsqPTDSKdLL0yq0yJbu60psauW2A9w=w2400'
+guidelines: 'https://m3.material.io/components/snackbar/guidelines'
+shadcn: 'https://ui.shadcn.com/docs/components/toast'
+---
+
+import {
+  ActionSnackbar,
+  SeveritySnackbar,
+  SnackbarExample,
+  SnackbarWithoutCloseButton,
+  SnackbarWithTitle,
+} from '@/components/react/examples/snackbar'
+import CodeSource from '@/components/code-source.astro'
+import ComponentContainer from '@/components/component-container.astro'
+import ComponentSource from '@/components/component-source.astro'
+import Step from '@/components/step.astro'
+import Steps from '@/components/steps.astro'
+
+## Usage
+
+Snackbars inform users of a process that an app has performed or will perform. They appear temporarily, towards the bottom of the screen. They shouldn't interrupt the user experience, and they don't require user input to disappear.
+
+## Instalation
+
+<Steps>
+<Step>
+#### Run the following command:
+
+```bash
+npm i @radix-ui/react-toast
+```
+
+</Step>
+
+<Step>
+  #### Copy and paste the following code into your project.
+
+`snackbar.tsx`
+
+<ComponentSource name="snackbar" />
+`use-snackbar.ts`
+<CodeSource path="/hooks/use-snackbar.ts" lang="ts" />
+
+</Step>
+
+<Step>
+#### Update the import paths to match your project setup.
+
+</Step>
+
+<Step>
+#### Add the `SnackbarProvider` to your root layout.
+
+```tsx
+import { SnackbarProvider } from '@/components/ui/snackbar'
+
+export default function RootLayout({ children }) {
+  return (
+    <html lang="en">
+      <head />
+      <body>
+        <main>{children}</main>
+        <SnackbarProvider />
+      </body>
+    </html>
+  )
+}
+```
+
+</Step>
+
+</Steps>
+
+## Examples
+
+### Snackbar example
+
+The `useSnackbar` hook returns a `snackbar` function that you can use to display a snackbar.
+
+```tsx
+import { useSnackbar } from '@/hooks/use-snackbar'
+```
+
+To display multiple snackbars at the same time, you can update the `SNACKBAR_LIMIT` in `use-snackbar.tsx`, but this is not recommended.
+
+<ComponentContainer>
+  <SnackbarExample slot='preview' client:visible/>
+
+```tsx
+import { useSnackbar } from '@/hooks/use-snackbar'
+import { Button } from '@/components/ui/button'
+
+export const SnackbarExample = () => {
+  const { snackbar } = useSnackbar()
+
+  const showSnackbar = () => {
+    snackbar({
+      description: 'Button has been clicked',
+    })
+  }
+  return <Button onClick={showSnackbar}>Show snackbar</Button>
+}
+```
+
+</ComponentContainer>
+
+### Snackbar with action
+
+Snackbars can display a single text button that lets users take action on a process performed by the app.
+
+<ComponentContainer>
+  <ActionSnackbar slot='preview' client:visible/>
+
+```tsx
+import { useSnackbar } from '@/hooks/use-snackbar'
+import { Button } from '@/components/ui/button'
+import { SnackbarAction } from '@/components/ui/snackbar'
+
+export const ActionSnackbar = () => {
+  const { snackbar } = useSnackbar()
+
+  const showSnackbar = () => {
+    snackbar({
+      description: 'Button has been clicked',
+      action: <SnackbarAction altText="Undo">Undo</SnackbarAction>,
+    })
+  }
+  return <Button onClick={showSnackbar}>Show snackbar</Button>
+}
+```
+
+</ComponentContainer>
+
+### Snackbar without close button
+
+You also have the option to hide the close button on the snackbar by using the param `closeable` set to `false`.
+
+Note: it will still being dragable.
+
+<ComponentContainer>
+  <SnackbarWithoutCloseButton slot='preview' client:visible/>
+
+```tsx
+import { useSnackbar } from '@/hooks/use-snackbar'
+import { Button } from '@/components/ui/button'
+
+export const SnackbarWithoutCloseButton = () => {
+  const { snackbar } = useSnackbar()
+
+  const showSnackbar = () => {
+    snackbar({
+      description: 'Button has been clicked',
+      closeable: false,
+    })
+  }
+  return <Button onClick={showSnackbar}>Show snackbar</Button>
+}
+```
+
+</ComponentContainer>
+
+### Snackbar with severity
+
+Using the param `severity` you can set the severity of the snackbar if necessary.
+
+<ComponentContainer>
+  <SeveritySnackbar slot='preview' client:visible/>
+
+```tsx
+import { useSnackbar } from '@/hooks/use-snackbar'
+import { Button } from '@/components/ui/button'
+
+export const SeveritySnackbar = () => {
+  const { snackbar } = useSnackbar()
+
+  const showSnackbar = () => {
+    snackbar({
+      description: 'Button has been clicked',
+      severity: 'success',
+    })
+  }
+  return <Button onClick={showSnackbar}>Show snackbar</Button>
+}
+```
+
+</ComponentContainer>
+
+### Snackbar with title
+
+Using the param `title` you can set a title to the snackbar if necessary.
+
+<ComponentContainer>
+  <SnackbarWithTitle slot='preview' client:visible/>
+
+```tsx
+import { useSnackbar } from '@/hooks/use-snackbar'
+import { Button } from '@/components/ui/button'
+
+export const SnackbarWithTitle = () => {
+  const { snackbar } = useSnackbar()
+
+  const showSnackbar = () => {
+    snackbar({
+      title: 'This is a title',
+      description: 'Button has been clicked',
+      closeable: false,
+    })
+  }
+  return <Button onClick={showSnackbar}>Do not press</Button>
+}
+```
+
+</ComponentContainer>

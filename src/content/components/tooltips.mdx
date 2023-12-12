@@ -1,0 +1,124 @@
+---
+group: 'communication'
+title: 'Tooltips'
+subtitle: 'Communication components provide helpful information'
+preview: 'https://lh3.googleusercontent.com/-Xp8HEB1hYFIBFfoR-QX4qlYbDHuH21uFz6PIf1u6vp3QweFJ5vUWIZuUV04TJSLw82jZeTvl_i7pQu6oKHrrnA9Qnw-Bit3AonX_Tyq-X5nkqmRKfE=s0'
+previewDark: 'https://lh3.googleusercontent.com/3O8pRxDccq4udAdZl48GdhvciUISzlngZBZec4J8Hi4g0jLoVEbZWo1fPRvyz3OFnP8H3lW9SVRWLcUJxievhZTr2rWVD3lllPJexkQPcjUC6hgygA=s0'
+thumbnail: 'https://lh3.googleusercontent.com/2al9Vgato_vnmpKxoelEktWs_6BZdos5Fb42Z486NuFyogGfugaUiiGRkis4Lnj7UEx9ls_3UWtVDMPC7B_clNBfX7m5b2WojgYU35k_se5Rb1Yb2g=w2400'
+thumbnailDark: 'https://lh3.googleusercontent.com/Kot-AWfGc-cpOHl4Daim1oE-nd0rMtMly0-XeCCawPt5ys_W7Z6yVgVbKPhOtUB1OwuBLp3Jv6f3Yn7aCzebdw61OlRi49T9KbX2xIVt27_Z5RthfG6w=w2400'
+guidelines: 'https://m3.material.io/components/tooltips/guidelines'
+shadcn: 'https://ui.shadcn.com/docs/components/tooltip'
+---
+
+import { PlainTooltip, RichTooltip } from '@/components/react/examples/tooltips'
+import ComponentContainer from '@/components/component-container.astro'
+import ComponentSource from '@/components/component-source.astro'
+import Step from '@/components/step.astro'
+import Steps from '@/components/steps.astro'
+
+## Usage
+
+A tooltip provides additional context for a UI element.
+
+## Instalation
+
+<Steps>
+
+<Step>
+#### Run the following command:
+
+```bash
+npm i @radix-ui/react-tooltip
+```
+
+</Step>
+
+<Step>
+  #### Copy and paste the following code into your project.
+  <ComponentSource name="tooltip" />
+</Step>
+
+<Step>
+#### Update the import paths to match your project setup.
+
+</Step>
+
+</Steps>
+
+## Examples
+
+### Plain tooltip
+
+Plain tooltips briefly describe a UI element. They're best used for labelling UI elements with no text, like icon-only buttons and fields.
+
+<ComponentContainer>
+  <PlainTooltip slot='preview' client:visible/>
+
+```tsx
+import { Icon } from '@/components/ui/icon'
+import { IconButton } from '@/components/ui/icon-button'
+import { Tooltip } from '@/components/ui/tooltip'
+
+export const PlainTooltip = () => {
+  return (
+    <Tooltip.Provider>
+      <Tooltip>
+        <Tooltip.Trigger asChild>
+          <IconButton variant="standard">
+            <Icon symbol="notifications" />
+          </IconButton>
+        </Tooltip.Trigger>
+        <Tooltip.Content>Notifications</Tooltip.Content>
+      </Tooltip>
+    </Tooltip.Provider>
+  )
+}
+```
+
+</ComponentContainer>
+
+### Rich tooltip
+
+Rich tooltips provide additional context about a UI element. They can optionally contain a subhead, buttons, and hyperlinks.
+
+Rich tooltips are best used for longer text like definitions or explanations.
+
+<ComponentContainer>
+  <RichTooltip slot='preview' client:visible/>
+
+```tsx
+import { Icon } from '@/components/ui/icon'
+import { IconButton } from '@/components/ui/icon-button'
+import { Tooltip } from '@/components/ui/tooltip'
+
+export const RichTooltip = () => {
+  return (
+    <Tooltip.Provider>
+      <Tooltip>
+        <Tooltip.Trigger asChild>
+          <IconButton variant="standard">
+            <Icon symbol="brush" />
+          </IconButton>
+        </Tooltip.Trigger>
+        <Tooltip.Content
+          variant="rich"
+          side="right"
+          align="start"
+          alignOffset={40}
+          sideOffset={0}
+        >
+          <Tooltip.Subhead>Paint Tool</Tooltip.Subhead>
+          <Tooltip.SupportingText>
+            Add annotation and highlights with the paint tool.
+          </Tooltip.SupportingText>
+          <Tooltip.ActionsContainer>
+            <Button variant="text">Learn more</Button>
+          </Tooltip.ActionsContainer>
+        </Tooltip.Content>
+      </Tooltip>
+    </Tooltip.Provider>
+  )
+}
+```
+
+</ComponentContainer>

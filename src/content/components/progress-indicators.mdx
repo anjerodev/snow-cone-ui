@@ -1,0 +1,117 @@
+---
+group: 'communication'
+title: 'Progress indicators'
+subtitle: 'Progress indicators show the status of a process in real time'
+preview: 'https://lh3.googleusercontent.com/Kb-QjKJ532KnRvToqedThENpQcDJMT8OIO3fKBWNCQZPJzQvGO76gYJqEWo6v97CfdgdbN7C4WnvIxM3bzs8CN_OqzwrCmfdhNSpovaEYvla82scne0=s0'
+previewDark: 'https://lh3.googleusercontent.com/Y2VNCJrWuoevwKOV4zByfc7PUvDB78JViJ-r4sqY_E85c_MVHT3skX3BMjLNUg1ma8cdhcgxgkWX8l-LcIarlvmjGGuN2MchkYw-HWibJ7PPBbQLYGQ=s0'
+thumbnail: 'https://lh3.googleusercontent.com/tcuLjA2l-7lKRzIXIwzGuE-BttwARTlkKsgZ0nHAd-farsz48gN10m2_tMRhRbA98KIghPcjmIVfBNhicXW63k65Oz9xNaV7zYpUyKRRcZKFAW0IxIY=w2400'
+thumbnailDark: 'https://lh3.googleusercontent.com/NoXB3dvMqhC2VqYI_UAjCnfemj68xsMmKaJWh1qkCCMlf0vIhMzHcs4OhOv_C2Y7wVLzBk5HsVouyHK6GTq3iZkpvm_lm0iRn8EyZDd9udqM86gA7g=w2400'
+guidelines: 'https://m3.material.io/components/progress-indicators/guidelines'
+shadcn: 'https://ui.shadcn.com/docs/components/progress'
+---
+
+import {
+  DeterminateCircularProgress,
+  DeterminateLinearProgress,
+  IndeterminateCircularProgress,
+  IndeterminateLinearProgress,
+} from '@/components/react/examples/progress-indicators'
+import ComponentContainer from '@/components/component-container.astro'
+import ComponentSource from '@/components/component-source.astro'
+import Step from '@/components/step.astro'
+import Steps from '@/components/steps.astro'
+
+## Usage
+
+Progress indicators inform users about the status of ongoing processes, such as loading an app, submitting a form, or saving updates.
+
+## Instalation
+
+<Steps>
+
+<Step>
+#### Run the following command:
+
+```bash
+npm i @radix-ui/react-progress
+```
+
+</Step>
+
+<Step>
+  #### Copy and paste the following code into your project.
+  <ComponentSource name="progress-indicator" />
+</Step>
+
+<Step>
+#### Update the import paths to match your project setup.
+
+</Step>
+
+</Steps>
+
+## Examples
+
+### Determinate Linear Progress
+
+Linear progress indicators display progress by animating along the length of a fixed, visible track. The behavior of the indicator is dependent on whether the progress of a process is known.
+
+<ComponentContainer>
+  <DeterminateLinearProgress slot='preview' client:visible/>
+
+```tsx
+import { LinearProgress } from '@/components/ui/progress-indicator'
+
+export const IndeterminateLinearProgress = () => {
+  return <LinearProgress value={13} />
+}
+```
+
+</ComponentContainer>
+
+### Indeterminate Linear Progress
+
+<ComponentContainer>
+  <IndeterminateLinearProgress slot='preview' client:visible/>
+
+```tsx
+import { LinearProgress } from '@/components/ui/progress-indicator'
+
+export const IndeterminateLinearProgress = () => {
+  return <LinearProgress />
+}
+```
+
+</ComponentContainer>
+
+### Determinate Circular Progress
+
+Circular progress indicators display progress by animating along an invisible circular track in a clockwise direction.
+
+<ComponentContainer>
+<DeterminateCircularProgress slot='preview' client:visible/>
+
+```tsx
+import { CircularProgress } from '@/components/ui/progress-indicator'
+
+export const DeterminateCircularProgress = () => {
+  return <CircularProgress value={13} />
+}
+```
+
+</ComponentContainer>
+
+### Indeterminate Curcular Progress
+
+<ComponentContainer>
+<IndeterminateCircularProgress slot='preview' client:visible/>
+
+```tsx
+import { CircularProgress } from '@/components/ui/progress-indicator'
+
+export const DeterminateCircularProgress = () => {
+  return <CircularProgress />
+}
+```
+
+</ComponentContainer>

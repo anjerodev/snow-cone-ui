@@ -1,0 +1,251 @@
+---
+group: 'containment'
+title: 'Cards'
+subtitle: 'Cards display content and actions about a single subject'
+preview: 'https://lh3.googleusercontent.com/eK7nGWzsg1aJUlQTK77oQh_FWvwisvn-INS1ToXOW8jAsQl1sMCzDPpHwUbETmjC7HGEtsieK03tKsQNE7IaFav1EqKMwCy31yH-i_WytuHAMRwaiQ=s0'
+previewDark: 'https://lh3.googleusercontent.com/_xZn5hGytOkZq6W9EgYkBsf6jfFgAF3dCmgcgSW0vraUcZflFGUH4uEJDUWXJTszY7NjmGNBC4-xgJmsBVqEQbjwUau8OE2W3EWUnf8MnjdvLEM9Fr7G=s0'
+thumbnail: 'https://lh3.googleusercontent.com/Qt_5fKOX6mxq9g2Hq3r0BB3L9ucVgC7LmdrfujcW2QuHVQCLyEg6yD945g21cWXIE9DsVo29GHSaJ-GkYGm3WPIIyBUJQXT1OJE1zm912inUmZsDvw=w1200'
+thumbnailDark: 'https://lh3.googleusercontent.com/UMKqsz_J7I1Z9gQJSKzTJld-LDVdS_KS_uRyrwlDVSDNhRvPFjmLoX8TbkHJGD6dHy2e6MIsmtiLIUjEsJFkW54_58YHOQz7wS-845ZEOSTnx_q9ZA=w1200'
+guidelines: 'https://m3.material.io/components/cards/guidelines'
+shadcn: 'https://ui.shadcn.com/docs/components/card'
+---
+
+import {
+  ActionCardExample,
+  CardWithTopActions,
+  ElevatedCard,
+  FilledCard,
+  OutlinedCard,
+} from '@/components/react/examples/cards.tsx'
+import ComponentContainer from '@/components/component-container.astro'
+import ComponentSource from '@/components/component-source.astro'
+import Step from '@/components/step.astro'
+import Steps from '@/components/steps.astro'
+
+## Usage
+
+Cards are used to display content and actions on a single topic.
+
+## Instalation
+
+<Steps>
+
+<Step>
+#### Run the following command if is not already installed:
+
+```bash
+npm i @radix-ui/react-slot
+```
+
+</Step>
+
+<Step>
+  #### Copy and paste the following code into your project.
+  <ComponentSource name="card" />
+</Step>
+
+<Step>
+#### Update the import paths to match your project setup.
+
+</Step>
+
+</Steps>
+
+## Examples
+
+### Filled
+
+Filled cards provide subtle separation from the background. This has less emphasis than elevated or outlined cards.
+
+<ComponentContainer>
+  <FilledCard slot='preview' client:visible/>
+
+```tsx
+import { Button } from '@/components/ui/button'
+import { Card } from '@/components/ui/card'
+
+export const ElevatedCard = () => {
+  return (
+    <Card className="max-w-[350px]">
+      <Card.Thumbnail src="./card_thumbnail" className="h-[200px]" />
+      <Card.Header>
+        <Card.Headline>Glass Souls' World Tour</Card.Headline>
+        <Card.Subhead>From your recent favorites</Card.Subhead>
+      </Card.Header>
+      <CardContent>
+        Glass Souls will deliver a show that will keep you on the edge of your
+        seat.
+      </CardContent>
+      <Card.Footer>
+        <Button>Buy Tickets</Button>
+      </Card.Footer>
+    </Card>
+  )
+}
+```
+
+</ComponentContainer>
+
+### Elevated
+
+Elevated cards have a drop shadow, providing more separation from the background than filled cards, but less than outlined cards.
+
+<ComponentContainer>
+  <ElevatedCard slot='preview' client:visible/>
+
+```tsx
+import { Button } from '@/components/ui/button'
+import { Card } from '@/components/ui/card'
+
+export const ElevatedCard = () => {
+  return (
+    <Card variant="elevated" className="max-w-[350px]">
+      <Card.Thumbnail src="./card_thumbnail" className="h-[200px]" />
+      <Card.Header>
+        <Card.Headline>Glass Souls' World Tour</Card.Headline>
+        <Card.Subhead>From your recent favorites</Card.Subhead>
+      </Card.Header>
+      <CardContent>
+        Glass Souls will deliver a show that will keep you on the edge of your
+        seat.
+      </CardContent>
+      <Card.Footer>
+        <Button>Buy Tickets</Button>
+      </Card.Footer>
+    </Card>
+  )
+}
+```
+
+</ComponentContainer>
+
+### Outlined
+
+Outlined cards have a visual boundary around the container. This can provide greater emphasis than the other types.
+
+<ComponentContainer>
+  <OutlinedCard slot='preview' client:visible/>
+
+```tsx
+import { Button } from '@/components/ui/button'
+import { Card } from '@/components/ui/card'
+
+export const ElevatedCard = () => {
+  return (
+    <Card variant="oulined" className="max-w-[350px]">
+      <Card.Thumbnail src="./card_thumbnail" className="h-[200px]" />
+      <Card.Header>
+        <Card.Headline>Glass Souls' World Tour</Card.Headline>
+        <Card.Subhead>From your recent favorites</Card.Subhead>
+      </Card.Header>
+      <CardContent>
+        Glass Souls will deliver a show that will keep you on the edge of your
+        seat.
+      </CardContent>
+      <Card.Footer>
+        <Button>Buy Tickets</Button>
+      </Card.Footer>
+    </Card>
+  )
+}
+```
+
+</ComponentContainer>
+
+### Action Card
+
+Action cards serve as entry points into deeper levels of detail or navigation.
+
+<ComponentContainer>
+  <ActionCardExample slot='preview' client:visible/>
+
+```tsx
+import { Button } from '@/components/ui/button'
+import { ActionCard, Card } from '@/components/ui/card'
+
+export const ActionCardExample = () => {
+  return (
+    <ActionCard className="max-w-[350px]">
+      <a href="#action-card">
+        <Card.Thumbnail
+          src="https://lh3.googleusercontent.com/GC7uaJYBY37yDjlX_l1y8oXf_g1iNwiJDB4ulfbSx0QOsxee2ex3vg2HW-qyKCHFc8IyVh7KIofdCXR3pw3IRMrL1uMYtaMJKZ9Ou7yGfyWuLJvUPxpW=w2400-rj"
+          className="h-[100px]"
+        />
+        <Card.Header>
+          <Card.Headline className="text-title-md">
+            Customizing Material
+          </Card.Headline>
+          <Card.Subhead className="text-label-lg">
+            Make it personal
+          </Card.Subhead>
+        </Card.Header>
+      </a>
+    </ActionCard>
+  )
+}
+```
+
+</ComponentContainer>
+
+### Card with top actions
+
+<ComponentContainer>
+  <CardWithTopActions slot='preview' client:visible/>
+
+```tsx
+import { Avatar } from '@/components/ui/avatar'
+import { Button } from '@/components/ui/button'
+import { ActionCard, Card } from '@/components/ui/card'
+import { Icon } from '@/components/ui/icon'
+import { IconButton } from '@/components/ui/icon-button'
+
+export const CardWithTopActions = () => {
+  const [isFav, setIsFav] = useState(false)
+
+  return (
+    <Card className="max-w-[300px]">
+      <Card.Header>
+        <div className="mb-2 flex items-start justify-between">
+          <div className="flex items-center gap-3">
+            <Avatar>
+              <Avatar.Image
+                src="https://github.com/jepricreations.png"
+                alt="Avatar"
+              />
+              <Avatar.Fallback>JC</Avatar.Fallback>
+            </Avatar>
+            <div className="text-label-md">
+              <div className="text-onSurfaceVariant">Jepri Creations</div>
+              <div className="text-onSurfaceVariant/60">Yesterday</div>
+            </div>
+          </div>
+          <IconButton
+            variant="standard"
+            disableStateLayer
+            className="bg-background hover:bg-background/70"
+            onClick={() => setIsFav(!isFav)}
+          >
+            <Icon
+              symbol="star"
+              className={
+                isFav
+                  ? 'font-filled duration-100 ease-out'
+                  : 'font-regular duration-0'
+              }
+            />
+          </IconButton>
+        </div>
+        <Card.Headline className="text-title-md font-normal">
+          Clay pot fair on Saturday?
+        </Card.Headline>
+      </Card.Header>
+      <CardContent>
+        I think it's time for us to finally try that new noodle shop downtown
+        that doesn't use menus. Anyone els...
+      </CardContent>
+    </Card>
+  )
+}
+```
+
+</ComponentContainer>

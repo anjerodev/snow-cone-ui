@@ -116,7 +116,7 @@ const SelectRoot = React.forwardRef<
   React.ElementRef<typeof SelectPrimitive.Root>,
   React.ComponentPropsWithoutRef<typeof SelectPrimitive.Root> &
     SelectContextValue
->(({ children, variant, error, ...props }, ref) => (
+>(({ children, variant, error, ...props }) => (
   <SelectPrimitive.Root {...props}>
     <div className="relative min-w-[200px]">
       <SelectProvider value={{ variant, error }}>{children}</SelectProvider>

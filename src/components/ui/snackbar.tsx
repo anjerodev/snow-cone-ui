@@ -10,7 +10,7 @@ import { Button } from '@/components/ui/button'
 import { Icon } from '@/components/ui/icon'
 import { IconButton } from '@/components/ui/icon-button'
 
-const SnackbarProvider = SnackbarPrimitives.Provider
+const SnackbarPrimitiveProvider = SnackbarPrimitives.Provider
 
 const SnackbarViewport = React.forwardRef<
   React.ElementRef<typeof SnackbarPrimitives.Viewport>,
@@ -19,7 +19,9 @@ const SnackbarViewport = React.forwardRef<
   <SnackbarPrimitives.Viewport
     ref={ref}
     className={cn(
-      'fixed bottom-0 z-[100] flex max-h-screen w-full flex-col-reverse p-4 sm:flex-col sm:gap-3 md:bottom-[inherit] md:right-0 md:top-0 md:max-w-[420px]',
+      'sm:gap- fixed inset-x-0 bottom-0 z-[100] mx-auto flex max-h-screen w-fit min-w-full flex-col items-start px-2 md:min-w-[380px] md:max-w-[600px]',
+      // Uncomment this line for snackbar from the top right in desktop
+      // 'md:bottom-[inherit] md:right-0 md:top-0',
       className
     )}
     {...props}
@@ -28,11 +30,15 @@ const SnackbarViewport = React.forwardRef<
 SnackbarViewport.displayName = SnackbarPrimitives.Viewport.displayName
 
 const snackbarVariants = cva(
-  'bg-inverseSurface text-inverseOnSurface data-[swipe=move]:transition-none rounded-xs group relative pointer-events-auto flex w-full items-stretch justify-between gap-2 overflow-hidden p-2 shadow-lg transition-all data-[swipe=move]:translate-x-[var(--radix-toast-swipe-move-x)] data-[swipe=cancel]:translate-x-0 data-[swipe=end]:translate-x-[var(--radix-toast-swipe-end-x)] data-[state=open]:md:animate-in data-[state=closed]:animate-out data-[swipe=end]:animate-out data-[state=closed]:fade-out data-[state=open]:animate-snackbar-in origin-bottom data-[state=open]:md:slide-in-from-right-full data-[state=open]:md:slide-in-from-bottom-0 data-[state=closed]:md:slide-out-to-right-full data-[state=closed]:md:slide-out-to-bottom-0 data-[swipe=end]:slide-out-to-right-full data-[swipe=end]:slide-out-to-bottom-0 before:inset-y-0 before:w-1 before:left-0 before:m-2 before:rounded-full',
+  [
+    'bg-inverseSurface min-h-[48px] text-inverseOnSurface data-[swipe=move]:transition-none rounded-xs relative pointer-events-auto flex w-full items-stretch justify-between gap-3 overflow-hidden py-2 px-4 shadow-lg transition-[transform,opacity] data-[swipe=move]:translate-x-[var(--radix-toast-swipe-move-x)] data-[swipe=cancel]:translate-x-0 data-[swipe=end]:translate-x-[var(--radix-toast-swipe-end-x)] data-[state=closed]:animate-out data-[swipe=end]:animate-out data-[state=closed]:fade-out data-[state=open]:animate-snackbar-in origin-bottom data-[swipe=end]:slide-out-to-right-full data-[swipe=end]:slide-out-to-bottom-0 before:inset-y-0 before:w-1 before:left-0 before:m-2 before:rounded-full',
+    // Uncomment this line for snackbar from the top right in desktop
+    // 'data-[state=open]:md:animate-in data-[state=open]:md:slide-in-from-right-full data-[state=open]:md:slide-in-from-bottom-0 data-[state=closed]:md:slide-out-to-right-full data-[state=closed]:md:slide-out-to-bottom-0',
+  ],
   {
     variants: {
       severity: {
-        default: 'before:hidden pl-4',
+        default: 'before:hidden',
         success: 'pl-6 before:absolute before:bg-successContainer',
         error: 'pl-6 before:absolute before:bg-errorContainer',
         info: 'pl-6 before:absolute before:bg-infoContainer',
@@ -63,18 +69,14 @@ Snackbar.displayName = SnackbarPrimitives.Root.displayName
 const SnackbarAction = React.forwardRef<
   React.ElementRef<typeof SnackbarPrimitives.Action>,
   React.ComponentPropsWithoutRef<typeof SnackbarPrimitives.Action>
->(({ className, ...props }, ref) => (
+>(({ ...props }, ref) => (
   <Button
     variant="text"
     size="small"
     asChild
-    className="flex-shrink-0 text-inversePrimary"
+    className="shrink-0 text-inversePrimary"
   >
-    <SnackbarPrimitives.Action
-      ref={ref}
-      className={cn('', className)}
-      {...props}
-    />
+    <SnackbarPrimitives.Action ref={ref} {...props} />
   </Button>
 ))
 SnackbarAction.displayName = SnackbarPrimitives.Action.displayName
@@ -87,7 +89,7 @@ const SnackbarClose = React.forwardRef<
     asChild
     variant="standard"
     className={cn(
-      'h-8 w-8 text-inverseOnSurface hover:bg-inverseOnSurface/10',
+      'm-0 -mr-1 mb-0 mt-auto h-8 w-8 shrink-0 text-inverseOnSurface hover:bg-inverseOnSurface/10',
       className
     )}
   >
@@ -126,12 +128,19 @@ type SnackbarProps = React.ComponentPropsWithoutRef<typeof Snackbar>
 
 type SnackbarActionElement = React.ReactElement<typeof SnackbarAction>
 
-const SnackbarManager = () => {
+const SnackbarProvider = () => {
   const { snackbars, elevated } = useSnackbar()
 
   return (
-    <SnackbarProvider>
-      {snackbars.map(function ({ id, title, description, action, ...props }) {
+    <SnackbarPrimitiveProvider>
+      {snackbars.map(function ({
+        id,
+        title,
+        description,
+        action,
+        closeable = true,
+        ...props
+      }) {
         return (
           <Snackbar key={id} {...props}>
             <div className="flex grow flex-wrap items-center justify-end gap-x-3 gap-y-1">
@@ -143,18 +152,20 @@ const SnackbarManager = () => {
               </div>
               {action}
             </div>
-            <SnackbarClose />
+            {closeable && <SnackbarClose />}
           </Snackbar>
         )
       })}
-      <SnackbarViewport className={elevated ? 'bottom-[88px]' : undefined} />
-    </SnackbarProvider>
+      <SnackbarViewport
+        className={elevated ? 'bottom-[88px] md:bottom-4' : undefined}
+      />
+    </SnackbarPrimitiveProvider>
   )
 }
 
 export {
-  SnackbarManager,
   SnackbarProvider,
+  SnackbarPrimitiveProvider,
   SnackbarViewport,
   Snackbar,
   SnackbarTitle,

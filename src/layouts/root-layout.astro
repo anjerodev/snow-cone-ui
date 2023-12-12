@@ -1,12 +1,11 @@
 ---
 import '@fontsource-variable/outfit'
-import '@fontsource/outfit'
 import '@/styles/base.css'
 import 'material-symbols/rounded.css'
 
 import { ViewTransitions } from 'astro:transitions'
 
-import { SnackbarManager } from '@/components/ui/snackbar'
+import { SnackbarProvider } from '@/components/ui/snackbar'
 import DevToolbar from '@/components/dev-toolbar.astro'
 import NavigationSideBar from '@/components/navigation-side-bar.astro'
 
@@ -38,7 +37,7 @@ const { title } = Astro.props
       </section>
     </div>
     <DevToolbar />
-    <SnackbarManager client:only />
+    <SnackbarProvider client:only />
     <style is:global id="theme">
       :root {
         --font-symbols: 'Material Symbols Rounded';

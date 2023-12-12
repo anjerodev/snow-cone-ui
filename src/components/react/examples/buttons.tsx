@@ -1,6 +1,6 @@
 import { Button } from '@/components/ui/button'
-import { CircularProgress } from '@/components/ui/circular-progress'
 import { Icon } from '@/components/ui/icon'
+import { CircularProgress } from '@/components/ui/progress-indicator'
 
 export const FilledButton = () => {
   return <Button>Make payment</Button>

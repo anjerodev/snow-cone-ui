@@ -1,5 +1,7 @@
 import { defineCollection, z } from 'astro:content'
 
+import { imagesRootPath } from '@/lib/data'
+
 const docsCollection = defineCollection({
   type: 'content',
   schema: z.object({
@@ -33,9 +35,8 @@ export const componentsSections = {
   actions: {
     description: 'Action components help people achieve an aim.',
     bg: {
-      default:
-        'https://m3.material.io/static/assets/m3-green-theming-thumbnail.jpg',
-      dark: 'https://m3.material.io/static/assets/m3-green-theming-thumbnail-dark.jpg',
+      default: imagesRootPath + 'm3-green-theming-thumbnail',
+      dark: imagesRootPath + 'm3-green-theming-thumbnail-dark',
     },
     color: {
       default: '#d9e7cb',
@@ -45,9 +46,8 @@ export const componentsSections = {
   communication: {
     description: 'Communication components provide helpful information.',
     bg: {
-      default:
-        'https://m3.material.io/static/assets/m3-red-theming-thumbnail.jpg',
-      dark: 'https://m3.material.io/static/assets/m3-red-theming-thumbnail-dark.jpg',
+      default: imagesRootPath + 'm3-red-theming-thumbnail',
+      dark: imagesRootPath + 'm3-red-theming-thumbnail-dark',
     },
     color: {
       default: '#F9DBDA',
@@ -58,9 +58,8 @@ export const componentsSections = {
     description:
       'Containment components hold information and actions - including other components like buttons, menus, or chips.',
     bg: {
-      default:
-        'https://m3.material.io/static/assets/m3-red-theming-thumbnail.jpg',
-      dark: 'https://m3.material.io/static/assets/m3-red-theming-thumbnail-dark.jpg',
+      default: imagesRootPath + 'm3-red-theming-thumbnail',
+      dark: imagesRootPath + 'm3-red-theming-thumbnail-dark',
     },
     color: {
       default: '#F9DBDA',
@@ -70,9 +69,8 @@ export const componentsSections = {
   navigation: {
     description: 'Navigation components help people move through the UI.',
     bg: {
-      default:
-        'https://m3.material.io/static/assets/m3-yellow-theming-thumbnail.jpg',
-      dark: 'https://m3.material.io/static/assets/m3-yellow-theming-thumbnail-dark.jpg',
+      default: imagesRootPath + 'm3-yellow-theming-thumbnail',
+      dark: imagesRootPath + 'm3-yellow-theming-thumbnail-dark',
     },
     color: {
       default: '#E6E4C3',
@@ -82,9 +80,8 @@ export const componentsSections = {
   selection: {
     description: 'Selection components let people specify choices.',
     bg: {
-      default:
-        'https://m3.material.io/static/assets/m3-green-theming-thumbnail.jpg',
-      dark: 'https://m3.material.io/static/assets/m3-green-theming-thumbnail-dark.jpg',
+      default: imagesRootPath + 'm3-green-theming-thumbnail',
+      dark: imagesRootPath + 'm3-green-theming-thumbnail-dark',
     },
     color: {
       default: '#d9e7cb',
@@ -94,9 +91,8 @@ export const componentsSections = {
   'text-inputs': {
     description: 'Text input components let people enter and edit text.',
     bg: {
-      default:
-        'https://m3.material.io/static/assets/m3-yellow-theming-thumbnail.jpg',
-      dark: 'https://m3.material.io/static/assets/m3-yellow-theming-thumbnail-dark.jpg',
+      default: imagesRootPath + 'm3-yellow-theming-thumbnail',
+      dark: imagesRootPath + 'm3-yellow-theming-thumbnail-dark',
     },
     color: {
       default: '#E6E4C3',

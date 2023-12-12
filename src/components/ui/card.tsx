@@ -1,17 +1,17 @@
 import React from 'react'
-import { Slot } from '@radix-ui/react-slot'
+import { Slot, Slottable } from '@radix-ui/react-slot'
 import { cva, type VariantProps } from 'class-variance-authority'
 
 import { cn } from '@/lib/utils'
 
 const cardVariants = cva(
-  'transition w-full relative rounded-md overflow-hidden',
+  'transition w-full relative rounded-md overflow-hidden pb-4',
   {
     variants: {
       variant: {
         elevated: 'bg-surfaceContainerLow shadow-sm',
         filled: 'bg-surfaceContainerHigh',
-        outlined: 'bg-surface border border-outline',
+        outlined: 'bg-surface border border-outlineVariant',
       },
     },
     defaultVariants: {
@@ -20,7 +20,7 @@ const cardVariants = cva(
   }
 )
 
-const actionCardVariants = cva('', {
+const actionCardVariants = cva('group outline-none z-0', {
   variants: {
     variant: {
       elevated: 'hover:shadow-md [&.disabled]:bg-surfaceVariant',
@@ -42,7 +42,7 @@ const CardRoot = React.forwardRef<HTMLDivElement, CardProps>(
     return (
       <div
         ref={ref}
-        className={cn(cardVariants({ variant, className }), '')}
+        className={cn(cardVariants({ variant, className }))}
         {...props}
       />
     )
@@ -55,7 +55,7 @@ const ActionCardRoot = React.forwardRef<
   CardProps & { disabled?: boolean }
 >(({ variant, className, disabled, children, ...props }, ref) => {
   return (
-    <div
+    <Slot
       ref={ref}
       className={cn(
         cardVariants({ variant, className }),
@@ -65,12 +65,24 @@ const ActionCardRoot = React.forwardRef<
       )}
       {...props}
     >
-      <Slot className="peer relative z-10 outline-none">{children}</Slot>
-      <span className="peer-hover:bg-onSurface/4 peer-focus:bg-onSurface/8 peer-active:bg-onSurface/8 absolute inset-0 z-0 transition-colors" />
-    </div>
+      <Slottable>{children}</Slottable>
+      <span className="absolute inset-0 z-[-1] transition-colors group-hover:bg-onSurface/4 group-focus:bg-onSurface/8 group-active:bg-onSurface/8" />
+    </Slot>
   )
 })
 ActionCardRoot.displayName = 'ActionCard'
+
+const CardThumbnail = React.forwardRef<
+  HTMLImageElement,
+  React.ImgHTMLAttributes<HTMLImageElement>
+>(({ className, ...props }, ref) => (
+  <img
+    ref={ref}
+    className={cn('h-full w-full rounded-b-md object-cover', className)}
+    {...props}
+  />
+))
+CardThumbnail.displayName = 'CardThumbnail'
 
 const CardHeader = React.forwardRef<
   HTMLDivElement,
@@ -78,27 +90,34 @@ const CardHeader = React.forwardRef<
 >(({ className, ...props }, ref) => (
   <div
     ref={ref}
-    className={cn('flex flex-col space-y-1.5 p-4 text-onSurface', className)}
+    className={cn(
+      'flex flex-col space-y-1.5 p-4 pb-0 text-onSurface',
+      className
+    )}
     {...props}
   />
 ))
 CardHeader.displayName = 'CardHeader'
 
-const CardTitle = React.forwardRef<
-  HTMLParagraphElement,
+const CardHeadline = React.forwardRef<
+  HTMLHeadingElement,
   React.HTMLAttributes<HTMLHeadingElement>
 >(({ className, ...props }, ref) => (
-  <h3 ref={ref} className={cn('text-title-lg', className)} {...props} />
+  <h3 ref={ref} className={cn('text-headline-md', className)} {...props} />
 ))
-CardTitle.displayName = 'CardTitle'
+CardHeadline.displayName = 'CardHeadline'
 
-const CardDescription = React.forwardRef<
+const CardSubhead = React.forwardRef<
   HTMLParagraphElement,
   React.HTMLAttributes<HTMLParagraphElement>
 >(({ className, ...props }, ref) => (
-  <p ref={ref} className={cn('muted text-title-sm', className)} {...props} />
+  <p
+    ref={ref}
+    className={cn('text-body-lg text-onSurfaceVariant', className)}
+    {...props}
+  />
 ))
-CardDescription.displayName = 'CardDescription'
+CardSubhead.displayName = 'CardSubhead'
 
 const CardContent = React.forwardRef<
   HTMLDivElement,
@@ -106,7 +125,7 @@ const CardContent = React.forwardRef<
 >(({ className, ...props }, ref) => (
   <div
     ref={ref}
-    className={cn('p-4 pt-0 text-onSurface', className)}
+    className={cn('p-4 pb-0 pt-2 text-body-md text-onSurface/70', className)}
     {...props}
   />
 ))
@@ -118,7 +137,7 @@ const CardFooter = React.forwardRef<
 >(({ className, ...props }, ref) => (
   <div
     ref={ref}
-    className={cn('flex items-center p-4', className)}
+    className={cn('flex items-center p-4 pb-0', className)}
     {...props}
   />
 ))
@@ -126,16 +145,18 @@ CardFooter.displayName = 'CardFooter'
 
 const ActionCard = Object.assign(ActionCardRoot, {
   Header: CardHeader,
-  Title: CardTitle,
-  Description: CardDescription,
+  Thumbnail: CardThumbnail,
+  Headline: CardHeadline,
+  Subhead: CardSubhead,
   Content: CardContent,
   Footer: CardFooter,
 })
 
 const Card = Object.assign(CardRoot, {
   Header: CardHeader,
-  Title: CardTitle,
-  Description: CardDescription,
+  Thumbnail: CardThumbnail,
+  Headline: CardHeadline,
+  Subhead: CardSubhead,
   Content: CardContent,
   Footer: CardFooter,
 })
@@ -145,8 +166,8 @@ export {
   ActionCard,
   CardRoot,
   CardHeader,
-  CardTitle,
-  CardDescription,
+  CardHeadline,
+  CardSubhead,
   CardContent,
   CardFooter,
 }

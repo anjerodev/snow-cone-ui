@@ -1,0 +1,187 @@
+---
+group: 'containment'
+title: 'Divider'
+subtitle: 'Dividers are thin lines that group content in lists or other containers'
+preview: 'https://lh3.googleusercontent.com/aW-drSqjDTevnBpCYEdZmKJREzEvmyEq6JMbOoMYxf4ocJaLC6R55ia8VAVCS6wAFBJB8AXv0T25tQWXhfSodX0Guoq5UDa_R-51f8hTvC_Ea8NNzLf5=s0'
+previewDark: 'https://lh3.googleusercontent.com/Vhf5YytG6OxsFcvRMX7d98Fv5U74TQFQmZg363l0UqQFHq0pK8wErge-_7RhyfjrCvbkAAw7EVVSzXQXO6F4BHgb5Xaaumq9_kmRU8KADoBYQZj5rXs=s0'
+thumbnail: 'https://lh3.googleusercontent.com/MBSlOtOezSiYODxCjKt0La0AGZlXikyzcbp-x18U2rQWvTgV4HvqCGerR-VU2s5WOmSy-zG-DELMdRyoWq3h3stybL0sNDx3JJt1UfyGDbSO1WN7S-4=w2400'
+thumbnailDark: 'https://lh3.googleusercontent.com/GKwTYDZPVltoWws_kSIQ0gIHUctKBxXIglzny5_zrhBS2gmo3iKpHKAxp7XbjvHANFpH6c9dk71C8w3LJHSn_qpeK0BauD_D1FzYZXPUaRCjKQAQjEaY=w2400'
+guidelines: 'https://m3.material.io/components/divider/guidelines'
+shadcn: 'https://ui.shadcn.com/docs/components/separator'
+---
+
+import {
+  FullWidthDivider,
+  FullWidthDividerCard,
+  InsetDivider,
+} from '@/components/react/examples/divider.tsx'
+import ComponentContainer from '@/components/component-container.astro'
+import ComponentSource from '@/components/component-source.astro'
+import Step from '@/components/step.astro'
+import Steps from '@/components/steps.astro'
+
+## Usage
+
+Dividers are one way to visually group components and create hierarchy. They can also be used to imply nested parent/child relationships.
+
+## Instalation
+
+<Steps>
+
+<Step>
+#### Run the following command:
+
+```bash
+npm i @radix-ui/react-separator
+```
+
+</Step>
+
+<Step>
+  #### Copy and paste the following code into your project.
+  <ComponentSource name="divider" />
+</Step>
+
+<Step>
+#### Update the import paths to match your project setup.
+
+</Step>
+
+</Steps>
+
+## Examples
+
+### Full width
+
+Full width divider are used to group visual elements together, and indicate when elements are related to each other from an interaction perspective. They are also used for separate interactive and non-interactive areas of a container such as a card.
+
+<ComponentContainer>
+  <FullWidthDivider slot='preview' client:visible/>
+
+```tsx
+import { Divider } from '@/components/ui/divider'
+
+export const FullWidthDivider = () => {
+  return (
+    <div className="bg-background py-4">
+      <ul>
+        <li className="px-4">
+          <div>
+            <div className="text-title-md">Cumpleaños de mamá</div>
+            <div className="text-onSurface/60">
+              Hola, en mi casa si tu ayudas con la comi...
+            </div>
+          </div>
+        </li>
+        <Divider className="my-4" />
+        <li className="px-4">
+          <div>
+            <div className="text-title-md">Graduación de Inés</div>
+            <div className="text-onSurface/60">
+              Hola hija mía aquí tienes unas fotos preci...
+            </div>
+          </div>
+        </li>
+        <Divider className="my-4" />
+        <li className="px-4">
+          <div>
+            <div className="text-title-md">Pre sale concert tickets</div>
+            <div className="text-onSurface/60">
+              I just show there is a couple of shows lined...
+            </div>
+          </div>
+        </li>
+      </ul>
+    </div>
+  )
+}
+```
+
+</ComponentContainer>
+
+<ComponentContainer>
+  <FullWidthDividerCard slot='preview' client:visible/>
+
+```tsx
+import { Button } from '@/components/ui/button'
+import { Card } from '@/components/ui/card'
+import { Divider } from '@/components/ui/divider'
+
+export const FullWidthDivider = () => {
+  return (
+    <Card variant="outlined" className="max-w-[400px] pb-2">
+      <Card.Header className="flex-row items-center gap-4">
+        <img
+          src="https://images.unsplash.com/photo-1598880940371-c756e015fea1?q=80&w=2400&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+          className="aspect-square h-20 rounded-sm"
+        />
+        <div>
+          <Card.Headline>The fortnightly</Card.Headline>
+          <Card.Subhead>
+            How to farm with less water: lessons from a fourth-generat...
+          </Card.Subhead>
+        </div>
+      </Card.Header>
+      <Divider className="mt-4" />
+      <CardFooter className="pt-2">
+        <Button variant="text" className="-ml-2">
+          Read more
+        </Button>
+      </CardFooter>
+    </Card>
+  )
+}
+```
+
+</ComponentContainer>
+
+### Inset
+
+Inset dividers separate related content, such as emails in a list. They should be used with anchoring elements such as icons or avatars, and align with the leading edge of the screen.
+
+<ComponentContainer>
+  <InsetDivider slot='preview' client:visible/>
+
+```tsx
+import { Divider } from '@/components/ui/divider'
+
+export const InsetDivider = () => {
+  return (
+    <div className="bg-background p-4">
+      <ul>
+        <li className="flex items-center gap-4">
+          <div className="bg-outlineVariant aspect-square h-14 rounded-full" />
+          <div>
+            <div className="text-title-md">Glass & Grace</div>
+            <div className="text-onSurface/60">
+              Sound Check. Making of Eye...
+            </div>
+          </div>
+        </li>
+        <Divider className="my-4" />
+        <li className="flex items-center gap-4">
+          <div className="bg-outlineVariant aspect-square h-14 rounded-full" />
+          <div>
+            <div className="text-title-md">The fortnightly</div>
+            <div className="text-onSurface/60">
+              What Buttons Are They Pushing...
+            </div>
+          </div>
+        </li>
+        <Divider className="my-4" />
+        <li className="flex items-center gap-4">
+          <div className="bg-outlineVariant aspect-square h-14 rounded-full" />
+          <div>
+            <div className="text-title-md">The Art of Zen</div>
+            <div className="text-onSurface/60">
+              How to Find Balance and Peace...
+            </div>
+          </div>
+        </li>
+      </ul>
+    </div>
+  )
+}
+```
+
+</ComponentContainer>

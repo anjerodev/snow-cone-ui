@@ -350,7 +350,7 @@ const config = {
         xs: 'calc(1/3 * var(--radius))',
       },
       fontFamily: {
-        sans: ['Outfit Variable', 'Outfit', ...fontFamily.sans],
+        sans: ['Outfit Variable', ...fontFamily.sans],
       },
       fontSize: {
         'display-lg': ['3.56rem', { lineHeight: '4rem' }],

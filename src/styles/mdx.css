@@ -3,19 +3,18 @@
 }
 
 .mdx {
-  h2 {
+  h2:not(.preview h2) {
     @apply mb-6 mt-20 text-display-md first-of-type:mt-0;
   }
-  h3 {
+  h3:not(.preview h3) {
     @apply mb-3 mt-10 text-headline-md;
   }
-
-  h4 {
+  h4:not(.preview h4) {
     @apply my-3 text-title-md;
   }
 
-  p {
-    @apply my-4;
+  p:not(.preview p) {
+    @apply my-4 first-of-type:mt-0;
   }
 }
 

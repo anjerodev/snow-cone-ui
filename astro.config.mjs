@@ -15,4 +15,9 @@ export default defineConfig({
   markdown: {
     syntaxHighlight: 'prism',
   },
+  vite: {
+    ssr: {
+      external: ['prismjs'],
+    },
+  },
 })

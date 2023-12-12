@@ -56,10 +56,22 @@ export interface ButtonProps
   extends React.ButtonHTMLAttributes<HTMLButtonElement>,
     VariantProps<typeof buttonVariants> {
   asChild?: boolean
+  disableStateLayer?: boolean
 }
 
 const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
-  ({ className, variant, size, asChild, children, ...props }, ref) => {
+  (
+    {
+      className,
+      variant,
+      size,
+      asChild,
+      disableStateLayer,
+      children,
+      ...props
+    },
+    ref
+  ) => {
     const Comp = asChild ? Slot : 'button'
 
     return (
@@ -69,7 +81,9 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
         {...props}
       >
         <Slottable>{children}</Slottable>
-        <span className={stateLayerVariants({ variant })} />
+        {!disableStateLayer && (
+          <span className={stateLayerVariants({ variant })} />
+        )}
       </Comp>
     )
   }

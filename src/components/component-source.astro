@@ -1,24 +1,14 @@
 ---
-import fs from 'node:fs/promises'
-import { Prism } from '@astrojs/prism'
-
-import { cn } from '@/lib/utils'
-import { CodeBlockWrapper } from '@/components/react/code-block-wrapper'
+import CodeSource from './code-source.astro'
 
 interface Props {
   name: string
 }
 
 const { name } = Astro.props
-
-const url = new URL(`../../src/components/ui/${name}.tsx`, import.meta.url)
-const content = await fs.readFile(url, 'utf-8')
 ---
 
-<CodeBlockWrapper
-  expandButtonTitle="Expand"
-  className={cn('my-6 overflow-hidden rounded-lg')}
-  client:visible
->
-  <Prism lang="tsx" code={content} />
-</CodeBlockWrapper>
+<CodeSource
+  path={`/components/ui/${name}.tsx`}
+  lang="tsx"
+/>

@@ -9,7 +9,7 @@ const iconButtonVariants = cva(
   {
     variants: {
       size: {
-        default: 'h-10 w-10 m-1',
+        default: 'h-10 w-10',
       },
       variant: {
         filled: 'bg-primary text-onPrimary disabled:bg-onSurface/12',
@@ -48,10 +48,22 @@ export interface IconButtonProps
   extends React.ButtonHTMLAttributes<HTMLButtonElement>,
     VariantProps<typeof iconButtonVariants> {
   asChild?: boolean
+  disableStateLayer?: boolean
 }
 
 const IconButton = React.forwardRef<HTMLButtonElement, IconButtonProps>(
-  ({ className, variant, size, asChild, children, ...props }, ref) => {
+  (
+    {
+      className,
+      variant,
+      size,
+      asChild,
+      disableStateLayer,
+      children,
+      ...props
+    },
+    ref
+  ) => {
     const Comp = asChild ? Slot : 'button'
 
     return (
@@ -61,7 +73,9 @@ const IconButton = React.forwardRef<HTMLButtonElement, IconButtonProps>(
         {...props}
       >
         <Slottable>{children}</Slottable>
-        <span className={cn(stateLayerVariants({ variant }))} />
+        {!disableStateLayer && (
+          <span className={cn(stateLayerVariants({ variant }))} />
+        )}
       </Comp>
     )
   }

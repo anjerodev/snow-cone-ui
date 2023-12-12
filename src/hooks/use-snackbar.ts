@@ -1,3 +1,6 @@
+// Inspired by react-hot-toast library
+// From shadcn/ui
+
 import * as React from 'react'
 
 import type {
@@ -13,6 +16,7 @@ type SnackbarManagerType = SnackbarProps & {
   title?: React.ReactNode
   description?: React.ReactNode
   action?: SnackbarActionElement
+  closeable?: boolean
 }
 
 const actionTypes = {
