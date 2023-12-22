@@ -1,6 +1,8 @@
 import { Button } from '@/components/ui/button'
 import { Card } from '@/components/ui/card'
 import { Divider } from '@/components/ui/divider'
+import { Icon } from '@/components/ui/icon'
+import { IconButton } from '@/components/ui/icon-button'
 
 export const FullWidthDivider = () => {
   return (
@@ -105,6 +107,32 @@ export const InsetDivider = () => {
           </div>
         </li>
       </ul>
+    </div>
+  )
+}
+
+export const VerticalDivider = () => {
+  return (
+    <div className="flex items-center rounded-sm bg-background p-1">
+      <IconButton variant="standard" className="rounded-xs">
+        <Icon symbol="format_align_left" />
+      </IconButton>
+      <IconButton variant="standard" className="rounded-xs">
+        <Icon symbol="format_align_center" />
+      </IconButton>
+      <IconButton variant="standard" className="rounded-xs">
+        <Icon symbol="format_align_right" />
+      </IconButton>
+      <Divider orientation="vertical" className="mx-3" />
+      <IconButton variant="standard" className="rounded-xs">
+        <Icon symbol="format_bold" />
+      </IconButton>
+      <IconButton variant="standard" className="rounded-xs">
+        <Icon symbol="format_italic" />
+      </IconButton>
+      <IconButton variant="standard" className="rounded-xs">
+        <Icon symbol="format_underlined" />
+      </IconButton>
     </div>
   )
 }

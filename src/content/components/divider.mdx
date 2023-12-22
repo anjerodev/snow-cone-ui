@@ -14,6 +14,7 @@ import {
   FullWidthDivider,
   FullWidthDividerCard,
   InsetDivider,
+  VerticalDivider
 } from '@/components/react/examples/divider.tsx'
 import ComponentContainer from '@/components/component-container.astro'
 import ComponentSource from '@/components/component-source.astro'
@@ -56,7 +57,7 @@ npm i @radix-ui/react-separator
 Full width divider are used to group visual elements together, and indicate when elements are related to each other from an interaction perspective. They are also used for separate interactive and non-interactive areas of a container such as a card.
 
 <ComponentContainer>
-  <FullWidthDivider slot='preview' client:visible/>
+  <FullWidthDivider slot='preview'/>
 
 ```tsx
 import { Divider } from '@/components/ui/divider'
@@ -100,7 +101,7 @@ export const FullWidthDivider = () => {
 </ComponentContainer>
 
 <ComponentContainer>
-  <FullWidthDividerCard slot='preview' client:visible/>
+  <FullWidthDividerCard slot='preview'/>
 
 ```tsx
 import { Button } from '@/components/ui/button'
@@ -140,7 +141,7 @@ export const FullWidthDivider = () => {
 Inset dividers separate related content, such as emails in a list. They should be used with anchoring elements such as icons or avatars, and align with the leading edge of the screen.
 
 <ComponentContainer>
-  <InsetDivider slot='preview' client:visible/>
+  <InsetDivider slot='preview'/>
 
 ```tsx
 import { Divider } from '@/components/ui/divider'
@@ -179,6 +180,50 @@ export const InsetDivider = () => {
           </div>
         </li>
       </ul>
+    </div>
+  )
+}
+```
+
+</ComponentContainer>
+
+
+### Vertical Dividers
+A vertical divider can be used to arrange content horizontally.
+
+<ComponentContainer>
+
+<VerticalDivider slot='preview'/>
+
+```tsx
+import { Divider } from '@/components/ui/divider'
+import { Icon } from '@/components/ui/icon'
+import { IconButton } from '@/components/ui/icon-button'
+
+export const VerticalDivider = () => {
+  return (
+    <div className="flex items-center bg-background p-1 rounded-sm">
+      <IconButton variant="standard" className="rounded-xs">
+        <Icon symbol="format_align_left" />
+      </IconButton>
+      <IconButton variant="standard" className="rounded-xs">
+        <Icon symbol="format_align_center" />
+      </IconButton>
+      <IconButton variant="standard" className="rounded-xs">
+        <Icon symbol="format_align_right" />
+      </IconButton>
+
+      <Divider orientation="vertical" className="mx-3" />
+
+      <IconButton variant="standard" className="rounded-xs">
+        <Icon symbol="format_bold" />
+      </IconButton>
+      <IconButton variant="standard" className="rounded-xs">
+        <Icon symbol="format_italic" />
+      </IconButton>
+      <IconButton variant="standard" className="rounded-xs">
+        <Icon symbol="format_underlined" />
+      </IconButton>
     </div>
   )
 }

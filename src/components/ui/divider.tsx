@@ -17,7 +17,9 @@ const Divider = React.forwardRef<
       orientation={orientation}
       className={cn(
         'shrink-0 bg-outlineVariant',
-        orientation === 'horizontal' ? 'h-[1px] w-full' : 'h-full w-[1px]',
+        orientation === 'horizontal'
+          ? 'h-[1px] w-full'
+          : 'h-auto w-[1px] self-stretch',
         className
       )}
       {...props}
