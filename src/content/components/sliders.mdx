@@ -1,0 +1,143 @@
+---
+group: 'selection'
+title: 'Sliders'
+subtitle: 'Sliders let users make selections from a range of values'
+preview: 'https://lh3.googleusercontent.com/1MXZLsVEh2XgeJLkqmFItEVL2ya9RoON46f9zkaQ8g55WG7RwZp8k6xSZ_dzWzBcy4Bkh5BE-r7WB2yOQpMgFvC9Hp2nz3mJlMpurO_joPFSwvJI6m4=s0'
+previewDark: 'https://lh3.googleusercontent.com/ecVrro1djVRWEPOq-omSpcwFcZYEaYEzd1h6V9RDiNnSgNm-x_WUVzXDmSR5_br8nivaU7uW8fetRq13tsS1TKLN5CnIr1JPiuY2N8s3DteVys6YYZY=s0'
+thumbnail: 'https://lh3.googleusercontent.com/QI5VbPlUAT9y8poG7Zw0I7W1J4gxBirEkSKEI7_KS8UYZpPW_KHzlC5e_XOYi-_5-1UyRsrSJVQ9qACuCvsBrQr8YWuRCaQzaPCxNBhqiUWLp8V6Shn-=w2400'
+thumbnailDark: 'https://lh3.googleusercontent.com/pq1nVCK-vSkx7BqFbF6JFhvQ0qGpn_BAED1pa5cFk0VsvY-nQ9jujRcObtthLqiOCanr0HGfJswPIb8um74Ob2F7o_zinMWUlalCiY3iV49JzWyY5A=w2400'
+guidelines: 'https://m3.material.io/components/sliders/guidelines'
+shadcn: 'https://ui.shadcn.com/docs/components/slider'
+---
+
+import {
+  ContinuousSlider,
+  DiscreteSlider,
+  RangeSlider,
+} from '@/components/react/examples/slider.tsx'
+import ComponentContainer from '@/components/component-container.astro'
+import ComponentSource from '@/components/component-source.astro'
+import Step from '@/components/step.astro'
+import Steps from '@/components/steps.astro'
+
+## Usage
+
+Sliders allow users to view and select a value (or range) along a track. They're ideal for adjusting settings such as volume and brightness, or for applying image filters.
+
+## Instalation
+
+<Steps>
+
+<Step>
+#### Run the following command:
+
+```bash
+npm i @radix-ui/react-slider
+
+```
+
+</Step>
+
+<Step>
+  #### Copy and paste the following code into your project.
+  <ComponentSource name="slider" />
+</Step>
+
+<Step>
+#### Update the import paths to match your project setup.
+
+</Step>
+
+</Steps>
+
+## Examples
+
+### Continuous
+
+Allows users to select a value along a subjective range.
+
+<ComponentContainer>
+  <ContinuousSlider slot='preview' client:visible/>
+
+```tsx
+import { Slider } from '@/components/ui/slider'
+
+export const ContinuousSlider = () => {
+  return (
+    <Slider defaultValue={[50]} max={100} step={1} className="max-w-[320px]">
+      <Slider.Thumb />
+    </Slider>
+  )
+}
+```
+
+</ComponentContainer>
+
+### Discrete
+
+Allows users to select a specific value from a predetermined range.
+
+<ComponentContainer>
+  <DiscreteSlider slot='preview' client:visible/>
+
+```tsx
+import { useState } from 'react'
+
+import { Slider } from '@/components/ui/slider'
+
+export const DiscreteSlider = () => {
+  const [value, setValue] = useState([50])
+
+  return (
+    <Slider
+      value={value}
+      onValueChange={setValue}
+      step={10}
+      className="max-w-[320px]"
+      discrete
+    >
+      <Slider.Thumb>
+        <Slider.ValueLabel>{value[0]}</Slider.ValueLabel>
+      </Slider.Thumb>
+    </Slider>
+  )
+}
+```
+
+</ComponentContainer>
+
+### Range
+
+When sliders have two handles, they indicate the minimum and maximum values in a range.
+
+<ComponentContainer>
+  <RangeSlider slot='preview' client:visible/>
+
+```tsx
+import { useState } from 'react'
+
+import { Slider } from '@/components/ui/slider'
+
+export const RangeSlider = () => {
+  const [rangeValue, setRangeValue] = useState([30, 60])
+
+  return (
+    <Slider
+      value={rangeValue}
+      onValueChange={setRangeValue}
+      step={10}
+      className="max-w-[320px]"
+      discrete
+    >
+      <Slider.Thumb>
+        <Slider.ValueLabel>{rangeValue[0]}</Slider.ValueLabel>
+      </Slider.Thumb>
+      <Slider.Thumb>
+        <Slider.ValueLabel>{rangeValue[1]}</Slider.ValueLabel>
+      </Slider.Thumb>
+    </Slider>
+  )
+}
+```
+
+</ComponentContainer>
