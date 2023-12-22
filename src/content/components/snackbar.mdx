@@ -102,7 +102,7 @@ export const SnackbarExample = () => {
 
   const showSnackbar = () => {
     snackbar({
-      description: 'Button has been clicked',
+      description: 'Saved in "Vacation" album.',
     })
   }
   return <Button onClick={showSnackbar}>Show snackbar</Button>
@@ -128,8 +128,9 @@ export const ActionSnackbar = () => {
 
   const showSnackbar = () => {
     snackbar({
-      description: 'Button has been clicked',
-      action: <SnackbarAction altText="Undo">Undo</SnackbarAction>,
+      description:
+        'Connection timed out. Showing the lates locally served version.',
+      action: <SnackbarAction altText="Retry">Retry</SnackbarAction>,
     })
   }
   return <Button onClick={showSnackbar}>Show snackbar</Button>
@@ -156,7 +157,7 @@ export const SnackbarWithoutCloseButton = () => {
 
   const showSnackbar = () => {
     snackbar({
-      description: 'Button has been clicked',
+      description: 'Photo have been saved to your album.',
       closeable: false,
     })
   }
@@ -182,7 +183,7 @@ export const SeveritySnackbar = () => {
 
   const showSnackbar = () => {
     snackbar({
-      description: 'Button has been clicked',
+      description: 'This is a success snackbar',
       severity: 'success',
     })
   }
@@ -208,9 +209,11 @@ export const SnackbarWithTitle = () => {
 
   const showSnackbar = () => {
     snackbar({
-      title: 'This is a title',
-      description: 'Button has been clicked',
+      title: 'Oopsie-Daisy Alert!',
+      description:
+        "It seems you pressed the 'Do not press' button. Don't worry, I won't tell anyone!",
       closeable: false,
+      duration: 5000,
     })
   }
   return <Button onClick={showSnackbar}>Do not press</Button>

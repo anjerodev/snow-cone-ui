@@ -26,6 +26,7 @@ export const SnackbarWithTitle = () => {
       description:
         "It seems you pressed the 'Do not press' button. Don't worry, I won't tell anyone!",
       closeable: false,
+      duration: 5000,
     })
   }
   return <Button onClick={showSnackbar}>Do not press</Button>
