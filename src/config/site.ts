@@ -5,7 +5,7 @@ export type SiteConfig = typeof siteConfig
 const navItem = (title: string, slug: string) => ({ title, slug })
 
 export const siteConfig = {
-  name: 'Solstice UI',
+  name: 'Snow Cone UI',
   url: 'http://localhost:4321',
   description: 'Copy Paste library with Material You inspired design.',
   links: {},
