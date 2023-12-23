@@ -1,0 +1,386 @@
+---
+group: 'text-inputs'
+title: 'Text fields'
+subtitle: 'Text fields let users enter text into a UI'
+preview: 'https://lh3.googleusercontent.com/DegVExvsICQ_j7rOVKQFyvqyPgsoZOrv69MSl9B6Y2Kp3Ihra67S010DTmDVDu-kfLTPQddq2YvSk11U8nrNTD7BaFuw1iuOB5iloHiBE6oKyHyqFXY=s0'
+previewDark: 'https://lh3.googleusercontent.com/yiUW2u7ZQwYoKlKosTRZzxBEgiFQ5_fKKGxppnG6s5dOpW2lERHJGXKsM-tPd6yBNESfcgdPALobtEn4Fog6mA1g69TuBOl2jXISDq34xxKmidLIEA=s0'
+thumbnail: 'https://lh3.googleusercontent.com/QyaUrTcT78S9B69d0Vk6p6gj-Fn1_wIbeuENu9C6etGHpAOYTx2mqfBHFYg9KpiG1Li0KlUwP3jyC5Htrij--wHD5exuMjWaL9he2ko79DWxlqDaeQA=w2400'
+thumbnailDark: 'https://lh3.googleusercontent.com/CYm92Hit6q1hYop8MKyeXL4mvAESpt5MfT5Jw-VFA0N2TXRG-07Rj7BWv3B9IjOSsas7u6pFQoZdrO8lmczD8m927BZLi76rSt6rb7b3BsoXvaIKBFY=w2400'
+guidelines: 'https://m3.material.io/components/text-fields/guidelines'
+shadcn: 'https://ui.shadcn.com/docs/components/input'
+---
+
+import {
+  FilledTextFieldDefault,
+  FilledTextFieldDisabled,
+  FilledTextFieldWithError,
+  FilledTextFieldWithLabel,
+  FilledTextFieldWithLeadingIcon,
+  FilledTextFieldWithSupportingText,
+  FilledTextFieldWithTrailingIcon,
+  OutlinedTextFieldDefault,
+  OutlinedTextFieldDisabled,
+  OutlinedTextFieldWithError,
+  OutlinedTextFieldWithLabel,
+  OutlinedTextFieldWithLeadingIcon,
+  OutlinedTextFieldWithSupportingText,
+  OutlinedTextFieldWithTrailingIcon,
+} from '@/components/react/examples/text-fields.tsx'
+import ComponentContainer from '@/components/component-container.astro'
+import ComponentSource from '@/components/component-source.astro'
+import Step from '@/components/step.astro'
+import Steps from '@/components/steps.astro'
+
+## Usage
+
+Use a text field when someone needs to enter text into a UI.
+
+## Instalation
+
+<Steps>
+
+<Step>
+  #### Copy and paste the following code into your project.
+  <ComponentSource name="text-field" />
+</Step>
+
+<Step>
+#### Update the import paths to match your project setup.
+
+</Step>
+
+</Steps>
+
+## Examples
+
+The component has been built with the idea of maintaining modularity. For this reason, it is **VERY IMPORTANT** to preserve the correct order in the component structure to ensure they work correctly when used.
+
+The component tree is:
+
+```tsx
+<TextField>     Text field root container
+  <Decoration>  Text field leading decoration (e.g. icon) (optional)
+  <Input />     Text field input
+  <Label />     Text field label (optional but recommended)
+  <Decoration>  Text field trailing decoration (e.g. icon) (optional)
+</TextField>
+<SupportingText /> Text field supporting text (optional)
+```
+
+### Filled text fields
+
+I've chosen a different approach to the border radius than the one suggested in The Material You Guide. I believe this new shape design offers a more modern appearance.
+
+#### Default
+
+<ComponentContainer>
+  <FilledTextFieldDefault slot='preview'/>
+
+```tsx
+import { FilledTextField } from '@/components/ui/text-field'
+
+export const FilledTextFieldDefault = () => {
+  return (
+    <FilledTextField>
+      <FilledTextField.Input placeholder="First name" />
+    </FilledTextField>
+  )
+}
+```
+
+</ComponentContainer>
+
+#### With label
+
+<ComponentContainer>
+  <FilledTextFieldWithLabel slot='preview'/>
+
+```tsx
+import { FilledTextField } from '@/components/ui/text-field'
+
+export const FilledTextFieldWithLabel = () => {
+  return (
+    <FilledTextField>
+      <FilledTextField.Input placeholder="Your beautiful first name" />
+      <FilledTextField.Label>First name</FilledTextField.Label>
+    </FilledTextField>
+  )
+}
+```
+
+</ComponentContainer>
+
+#### With supporting text
+
+<ComponentContainer>
+  <FilledTextFieldWithSupportingText slot='preview'/>
+
+```tsx
+import { FilledTextField } from '@/components/ui/text-field'
+
+export const FilledTextFieldWithSupportingText = () => {
+  return (
+    <div className="w-full">
+      <FilledTextField>
+        <FilledTextField.Input />
+        <FilledTextField.Label>Username</FilledTextField.Label>
+      </FilledTextField>
+      <FilledTextField.SupportingText>
+        This will be how other users know you.
+      </FilledTextField.SupportingText>
+    </div>
+  )
+}
+```
+
+</ComponentContainer>
+
+#### With leading icon
+
+<ComponentContainer>
+  <FilledTextFieldWithLeadingIcon slot='preview'/>
+
+```tsx
+import { Icon } from '@/components/ui/icon'
+import { FilledTextField } from '@/components/ui/text-field'
+
+export const FilledTextFieldWithLeadingIcon = () => {
+  return (
+    <FilledTextField>
+      <FilledTextField.Decoration>
+        <Icon symbol="person" />
+      </FilledTextField.Decoration>
+      <FilledTextField.Input />
+      <FilledTextField.Label>Username</FilledTextField.Label>
+    </FilledTextField>
+  )
+}
+```
+
+</ComponentContainer>
+
+#### With trailing icon
+
+<ComponentContainer>
+  <FilledTextFieldWithTrailingIcon slot='preview'/>
+
+```tsx
+import { Icon } from '@/components/ui/icon'
+import { FilledTextField } from '@/components/ui/text-field'
+
+export const FilledTextFieldWithTrailingIcon = () => {
+  return (
+    <FilledTextField>
+      <FilledTextField.Input placeholder="Search..." />
+      <FilledTextField.Decoration>
+        <Icon symbol="search" />
+      </FilledTextField.Decoration>
+    </FilledTextField>
+  )
+}
+```
+
+</ComponentContainer>
+
+#### Disabled
+
+<ComponentContainer>
+  <FilledTextFieldDisabled slot='preview'/>
+
+```tsx
+import { FilledTextField } from '@/components/ui/text-field'
+
+export const FilledTextFieldDisabled = () => {
+  return (
+    <FilledTextField>
+      <FilledTextField.Input disabled />
+      <FilledTextField.Label>Username</FilledTextField.Label>
+    </FilledTextField>
+  )
+}
+```
+
+</ComponentContainer>
+
+#### With error
+
+<ComponentContainer>
+  <FilledTextFieldWithError slot='preview'/>
+
+```tsx
+import { FilledTextField } from '@/components/ui/text-field'
+
+export const FilledTextFieldWithError = () => {
+  return (
+    <div className="w-full">
+      <FilledTextField error>
+        <FilledTextField.Input />
+        <FilledTextField.Label>Username</FilledTextField.Label>
+      </FilledTextField>
+      <FilledTextField.SupportingText className="text-error">
+        The username can not be empty.
+      </FilledTextField.SupportingText>
+    </div>
+  )
+}
+```
+
+</ComponentContainer>
+
+### Outlined text fields
+
+#### Default
+
+<ComponentContainer>
+  <OutlinedTextFieldDefault slot='preview'/>
+
+```tsx
+import { OutlinedTextField } from '@/components/ui/text-field'
+
+export const OutlinedTextFieldDefault = () => {
+  return (
+    <OutlinedTextField>
+      <OutlinedTextField.Input placeholder="First name" />
+    </OutlinedTextField>
+  )
+}
+```
+
+</ComponentContainer>
+
+#### With label
+
+<ComponentContainer>
+  <OutlinedTextFieldWithLabel slot='preview'/>
+
+```tsx
+import { OutlinedTextField } from '@/components/ui/text-field'
+
+export const OutlinedTextFieldWithLabel = () => {
+  return (
+    <OutlinedTextField>
+      <OutlinedTextField.Input placeholder="Your beautiful first name" />
+      <OutlinedTextField.Label>First name</OutlinedTextField.Label>
+    </OutlinedTextField>
+  )
+}
+```
+
+</ComponentContainer>
+
+#### With supporting text
+
+<ComponentContainer>
+  <OutlinedTextFieldWithSupportingText slot='preview'/>
+
+```tsx
+import { OutlinedTextField } from '@/components/ui/text-field'
+
+export const OutlinedTextFieldWithSupportingText = () => {
+  return (
+    <div className="w-full">
+      <OutlinedTextField>
+        <OutlinedTextField.Input />
+        <OutlinedTextField.Label>Username</OutlinedTextField.Label>
+      </OutlinedTextField>
+      <OutlinedTextField.SupportingText>
+        This will be how other users know you.
+      </OutlinedTextField.SupportingText>
+    </div>
+  )
+}
+```
+
+</ComponentContainer>
+
+#### With leading icon
+
+<ComponentContainer>
+  <OutlinedTextFieldWithLeadingIcon slot='preview'/>
+
+```tsx
+import { Icon } from '@/components/ui/icon'
+import { OutlinedTextField } from '@/components/ui/text-field'
+
+export const OutlinedTextFieldWithLeadingIcon = () => {
+  return (
+    <OutlinedTextField>
+      <OutlinedTextField.Decoration>
+        <Icon symbol="person" />
+      </OutlinedTextField.Decoration>
+      <OutlinedTextField.Input />
+      <OutlinedTextField.Label>Username</OutlinedTextField.Label>
+    </OutlinedTextField>
+  )
+}
+```
+
+</ComponentContainer>
+
+#### With trailing icon
+
+<ComponentContainer>
+  <OutlinedTextFieldWithTrailingIcon slot='preview'/>
+
+```tsx
+import { Icon } from '@/components/ui/icon'
+import { OutlinedTextField } from '@/components/ui/text-field'
+
+export const OutlinedTextFieldWithTrailingIcon = () => {
+  return (
+    <OutlinedTextField>
+      <OutlinedTextField.Input placeholder="Search..." />
+      <OutlinedTextField.Decoration>
+        <Icon symbol="search" />
+      </OutlinedTextField.Decoration>
+    </OutlinedTextField>
+  )
+}
+```
+
+</ComponentContainer>
+
+#### Disabled
+
+<ComponentContainer>
+  <OutlinedTextFieldDisabled slot='preview'/>
+
+```tsx
+import { OutlinedTextField } from '@/components/ui/text-field'
+
+export const OutlinedTextFieldDisabled = () => {
+  return (
+    <OutlinedTextField>
+      <OutlinedTextField.Input disabled />
+      <OutlinedTextField.Label>Username</OutlinedTextField.Label>
+    </OutlinedTextField>
+  )
+}
+```
+
+</ComponentContainer>
+
+#### With error
+
+<ComponentContainer>
+  <OutlinedTextFieldWithError slot='preview'/>
+
+```tsx
+import { OutlinedTextField } from '@/components/ui/text-field'
+
+export const OutlinedTextFieldWithError = () => {
+  return (
+    <div className="w-full">
+      <OutlinedTextField error>
+        <OutlinedTextField.Input />
+        <OutlinedTextField.Label>Username</OutlinedTextField.Label>
+      </OutlinedTextField>
+      <OutlinedTextField.SupportingText className="text-error">
+        The username can not be empty.
+      </OutlinedTextField.SupportingText>
+    </div>
+  )
+}
+```
+
+</ComponentContainer>
