@@ -1,0 +1,240 @@
+---
+group: 'text-inputs'
+title: 'Textarea'
+subtitle: 'Text area let users enter long text into a UI'
+preview: 'https://lh3.googleusercontent.com/DegVExvsICQ_j7rOVKQFyvqyPgsoZOrv69MSl9B6Y2Kp3Ihra67S010DTmDVDu-kfLTPQddq2YvSk11U8nrNTD7BaFuw1iuOB5iloHiBE6oKyHyqFXY=s0'
+previewDark: 'https://lh3.googleusercontent.com/yiUW2u7ZQwYoKlKosTRZzxBEgiFQ5_fKKGxppnG6s5dOpW2lERHJGXKsM-tPd6yBNESfcgdPALobtEn4Fog6mA1g69TuBOl2jXISDq34xxKmidLIEA=s0'
+thumbnail: 'https://lh3.googleusercontent.com/QyaUrTcT78S9B69d0Vk6p6gj-Fn1_wIbeuENu9C6etGHpAOYTx2mqfBHFYg9KpiG1Li0KlUwP3jyC5Htrij--wHD5exuMjWaL9he2ko79DWxlqDaeQA=w2400'
+thumbnailDark: 'https://lh3.googleusercontent.com/CYm92Hit6q1hYop8MKyeXL4mvAESpt5MfT5Jw-VFA0N2TXRG-07Rj7BWv3B9IjOSsas7u6pFQoZdrO8lmczD8m927BZLi76rSt6rb7b3BsoXvaIKBFY=w2400'
+guidelines: 'https://m3.material.io/components/text-fields/guidelines#caf14aa9-26ce-48cc-9076-3a383a9ad679'
+shadcn: 'https://ui.shadcn.com/docs/components/textarea'
+---
+
+import {
+  FilledTextAreaDefault,
+  FilledTextareaDisabled,
+  FilledTextareaWithLabel,
+  FilledTextareaWithSupportingText,
+  OutlinedTextAreaDefault,
+  OutlinedTextareaDisabled,
+  OutlinedTextareaWithLabel,
+  OutlinedTextareaWithSupportingText,
+} from '@/components/react/examples/textarea.tsx'
+import ComponentContainer from '@/components/component-container.astro'
+import ComponentSource from '@/components/component-source.astro'
+import Step from '@/components/step.astro'
+import Steps from '@/components/steps.astro'
+
+## Usage
+
+Use a textarea when someone needs to enter a long text into a UI.
+
+## Instalation
+
+<Steps>
+
+<Step>
+  #### Copy and paste the following code into your project.
+  <ComponentSource name="textarea" />
+</Step>
+
+<Step>
+#### Update the import paths to match your project setup.
+
+</Step>
+
+</Steps>
+
+## Examples
+
+The component has been built with the idea of maintaining modularity. For this reason, it is **VERY IMPORTANT** to preserve the correct order in the component structure to ensure they work correctly when used.
+
+The component tree is:
+
+```tsx
+<TextArea>      Text field root container
+  <Input />     Text field input
+  <Label />     Text field label (optional but recommended)
+</TextField>
+<SupportingText /> Text field supporting text (optional)
+```
+
+### Filled textarea
+
+I've chosen a different approach to the border radius than the one suggested in The Material You Guide. I believe this new shape design offers a more modern appearance.
+
+#### Default
+
+<ComponentContainer>
+  <FilledTextAreaDefault slot='preview'/>
+
+```tsx
+import { FilledTextArea } from '@/components/ui/text-field'
+
+export const FilledTextAreaDefault = () => {
+  return (
+    <FilledTextarea>
+      <FilledTextarea.Input placeholder="Write a description about your project." />
+    </FilledTextarea>
+  )
+}
+```
+
+</ComponentContainer>
+
+#### With label
+
+<ComponentContainer>
+  <FilledTextareaWithLabel slot='preview'/>
+
+```tsx
+import { FilledTextArea } from '@/components/ui/text-field'
+
+export const FilledTextareaWithLabel = () => {
+  return (
+    <FilledTextarea>
+      <FilledTextarea.Input placeholder="Write a description about your project." />
+      <FilledTextarea.Label>Description</FilledTextarea.Label>
+    </FilledTextarea>
+  )
+}
+```
+
+</ComponentContainer>
+
+#### With supporting text
+
+<ComponentContainer>
+  <FilledTextareaWithSupportingText slot='preview'/>
+
+```tsx
+import { FilledTextArea } from '@/components/ui/text-field'
+
+export const FilledTextareaWithSupportingText = () => {
+  return (
+    <div className="w-full">
+      <FilledTextarea>
+        <FilledTextarea.Input placeholder="Write a description about your project." />
+        <FilledTextarea.Label>Description</FilledTextarea.Label>
+      </FilledTextarea>
+      <FilledTextarea.SupportingText>
+        This is the description of your project.
+      </FilledTextarea.SupportingText>
+    </div>
+  )
+}
+```
+
+</ComponentContainer>
+
+#### Disabled
+
+<ComponentContainer>
+  <FilledTextareaDisabled slot='preview'/>
+
+```tsx
+import { FilledTextArea } from '@/components/ui/text-field'
+
+export const FilledTextareaDisabled = () => {
+  return (
+    <FilledTextarea>
+      <FilledTextarea.Input
+        disabled
+        placeholder="Write a description about your project."
+      />
+      <FilledTextarea.Label>Description</FilledTextarea.Label>
+    </FilledTextarea>
+  )
+}
+```
+
+</ComponentContainer>
+
+### Outlined textarea
+
+#### Default
+
+<ComponentContainer>
+  <OutlinedTextAreaDefault slot='preview'/>
+
+```tsx
+import { OutlinedTextArea } from '@/components/ui/text-field'
+
+export const OutlinedTextAreaDefault = () => {
+  return (
+    <OutlinedTextarea>
+      <OutlinedTextarea.Input placeholder="Write a description about your project." />
+    </OutlinedTextarea>
+  )
+}
+```
+
+</ComponentContainer>
+
+#### With label
+
+<ComponentContainer>
+  <OutlinedTextareaWithLabel slot='preview'/>
+
+```tsx
+import { OutlinedTextArea } from '@/components/ui/text-field'
+
+export const OutlinedTextareaWithLabel = () => {
+  return (
+    <OutlinedTextarea>
+      <OutlinedTextarea.Input placeholder="Write a description about your project." />
+      <OutlinedTextarea.Label>Description</OutlinedTextarea.Label>
+    </OutlinedTextarea>
+  )
+}
+```
+
+</ComponentContainer>
+
+#### With supporting text
+
+<ComponentContainer>
+  <OutlinedTextareaWithSupportingText slot='preview'/>
+
+```tsx
+import { OutlinedTextArea } from '@/components/ui/text-field'
+
+export const OutlinedTextareaWithSupportingText = () => {
+  return (
+    <div className="w-full">
+      <OutlinedTextarea>
+        <OutlinedTextarea.Input placeholder="Write a description about your project." />
+        <OutlinedTextarea.Label>Description</OutlinedTextarea.Label>
+      </OutlinedTextarea>
+      <OutlinedTextarea.SupportingText>
+        This is the description of your project.
+      </OutlinedTextarea.SupportingText>
+    </div>
+  )
+}
+```
+
+</ComponentContainer>
+
+#### Disabled
+
+<ComponentContainer>
+  <OutlinedTextareaDisabled slot='preview'/>
+
+```tsx
+import { OutlinedTextArea } from '@/components/ui/text-field'
+
+export const OutlinedTextareaDisabled = () => {
+  return (
+    <OutlinedTextarea>
+      <OutlinedTextarea.Input
+        disabled
+        placeholder="Write a description about your project."
+      />
+      <OutlinedTextarea.Label>Description</OutlinedTextarea.Label>
+    </OutlinedTextarea>
+  )
+}
+```
+
+</ComponentContainer>
