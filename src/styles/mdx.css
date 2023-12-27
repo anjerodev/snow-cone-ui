@@ -1,5 +1,5 @@
 :not(pre) > code {
-  @apply relative rounded bg-primaryContainer/50 px-[0.3rem] py-[0.2rem] font-mono text-sm before:hidden after:hidden;
+  @apply relative rounded bg-primaryContainer/50 px-[0.3em] py-[0.2rem] font-mono text-sm before:hidden after:hidden;
 }
 
 .mdx {
@@ -14,21 +14,27 @@
   }
 
   p:not(.preview p) {
-    @apply my-4 first-of-type:mt-0;
+    @apply my-4 text-body-lg first-of-type:mt-0;
+  }
+
+  a:not(.preview a) {
+    @apply underline;
   }
 }
 
 /* Prism styles */
+pre[class*='language-'] {
+  overflow: hidden;
+}
+
 :not(pre) > code[class*='language-'],
 pre[class*='language-'] {
   background-color: theme(colors.surfaceContainer);
   border-radius: theme(borderRadius.lg);
   color: theme(colors.onSurface);
   width: 100%;
-  padding: 2em;
   border: 1px solid theme(colors.outlineVariant);
   font-size: theme(fontSize.sm);
-  overflow: auto;
 }
 
 .preview :not(pre) > code[class*='language-'],
@@ -47,7 +53,8 @@ pre[class*='language-'] {
 
 code[class*='language-'] {
   display: block;
-  width: 0;
+  padding: 2em;
+  overflow: auto;
 }
 
 .token.comment,
