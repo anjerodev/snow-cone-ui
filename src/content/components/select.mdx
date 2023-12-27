@@ -1,0 +1,277 @@
+---
+group: 'selection'
+title: 'Select'
+subtitle: 'Selects let users select one or more items from a list.'
+preview: ''
+previewDark: ''
+thumbnail: ''
+thumbnailDark: ''
+guidelines: 'https://m3.material.io/components/menus/guidelines#ee2f3664-c926-47ab-acbf-2ab675506932'
+shadcn: 'https://ui.shadcn.com/docs/components/select'
+---
+
+import {
+  FilledSelectDefault,
+  FilledSelectDisabled,
+  FilledSelectWithError,
+  FilledSelectWithLabel,
+  OutlinedSelectDefault,
+  OutlinedSelectDisabled,
+  OutlinedSelectWithError,
+  OutlinedSelectWithLabel,
+} from '@/components/react/examples/select.tsx'
+import ComponentContainer from '@/components/component-container.astro'
+import ComponentSource from '@/components/component-source.astro'
+import Step from '@/components/step.astro'
+import Steps from '@/components/steps.astro'
+
+## Usage
+
+## Instalation
+
+<Steps>
+
+<Step>
+#### Run the following command:
+
+```bash
+npm i @radix-ui/react-select @radix-ui/react-scroll-area @radix-ui/react-label
+```
+
+</Step>
+
+<Step>
+  #### Copy and paste the following code into your project.
+  <ComponentSource name="select" />
+</Step>
+
+<Step>
+#### Update the import paths to match your project setup.
+
+</Step>
+
+</Steps>
+
+## Examples
+
+### Filled
+
+#### Default
+
+<ComponentContainer>
+  <FilledSelectDefault slot='preview' client:visible/>
+
+```tsx
+import { FilledSelect as Select } from '@/components/ui/select'
+
+export const FilledSelectDefault = () => {
+  return (
+    <Select>
+      <Select.Trigger>
+        <Select.Value placeholder="Select a city" />
+      </Select.Trigger>
+      <Select.Content>
+        <Select.Group>
+          <Select.Subheader>Andalucía</Select.Subheader>
+          <Select.Item value="almeria">Almería</Select.Item>
+          <Select.Item value="cadiz">Cádiz</Select.Item>
+          <Select.Item value="cordoba">Córdoba</Select.Item>
+          <Select.Item value="granada">Granada</Select.Item>
+          <Select.Item value="huelva">Huelva</Select.Item>
+          <Select.Item value="jaen">Jaén</Select.Item>
+          <Select.Item value="malaga">Málaga</Select.Item>
+          <Select.Item value="sevilla">Sevilla</Select.Item>
+        </Select.Group>
+      </Select.Content>
+    </Select>
+  )
+}
+```
+
+</ComponentContainer>
+
+#### With label
+
+<ComponentContainer>
+  <FilledSelectWithLabel slot='preview' client:visible/>
+
+```tsx
+import { FilledSelect as Select } from '@/components/ui/select'
+
+export const FilledSelectWithLabel = () => {
+  return (
+    <Select>
+      <Select.Trigger>
+        <Select.Value placeholder="Select a city" />
+        <Select.Label>City</Select.Label>
+      </Select.Trigger>
+      <Select.Content>
+        <SelectItems />
+      </Select.Content>
+    </Select>
+  )
+}
+```
+
+</ComponentContainer>
+
+#### With error
+
+<ComponentContainer>
+  <FilledSelectWithError slot='preview' client:visible/>
+
+```tsx
+import { FilledSelect as Select } from '@/components/ui/select'
+
+export const FilledSelectWithError = () => {
+  return (
+    <Select>
+      <Select.Trigger error>
+        <Select.Value placeholder="Select a city" />
+        <Select.Label>City</Select.Label>
+      </Select.Trigger>
+      <Select.Content>
+        <SelectItems />
+      </Select.Content>
+    </Select>
+  )
+}
+```
+
+</ComponentContainer>
+
+#### Disabled
+
+<ComponentContainer>
+  <FilledSelectDisabled slot='preview' client:visible/>
+
+```tsx
+import { FilledSelect as Select } from '@/components/ui/select'
+
+export const FilledSelectDisabled = () => {
+  return (
+    <Select value="cordoba">
+      <Select.Trigger disabled>
+        <Select.Value placeholder="Select a city" />
+        <Select.Label>City</Select.Label>
+      </Select.Trigger>
+      <Select.Content>
+        <SelectItems />
+      </Select.Content>
+    </Select>
+  )
+}
+```
+
+</ComponentContainer>
+
+### Oulined
+
+#### Default
+
+<ComponentContainer>
+  <OutlinedSelectDefault slot='preview' client:visible/>
+
+```tsx
+import { OutlinedSelect as Select } from '@/components/ui/select'
+
+export const OutlinedSelectDefault = () => {
+  return (
+    <Select>
+      <Select.Trigger>
+        <Select.Value placeholder="Select a city" />
+      </Select.Trigger>
+      <Select.Content>
+        <Select.Group>
+          <Select.Subheader>Andalucía</Select.Subheader>
+          <Select.Item value="almeria">Almería</Select.Item>
+          <Select.Item value="cadiz">Cádiz</Select.Item>
+          <Select.Item value="cordoba">Córdoba</Select.Item>
+          <Select.Item value="granada">Granada</Select.Item>
+          <Select.Item value="huelva">Huelva</Select.Item>
+          <Select.Item value="jaen">Jaén</Select.Item>
+          <Select.Item value="malaga">Málaga</Select.Item>
+          <Select.Item value="sevilla">Sevilla</Select.Item>
+        </Select.Group>
+      </Select.Content>
+    </Select>
+  )
+}
+```
+
+</ComponentContainer>
+
+#### With label
+
+<ComponentContainer>
+  <OutlinedSelectWithLabel slot='preview' client:visible/>
+
+```tsx
+import { OutlinedSelect as Select } from '@/components/ui/select'
+
+export const OutlinedSelectWithLabel = () => {
+  return (
+    <Select>
+      <Select.Trigger>
+        <Select.Value placeholder="Select a city" />
+        <Select.Label>City</Select.Label>
+      </Select.Trigger>
+      <Select.Content>
+        <SelectItems />
+      </Select.Content>
+    </Select>
+  )
+}
+```
+
+</ComponentContainer>
+
+#### With error
+
+<ComponentContainer>
+  <OutlinedSelectWithError slot='preview' client:visible/>
+
+```tsx
+import { OutlinedSelect as Select } from '@/components/ui/select'
+
+export const OutlinedSelectWithError = () => {
+  return (
+    <Select>
+      <Select.Trigger error>
+        <Select.Value placeholder="Select a city" />
+        <Select.Label>City</Select.Label>
+      </Select.Trigger>
+      <Select.Content>
+        <SelectItems />
+      </Select.Content>
+    </Select>
+  )
+}
+```
+
+</ComponentContainer>
+
+#### Disabled
+
+<ComponentContainer>
+  <OutlinedSelectDisabled slot='preview' client:visible/>
+
+```tsx
+import { OutlinedSelect as Select } from '@/components/ui/select'
+
+export const OutlinedSelectDisabled = () => {
+  return (
+    <Select value="cordoba">
+      <Select.Trigger disabled>
+        <Select.Value placeholder="Select a city" />
+        <Select.Label>City</Select.Label>
+      </Select.Trigger>
+      <Select.Content>
+        <SelectItems />
+      </Select.Content>
+    </Select>
+  )
+}
+```
+
+</ComponentContainer>

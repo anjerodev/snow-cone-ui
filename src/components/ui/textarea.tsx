@@ -44,7 +44,7 @@ const FilledTextareaRoot = React.forwardRef<
     className={cn(
       'group/container relative z-0 flex w-full rounded-sm rounded-br-xs bg-surfaceContainer pt-0 before:absolute before:inset-0 before:z-[-1] before:rounded-sm before:rounded-br-xs before:border-b before:border-onSurfaceVariant/12 before:transition-[color,border] focus-within:before:border-b-[2px] focus-within:before:border-primary',
       'has-[:disabled]:bg-surfaceContainer/38 has-[label]:pt-[22px] has-[:disabled]:before:border-onSurface/12',
-      Boolean(error) && 'before:border-error',
+      Boolean(error) && 'before:border-error focus-within:before:border-error',
       className
     )}
     {...props}
@@ -63,7 +63,7 @@ const OutlinedTextareaRoot = React.forwardRef<
       'group/container relative z-0 flex w-full bg-transparent before:absolute before:inset-0 before:z-[-1] before:rounded-sm before:rounded-br-xs before:border before:border-outline before:transition-[color,border] focus-within:before:border-2 focus-within:before:border-primary has-[label]:has-[:placeholder-shown]:before:border-outline has-[label]:before:border-t-transparent has-[label]:focus-within:before:border-b-primary has-[label]:focus-within:before:border-t-transparent',
       'has-[label]:pt-2 has-[:disabled]:before:border-onSurface/12 has-[:disabled]:has-[:placeholder-shown]:before:border-onSurface/12 has-[label]:has-[:disabled]:before:border-transparent has-[:disabled]:before:border-t-transparent has-[label]:has-[:disabled]:before:border-b-onSurface/12 has-[label]:has-[:disabled]:before:border-t-transparent',
       Boolean(error) &&
-        'before:border-2 before:border-error has-[label]:has-[:placeholder-shown]:before:border-error',
+        'before:border-2 before:border-error has-[label]:has-[:placeholder-shown]:before:border-error has-[label]:focus-within:before:border-b-error',
       className
     )}
     {...props}
@@ -109,7 +109,7 @@ const FilledTextareaInput = forwardRef<
         ref={ref}
         placeholder={placeholder}
         className={cn(
-          'peer/input min-h-[80px] grow resize-y bg-transparent px-4 pb-2 pt-3 text-onSurface caret-primary outline-none transition-opacity placeholder:text-onSurfaceVariant/50 focus:outline-0 disabled:pointer-events-none disabled:cursor-not-allowed disabled:text-onSurface/38 group-has-[label]/container:pt-0 group-has-[:focus]/container:placeholder:opacity-100 group-has-[label]/container:placeholder:opacity-0 group-data-[invalid]/container:caret-error',
+          'peer/input min-h-[80px] grow resize-y bg-transparent px-4 pb-2 pt-3 text-body-lg text-onSurface caret-primary outline-none transition-opacity placeholder:text-onSurfaceVariant/50 focus:outline-0 disabled:pointer-events-none disabled:cursor-not-allowed disabled:text-onSurface/38 group-has-[label]/container:pt-0 group-has-[:focus]/container:placeholder:opacity-100 group-has-[label]/container:placeholder:opacity-0 group-data-[invalid]/container:caret-error',
           className
         )}
         {...props}
@@ -127,7 +127,7 @@ const OutlinedTextareaInput = forwardRef<
       ref={ref}
       placeholder={placeholder}
       className={cn(
-        'peer/input min-h-[80px] grow resize-y bg-transparent px-4 pb-2 pt-3 text-onSurface caret-primary outline-none placeholder:text-onSurfaceVariant/50 focus:outline-0 disabled:pointer-events-none disabled:cursor-not-allowed disabled:text-onSurface/38 group-has-[label]/container:pt-1 group-has-[label]/container:placeholder:opacity-0 group-has-[label]/container:focus:placeholder:opacity-100 group-data-[invalid]/container:caret-error',
+        'peer/input min-h-[80px] grow resize-y bg-transparent px-4 pb-2 pt-3 text-body-lg text-onSurface caret-primary outline-none placeholder:text-onSurfaceVariant/50 focus:outline-0 disabled:pointer-events-none disabled:cursor-not-allowed disabled:text-onSurface/38 group-has-[label]/container:pt-1 group-has-[label]/container:placeholder:opacity-0 group-has-[label]/container:focus:placeholder:opacity-100 group-data-[invalid]/container:caret-error',
         className
       )}
       {...props}

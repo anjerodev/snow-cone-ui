@@ -1,10 +1,9 @@
 import * as React from 'react'
-import { forwardRef } from 'react'
 import * as LabelPrimitive from '@radix-ui/react-label'
 
 import { cn } from '@/lib/utils'
 
-const labelStyle =
+const commonStyle =
   'pointer-events-none absolute z-10 flex select-none text-label-sm font-normal leading-tight text-onSurfaceVariant duration-200 peer-placeholder-shown/input:text-body-lg peer-placeholder-shown/input:text-onSurfaceVariant/70 peer-focus/input:text-label-sm peer-focus/input:leading-tight peer-focus/input:text-primary peer-disabled/input:!text-onSurfaceVariant/38 group-data-[invalid]/container:text-error'
 
 const outlinedLabel = [
@@ -42,8 +41,15 @@ const FilledTextFieldRoot = React.forwardRef<
     ref={ref}
     data-invalid={error ? '' : undefined}
     className={cn(
-      'group/container relative z-0 flex w-full items-center rounded-sm bg-surfaceContainer px-2 before:absolute before:inset-0 before:z-[-1] before:rounded-sm before:border-b before:border-onSurfaceVariant/12 before:transition-[color,border] focus-within:before:border-b-[2px] focus-within:before:border-primary has-[:disabled]:bg-surfaceContainer/38 has-[:disabled]:before:border-onSurface/12',
-      Boolean(error) && 'before:border-error',
+      'group/container relative z-0 flex w-full items-center rounded-sm bg-surfaceContainer px-2',
+
+      'before:absolute before:inset-0 before:z-[-1] before:rounded-sm before:border-b before:border-onSurfaceVariant/12 before:transition-[color,border]',
+
+      'focus-within:before:border-b-[2px] focus-within:before:border-primary',
+
+      'has-[:disabled]:bg-surfaceContainer/38 has-[:disabled]:before:border-onSurface/12',
+
+      Boolean(error) && 'before:border-error focus-within:before:border-error',
       className
     )}
     {...props}
@@ -59,10 +65,18 @@ const OutlinedTextFieldRoot = React.forwardRef<
     ref={ref}
     data-invalid={error ? '' : undefined}
     className={cn(
-      'group/container relative z-0 flex w-full items-center bg-transparent px-2 before:absolute before:inset-0 before:z-[-1] before:rounded-sm before:border before:border-outline before:transition-[color,border] focus-within:before:border-2 focus-within:before:border-primary has-[label]:has-[:placeholder-shown]:before:border-outline has-[label]:before:border-t-transparent has-[label]:focus-within:before:border-b-primary has-[label]:focus-within:before:border-t-transparent',
+      'group/container relative z-0 flex w-full items-center bg-transparent px-2',
+
+      'before:absolute before:inset-0 before:z-[-1] before:rounded-sm before:border before:border-outline before:transition-[color,border]',
+
+      'focus-within:before:border-2 focus-within:before:border-primary',
+
+      'has-[label]:has-[:placeholder-shown]:before:border-outline has-[label]:before:border-t-transparent has-[label]:focus-within:before:border-b-primary has-[label]:focus-within:before:border-t-transparent',
+
       'has-[:disabled]:before:border-onSurface/12 has-[:disabled]:has-[:placeholder-shown]:before:border-onSurface/12 has-[label]:has-[:disabled]:before:border-transparent has-[:disabled]:before:border-t-transparent has-[label]:has-[:disabled]:before:border-b-onSurface/12 has-[label]:has-[:disabled]:before:border-t-transparent',
+
       Boolean(error) &&
-        'before:border-2 before:border-error has-[label]:has-[:placeholder-shown]:before:border-error',
+        'before:border-2 before:border-error has-[label]:has-[:placeholder-shown]:before:border-error has-[label]:focus-within:before:border-b-error',
       className
     )}
     {...props}
@@ -77,7 +91,7 @@ const FilledTextfieldLabel = React.forwardRef<
   <LabelPrimitive.Root
     ref={ref}
     className={cn(
-      labelStyle,
+      commonStyle,
       'left-0 top-0 h-fit w-full pl-4 pt-2 peer-placeholder-shown/input:leading-[2.5] peer-has-[*]/icon:left-9',
       className
     )}
@@ -92,13 +106,13 @@ const OutlinedTextfieldLabel = React.forwardRef<
 >(({ className, ...props }, ref) => (
   <LabelPrimitive.Root
     ref={ref}
-    className={cn(labelStyle, outlinedLabel, className)}
+    className={cn(commonStyle, outlinedLabel, className)}
     {...props}
   />
 ))
 OutlinedTextfieldLabel.displayName = 'OutlinedTextfieldLabel'
 
-const FilledTextFieldInput = forwardRef<
+const FilledTextFieldInput = React.forwardRef<
   HTMLInputElement,
   React.InputHTMLAttributes<HTMLInputElement>
 >(({ className, placeholder = '', ...props }, ref) => {
@@ -107,7 +121,7 @@ const FilledTextFieldInput = forwardRef<
       ref={ref}
       placeholder={placeholder}
       className={cn(
-        'peer/input h-14 grow bg-transparent px-2 text-onSurface caret-primary outline-none transition-opacity placeholder:text-onSurfaceVariant/50 focus:outline-0 disabled:pointer-events-none disabled:cursor-not-allowed disabled:text-onSurface/38 group-has-[label]/container:pt-2 group-has-[:focus]/container:placeholder:opacity-100 group-has-[label]/container:placeholder:opacity-0 group-data-[invalid]/container:caret-error',
+        'peer/input h-14 grow bg-transparent px-2 text-body-lg text-onSurface caret-primary outline-none transition-opacity placeholder:text-onSurfaceVariant/50 focus:outline-0 disabled:pointer-events-none disabled:cursor-not-allowed disabled:text-onSurface/38 group-has-[label]/container:pt-2 group-has-[:focus]/container:placeholder:opacity-100 group-has-[label]/container:placeholder:opacity-0 group-data-[invalid]/container:caret-error',
         className
       )}
       {...props}
@@ -115,7 +129,7 @@ const FilledTextFieldInput = forwardRef<
   )
 })
 
-const OutlinedTextFieldInput = forwardRef<
+const OutlinedTextFieldInput = React.forwardRef<
   HTMLInputElement,
   React.InputHTMLAttributes<HTMLInputElement>
 >(({ className, placeholder = '', ...props }, ref) => {
@@ -124,7 +138,7 @@ const OutlinedTextFieldInput = forwardRef<
       ref={ref}
       placeholder={placeholder}
       className={cn(
-        'peer/input h-14 grow bg-transparent px-2 text-onSurface caret-primary outline-none transition-opacity placeholder:text-onSurfaceVariant/50 focus:outline-0 disabled:pointer-events-none disabled:cursor-not-allowed disabled:text-onSurface/38 group-has-[label]/container:placeholder:opacity-0 group-has-[label]/container:focus:placeholder:opacity-100 group-data-[invalid]/container:caret-error',
+        'peer/input h-14 grow bg-transparent px-2 text-body-lg text-onSurface caret-primary outline-none transition-opacity placeholder:text-onSurfaceVariant/50 focus:outline-0 disabled:pointer-events-none disabled:cursor-not-allowed disabled:text-onSurface/38 group-has-[label]/container:placeholder:opacity-0 group-has-[label]/container:focus:placeholder:opacity-100 group-data-[invalid]/container:caret-error',
         className
       )}
       {...props}
@@ -132,7 +146,7 @@ const OutlinedTextFieldInput = forwardRef<
   )
 })
 
-const InputDecoration = forwardRef<
+const InputDecoration = React.forwardRef<
   HTMLSpanElement,
   React.HTMLAttributes<HTMLSpanElement>
 >(({ className, ...props }, ref) => {
