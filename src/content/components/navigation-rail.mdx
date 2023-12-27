@@ -1,0 +1,126 @@
+---
+group: 'navigation'
+title: 'Navigation rail'
+subtitle: 'Navigation rails let people switch between UI views on mid-sized devices'
+preview: 'https://lh3.googleusercontent.com/f9sqb_b7ItQlJUtOk6jEeyHb3AjU1Qv2Ah92XTHkYmT_Ythiah26fLpl0Pw7tOm6jCeYUhIxIKgqliHkVxMyYkdjzYFRTkGTbdpCa01CjyjO4v7XcrKw=s0'
+previewDark: 'https://lh3.googleusercontent.com/hxXWJcdpQ47qiAN-RZkloM6Xofh5RXSdVpsweQXlSaSioTd9F9GEGNl0WhIKP6Ba6V9GJXpTzd8IiN-AZpd3EOM4I9OKrndBtanaFRzhIlDKO7Tp2YA=s0'
+thumbnail: 'https://lh3.googleusercontent.com/Efz8PzIRWwh_QLoVi3eALV-Rm6X9stBWV8E3-ItrZxDjfONWMo-bl-ims8tK9pYea_WdN3jwDp6FmTY77zYJ_Sf8JcwCUibhnt4tD0AeRhQHTaWn_MQ=w2400'
+thumbnailDark: 'https://lh3.googleusercontent.com/pvuGi8O3IIkThLpRjdySg34XnsNOkZ23oLKPrw1p9Cglz9nO1nyakzaF7jUIp2AxkTsA_0EUtZO2RhrUhDfKhghH4MorxcbKwjHS3ajGkoeAp2_V6Rk=w2400'
+guidelines: 'https://m3.material.io/components/navigation-rail/guidelines'
+---
+
+import { NavigationRailExample } from '@/components/react/examples/navigation-rail'
+import ComponentContainer from '@/components/component-container.astro'
+import ComponentSource from '@/components/component-source.astro'
+import Step from '@/components/step.astro'
+import Steps from '@/components/steps.astro'
+
+## Usage
+
+Used for top-level destinations that need to be accessible anywhere in an app, navigation rails include 3 to 7 main destinations in tablet or desktop layouts.
+
+## Instalation
+
+<Steps>
+
+<Step>
+#### Run the following command:
+
+```bash
+npm i @radix-ui/react-slot
+```
+
+</Step>
+
+<Step>
+  #### Copy and paste the following code into your project.
+  <ComponentSource name="navigation-rail" />
+</Step>
+
+<Step>
+#### Update the import paths to match your project setup.
+
+</Step>
+
+</Steps>
+
+## Examples
+
+### Navigation Rail with FAB & Menu
+
+Navigation rail destinations can be aligned as a group to the top, bottom, or center of a layout. On tablets, bottom alignment can make destinations easier for a user to reach with their thumbs.
+
+By default the Navigation Rail will adapt as a [Navigation Bar](/components/navigation-bar) for small screens.
+
+<ComponentContainer>
+  <NavigationRailExample slot='preview' client:visible/>
+
+```tsx
+import { useState } from 'react'
+
+import { Fab } from '@/components/ui/fab'
+import { Icon } from '@/components/ui/icon'
+import { IconButton } from '@/components/ui/icon-button'
+import { NavigationRail } from '@/components/ui/navigation-rail'
+
+const navigationItem = (id: string, icon: string, label: string) => ({
+  id,
+  icon,
+  label,
+})
+
+const navigationItems = [
+  navigationItem('maps', 'location_on', 'Maps'),
+  navigationItem('places', 'home_work', 'Places'),
+  navigationItem('favorites', 'bookmark', 'Favorites'),
+  navigationItem('add', 'add_circle', 'Add'),
+]
+
+export const NavigationRailExample = () => {
+  const [active, setActive] = useState('maps')
+
+  return (
+    <div class="relative flex w-full flex-col-reverse md:flex-row">
+      <NavigationRail className="relative">
+        <NavigationRail.Container className="mb-14 hidden md:flex md:space-y-4">
+          <IconButton variant="standard">
+            <Icon symbol="menu" />
+          </IconButton>
+          <Fab className="shadow-none hover:shadow-none">
+            <Icon symbol="directions_alt" />
+          </Fab>
+        </NavigationRail.Container>
+        <NavigationRail.Container>
+          {navigationItems.map(({ id, icon, label }) => (
+            <NavigationRail.Item key={id} asChild active={id === active}>
+              <button onClick={() => setActive(id)}>
+                <NavigationRail.ItemIcon>
+                  <Icon symbol={icon} />
+                </NavigationRail.ItemIcon>
+                <NavigationRail.ItemLabel>{label}</NavigationRail.ItemLabel>
+              </button>
+            </NavigationRail.Item>
+          ))}
+        </NavigationRail.Container>
+      </NavigationRail>
+      <div className="relative grow">
+        <div className="bg-background sticky top-0 flex h-16 items-center px-3 md:hidden">
+          <IconButton variant="standard">
+            <Icon symbol="menu" />
+          </IconButton>
+        </div>
+        <div className="p-4">
+          <h1 className="text-display-sm">
+            {navigationItems.find(({ id }) => id === active)?.label}
+          </h1>
+        </div>
+        <Fab className="absolute bottom-4 right-4 md:hidden">
+          <Icon symbol="directions_alt" />
+        </Fab>
+      </div>
+    </div>
+  )
+}
+```
+
+</ComponentContainer>

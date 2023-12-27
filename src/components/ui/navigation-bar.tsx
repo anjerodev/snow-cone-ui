@@ -3,40 +3,37 @@ import { Slot } from '@radix-ui/react-slot'
 
 import { cn } from '@/lib/utils'
 
-const NavigationRailRoot = React.forwardRef<
+const NavigationBarRoot = React.forwardRef<
   HTMLDivElement,
   React.HTMLAttributes<HTMLDivElement>
 >(({ className, ...props }, ref) => (
   <aside
     ref={ref}
     className={cn(
-      'navigation-bar fixed inset-x-0 bottom-0 z-30 flex items-center bg-surfaceContainer py-4 pt-3 md:-inset-x-px md:inset-y-0 md:w-[88px] md:flex-col md:px-0 md:py-5',
+      'navigation-bar fixed inset-x-0 bottom-0 z-30 flex items-center bg-surfaceContainer py-4 pt-3',
       className
     )}
     {...props}
   />
 ))
-NavigationRailRoot.displayName = 'NavigationRail'
+NavigationBarRoot.displayName = 'NavigationBar'
 
-const NavigationRailContainer = React.forwardRef<
+const NavigationBarContainer = React.forwardRef<
   HTMLDivElement,
   React.HTMLAttributes<HTMLDivElement>
 >(({ className, ...props }, ref) => (
   <nav
     ref={ref}
-    className={cn(
-      'flex grow items-center justify-around md:h-fit md:w-full md:grow-0 md:flex-col md:space-y-5',
-      className
-    )}
+    className={cn('flex grow items-center justify-around', className)}
     {...props}
   />
 ))
-NavigationRailContainer.displayName = 'NavigationRailContainer'
+NavigationBarContainer.displayName = 'NavigationBarContainer'
 
 const iconStyle =
   'group-data-[active]:duration-100 group-hover:font-emphasis z-0 group-data-[active]:font-filled group-hover:group-data-[active]:font-filled-emphasis'
 
-const NavigationRailItemIcon = React.forwardRef<
+const NavigationBarItemIcon = React.forwardRef<
   HTMLSpanElement,
   React.HTMLAttributes<HTMLSpanElement>
 >(({ children, className, ...props }, ref) => (
@@ -52,7 +49,7 @@ const NavigationRailItemIcon = React.forwardRef<
   </span>
 ))
 
-const NavigationRailItemLabel = React.forwardRef<
+const NavigationBarItemLabel = React.forwardRef<
   HTMLSpanElement,
   React.HTMLAttributes<HTMLSpanElement>
 >(({ className, children, ...props }, ref) => (
@@ -68,7 +65,7 @@ const NavigationRailItemLabel = React.forwardRef<
   </span>
 ))
 
-interface NavigationRailItemProps
+interface NavigationBarItemProps
   extends React.AnchorHTMLAttributes<HTMLAnchorElement> {
   active?: boolean
   asChild?: boolean
@@ -77,9 +74,9 @@ interface NavigationRailItemProps
 const itemStyle =
   'relative group grid w-full place-items-center gap-y-1 font-normal outline-none p-0.5'
 
-const NavigationRailItem = React.forwardRef<
+const NavigationBarItem = React.forwardRef<
   HTMLAnchorElement,
-  NavigationRailItemProps
+  NavigationBarItemProps
 >(({ className, active, asChild, ...props }, ref) => {
   const Comp = asChild ? Slot : 'a'
 
@@ -92,13 +89,13 @@ const NavigationRailItem = React.forwardRef<
     />
   )
 })
-NavigationRailItem.displayName = 'NavigationRailItem'
+NavigationBarItem.displayName = 'NavigationBarItem'
 
-const NavigationRail = Object.assign(NavigationRailRoot, {
-  Container: NavigationRailContainer,
-  Item: NavigationRailItem,
-  ItemIcon: NavigationRailItemIcon,
-  ItemLabel: NavigationRailItemLabel,
+const NavigationBar = Object.assign(NavigationBarRoot, {
+  Container: NavigationBarContainer,
+  Item: NavigationBarItem,
+  ItemIcon: NavigationBarItemIcon,
+  ItemLabel: NavigationBarItemLabel,
 })
 
 const styles = {
@@ -107,11 +104,11 @@ const styles = {
 }
 
 export {
-  NavigationRail,
-  NavigationRailRoot,
-  NavigationRailContainer,
-  NavigationRailItem,
-  NavigationRailItemIcon,
-  NavigationRailItemLabel,
+  NavigationBar,
+  NavigationBarRoot,
+  NavigationBarContainer,
+  NavigationBarItem,
+  NavigationBarItemIcon,
+  NavigationBarItemLabel,
   styles,
 }

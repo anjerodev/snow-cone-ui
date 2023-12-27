@@ -1,0 +1,112 @@
+---
+group: 'navigation'
+title: 'Navigation bar'
+subtitle: 'Navigation bars let people switch between UI views on smaller devices'
+preview: 'https://lh3.googleusercontent.com/tQgASTj1vvinFMzqSy1xoFIGeLelBpeu1oSMZ2iGSk9_taWdO-SCbsW0xdgoOAghDrWUrqQP6B1p6wtzu661zA4iME7zRMnudcov0y4xYYJSWRDiUUQ=s0'
+previewDark: 'https://lh3.googleusercontent.com/ALZ1o4BzZ8Y3prBl0XBa9sj5Lv-Aike3pKpIMVAyNnCYxgAb-jICNp-woQV1wcZ5FPJfuIJ6D4OeteOPDNd7LVjPUGu3_7yDAzWmFcQFLFvvyxj9Bg=s0'
+thumbnail: 'https://lh3.googleusercontent.com/Rqs12H1eTwivX3WoeSsTE6eRSv-W4ozbJtUTqpYjMci-pEQ4q_iqJVx4JqIJR608nvpm2knI_z-mK_eGphCAEAyXXnpm7PYFE8-2SDx4jEpCfKqMAg=w2400'
+thumbnailDark: 'https://lh3.googleusercontent.com/fBdRfIxa6N0MlnicgiIsvf9NDeoFhrjDnyya2AS1VKDJGZJwGWofl9O2LzSLcjUUKzEU1rTm__6JmI0JKHMlMHx4evfFILT5X37xbXyTH8tyv9tIbrE=w2400'
+guidelines: 'https://m3.material.io/components/navigation-bar/guidelines'
+---
+
+import { NavigationBarExample } from '@/components/react/examples/navigation-bar'
+import ComponentContainer from '@/components/component-container.astro'
+import ComponentSource from '@/components/component-source.astro'
+import Step from '@/components/step.astro'
+import Steps from '@/components/steps.astro'
+
+## Usage
+
+Navigation bars (nav bars) provide access to three to five destinations.
+
+## Instalation
+
+<Steps>
+
+<Step>
+#### Run the following command:
+
+```bash
+npm i @radix-ui/react-slot
+```
+
+</Step>
+
+<Step>
+  #### Copy and paste the following code into your project.
+  <ComponentSource name="navigation-bar" />
+</Step>
+
+<Step>
+#### Update the import paths to match your project setup.
+
+</Step>
+
+</Steps>
+
+## Examples
+
+### Navigation Bar
+
+Navigation bars (nav bars) provide access to three to five destinations.
+
+The nav bar is positioned at the bottom of screens for convenient access. Each destination is represented by an icon and optional text label.
+
+Recommended for small screens sizes, for bigger screens sizes see [Navigation Rail](/components/navigation-rail).
+
+<ComponentContainer>
+  <NavigationBarExample slot='preview' client:visible/>
+
+```tsx
+import { useState } from 'react'
+
+import { Fab } from '@/components/ui/fab'
+import { Icon } from '@/components/ui/icon'
+import { NavigationBar } from '@/components/ui/navigation-bar'
+
+const navigationItem = (id: string, icon: string, label: string) => ({
+  id,
+  icon,
+  label,
+})
+
+const navigationItems = [
+  navigationItem('news', 'news', 'News'),
+  navigationItem('global', 'globe', 'Global'),
+  navigationItem('for-you', 'star', 'For you'),
+  navigationItem('trending', 'trending_up', 'Trending'),
+  navigationItem('archive', 'archive', 'Archive'),
+]
+
+export const NavigationBarExample = () => {
+  const [active, setActive] = useState('news')
+
+  return (
+    <div className="relative flex w-full flex-col">
+      <div className="relative grow">
+        <div className="p-4">
+          <h1 className="text-display-sm">
+            {navigationItems.find(({ id }) => id === active)?.label}
+          </h1>
+        </div>
+      </div>
+      <NavigationBar>
+        <NavigationBar.Container>
+          {navigationItems.map(({ id, icon, label }) => (
+            <NavigationBar.Item key={id} asChild active={id === active}>
+              <button onClick={() => setActive(id)}>
+                <NavigationBar.ItemIcon>
+                  <Icon symbol={icon} />
+                </NavigationBar.ItemIcon>
+                <NavigationBar.ItemLabel>{label}</NavigationBar.ItemLabel>
+              </button>
+            </NavigationBar.Item>
+          ))}
+        </NavigationBar.Container>
+      </NavigationBar>
+    </div>
+  )
+}
+```
+
+</ComponentContainer>

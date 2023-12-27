@@ -180,7 +180,7 @@ function useSnackbar() {
   React.useEffect(() => {
     listeners.push(setState)
 
-    const railElement = document.querySelector('.navigation-rail')
+    const railElement = document.querySelector('.navigation-bar')
     bottomNavigationRef.current = railElement as HTMLDivElement
 
     return () => {
