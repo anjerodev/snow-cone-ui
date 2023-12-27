@@ -7,6 +7,8 @@ const docsCollection = defineCollection({
   schema: z.object({
     title: z.string(),
     subtitle: z.string(),
+    thumbnail: z.string(),
+    thumbnailDark: z.string().optional(),
   }),
 })
 

@@ -16,7 +16,7 @@ function generateCSSVariables({
 }: {
   palettes: KeyColorsAndTones
   radius: string
-}): string {
+}) {
   return generateHSLRepresentation(palettes, radius)
 }
 

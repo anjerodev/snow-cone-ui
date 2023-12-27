@@ -5,10 +5,10 @@ import {
   getColorsFromSourceColor,
   updateStyleTag,
 } from '@/lib/colors'
+import { usePaletteStore } from '@/lib/store'
+import { OutlinedTextField } from '@/components/ui/text-field'
 import {
   ColorService,
-  Hue,
-  Saturation,
   useColor,
   type Color,
 } from '@/components/react/primitives/color-picker'
@@ -45,35 +45,32 @@ const colors = [
 
 export const ColorsToggle = () => {
   const [color, setValue] = useColor(defaultColors.palettes.primary[40].hex)
+  const { setPalette, setColors } = usePaletteStore()
 
   const handleChange = (newColor: Color) => {
     setValue(newColor)
     const hexColor = newColor.hex
-    const colors = getColorsFromSourceColor({ sourceColor: hexColor })
+    const { palettes, customColors } = getColorsFromSourceColor({
+      sourceColor: hexColor,
+    })
 
-    const cssVariables = generateCSSVariables({
-      palettes: colors.palettes,
+    const { cssVariables, palette, colorRoles } = generateCSSVariables({
+      palettes: palettes,
       radius: '1',
+    })
+
+    setPalette(palette)
+    setColors({
+      palettes,
+      customColors,
+      colorRoles,
     })
 
     updateStyleTag(cssVariables)
   }
 
   return (
-    <div className="my-4 max-w-sm space-y-4 rounded-lg bg-surfaceContainer p-2">
-      <section className="space-y-2">
-        <Saturation
-          height={100}
-          color={color}
-          onChange={handleChange}
-          className="rounded-md"
-        >
-          <Saturation.Cursor />
-        </Saturation>
-        <Hue color={color} onChange={handleChange}>
-          <Hue.Cursor />
-        </Hue>
-      </section>
+    <div className="inline-block max-w-sm space-y-4 rounded-lg bg-surfaceContainer p-2">
       <div className="grid grid-cols-9 gap-2">
         {colors.map((c) => (
           <button
@@ -88,14 +85,15 @@ export const ColorsToggle = () => {
           />
         ))}
       </div>
-      <input
-        value={color.hex}
-        onChange={(e) =>
-          handleChange(ColorService.convert('hex', e.target.value))
-        }
-        type="text"
-        className="h-10 w-full max-w-sm rounded-md border border-outline px-2 sm:text-sm"
-      />
+      <OutlinedTextField>
+        <OutlinedTextField.Input
+          value={color.hex}
+          onChange={(e) =>
+            handleChange(ColorService.convert('hex', e.target.value))
+          }
+        />
+        <OutlinedTextField.Label>HEX value</OutlinedTextField.Label>
+      </OutlinedTextField>
     </div>
   )
 }

@@ -8,6 +8,7 @@ import {
 } from '@material/material-color-utilities'
 
 import type {
+  Color,
   ColorsScheme,
   CustomColorInput,
   CustomColors,
@@ -188,133 +189,192 @@ export function customColorName(input: string, replacement: string) {
   return replaceColor(input)
 }
 
+function simplifyPalette(palette: KeyColorsAndTones) {
+  const newPalette: Record<
+    keyof KeyColorsAndTones,
+    Record<Tones, string>
+  > = {} as any
+
+  function simplifyColorObject(colorObj: { [index: string]: Color }) {
+    const newObj: Record<Tones, string> = {} as any
+    for (const key in colorObj) {
+      const tone = parseInt(key, 10) as Tones
+      if (!isNaN(tone)) {
+        const color = colorObj[key]
+        newObj[tone] = simplifyHsl(color.hsl)
+      }
+    }
+    return newObj
+  }
+
+  for (const colorType in palette) {
+    newPalette[colorType as keyof KeyColorsAndTones] = simplifyColorObject(
+      palette[colorType as keyof KeyColorsAndTones]
+    )
+  }
+
+  return newPalette
+}
+
+export type ColorRoles = {
+  light: Partial<Record<keyof ColorsScheme, Color>>
+  dark: Partial<Record<keyof ColorsScheme, Color>>
+  fixed: Partial<Record<keyof ColorsScheme, Color>>
+}
+
+export const getColorRolesFromPalette = (
+  palette: KeyColorsAndTones
+): ColorRoles => {
+  return {
+    light: {
+      primary: palette.primary[40],
+      onPrimary: palette.primary[100],
+      primaryContainer: palette.primary[90],
+      onPrimaryContainer: palette.primary[10],
+      secondary: palette.secondary[40],
+      onSecondary: palette.secondary[100],
+      secondaryContainer: palette.secondary[90],
+      onSecondaryContainer: palette.secondary[10],
+      tertiary: palette.tertiary[40],
+      onTertiary: palette.tertiary[100],
+      tertiaryContainer: palette.tertiary[90],
+      onTertiaryContainer: palette.tertiary[10],
+      error: palette.error[40],
+      onError: palette.error[100],
+      errorContainer: palette.error[90],
+      onErrorContainer: palette.error[10],
+      background: palette.neutral[98],
+      onBackground: palette.neutral[10],
+      surface: palette.neutral[98],
+      onSurface: palette.neutral[10],
+      surfaceVariant: palette.neutralVariant[90],
+      onSurfaceVariant: palette.neutralVariant[30],
+      outline: palette.neutralVariant[50],
+      outlineVariant: palette.neutralVariant[80],
+      shadow: palette.neutral[0],
+      scrim: palette.neutral[0],
+      inverseSurface: palette.neutral[20],
+      inverseOnSurface: palette.neutral[95],
+      inversePrimary: palette.primary[80],
+      surfaceDim: palette.neutral[87],
+      surfaceBright: palette.neutral[98],
+      surfaceContainerLowest: palette.neutral[100],
+      surfaceContainerLow: palette.neutral[96],
+      surfaceContainer: palette.neutral[94],
+      surfaceContainerHigh: palette.neutral[92],
+      surfaceContainerHighest: palette.neutral[90],
+      success: palette.success[40],
+      onSuccess: palette.success[100],
+      successContainer: palette.success[90],
+      onSuccessContainer: palette.success[10],
+      info: palette.info[40],
+      onInfo: palette.info[100],
+      infoContainer: palette.info[90],
+      onInfoContainer: palette.info[10],
+      warning: palette.warning[40],
+      onWarning: palette.warning[100],
+      warningContainer: palette.warning[90],
+      onWarningContainer: palette.warning[10],
+    },
+    dark: {
+      primary: palette.primary[80],
+      onPrimary: palette.primary[20],
+      primaryContainer: palette.primary[30],
+      onPrimaryContainer: palette.primary[90],
+      secondary: palette.secondary[80],
+      onSecondary: palette.secondary[20],
+      secondaryContainer: palette.secondary[30],
+      onSecondaryContainer: palette.secondary[90],
+      tertiary: palette.tertiary[80],
+      onTertiary: palette.tertiary[20],
+      tertiaryContainer: palette.tertiary[30],
+      onTertiaryContainer: palette.tertiary[90],
+      error: palette.error[80],
+      onError: palette.error[20],
+      errorContainer: palette.error[30],
+      onErrorContainer: palette.error[90],
+      background: palette.neutral[6],
+      onBackground: palette.neutral[90],
+      surface: palette.neutral[6],
+      onSurface: palette.neutral[90],
+      surfaceVariant: palette.neutralVariant[30],
+      onSurfaceVariant: palette.neutralVariant[80],
+      outline: palette.neutralVariant[60],
+      outlineVariant: palette.neutralVariant[30],
+      shadow: palette.neutral[0],
+      scrim: palette.neutral[0],
+      inverseSurface: palette.neutral[90],
+      inverseOnSurface: palette.neutral[20],
+      inversePrimary: palette.primary[40],
+      surfaceDim: palette.neutral[6],
+      surfaceBright: palette.neutral[24],
+      surfaceContainerLowest: palette.neutral[4],
+      surfaceContainerLow: palette.neutral[10],
+      surfaceContainer: palette.neutral[12],
+      surfaceContainerHigh: palette.neutral[17],
+      surfaceContainerHighest: palette.neutral[22],
+      success: palette.success[80],
+      onSuccess: palette.success[20],
+      successContainer: palette.success[30],
+      onSuccessContainer: palette.success[90],
+      info: palette.info[80],
+      onInfo: palette.info[20],
+      infoContainer: palette.info[30],
+      onInfoContainer: palette.info[90],
+      warning: palette.warning[80],
+      onWarning: palette.warning[20],
+      warningContainer: palette.warning[30],
+      onWarningContainer: palette.warning[90],
+    },
+    fixed: {
+      primaryFixed: palette.primary[90],
+      primaryFixedDim: palette.primary[80],
+      onPrimaryFixed: palette.primary[10],
+      onPrimaryFixedVariant: palette.primary[30],
+      secondaryFixed: palette.secondary[90],
+      secondaryFixedDim: palette.secondary[80],
+      onSecondaryFixed: palette.secondary[10],
+      onSecondaryFixedVariant: palette.secondary[30],
+      tertiaryFixed: palette.tertiary[90],
+      tertiaryFixedDim: palette.tertiary[80],
+      onTertiaryFixed: palette.tertiary[10],
+      onTertiaryFixedVariant: palette.tertiary[30],
+    },
+  }
+}
+
 export function generateHSLRepresentation(
   palette: KeyColorsAndTones,
   radius: string
-): string {
+) {
   const radiusVariable = `    --radius: ${radius}rem;\n`
   let cssVariables = ''
   let cssVariablesLight = ''
   let cssVariablesDark = ''
 
+  const colorRoles = getColorRolesFromPalette(palette)
+  const light: Partial<Record<keyof ColorsScheme, string>> = {}
+  const dark: Partial<Record<keyof ColorsScheme, string>> = {}
+  const fixed: Partial<Record<keyof ColorsScheme, string>> = {}
+
+  Object.entries(colorRoles.light).map(([key, value]) => {
+    light[key as keyof ColorsScheme] = simplifyHsl(value.hsl)
+  })
+
+  Object.entries(colorRoles.dark).map(([key, value]) => {
+    dark[key as keyof ColorsScheme] = simplifyHsl(value.hsl)
+  })
+
+  Object.entries(colorRoles.fixed).map(([key, value]) => {
+    fixed[key as keyof ColorsScheme] = simplifyHsl(value.hsl)
+  })
+
   const theme = {
     root: {
-      primary: simplifyHsl(palette.primary[40].hsl),
-      onPrimary: simplifyHsl(palette.primary[100].hsl),
-      primaryContainer: simplifyHsl(palette.primary[90].hsl),
-      onPrimaryContainer: simplifyHsl(palette.primary[10].hsl),
-      secondary: simplifyHsl(palette.secondary[40].hsl),
-      onSecondary: simplifyHsl(palette.secondary[100].hsl),
-      secondaryContainer: simplifyHsl(palette.secondary[90].hsl),
-      onSecondaryContainer: simplifyHsl(palette.secondary[10].hsl),
-      tertiary: simplifyHsl(palette.tertiary[40].hsl),
-      onTertiary: simplifyHsl(palette.tertiary[100].hsl),
-      tertiaryContainer: simplifyHsl(palette.tertiary[90].hsl),
-      onTertiaryContainer: simplifyHsl(palette.tertiary[10].hsl),
-      error: simplifyHsl(palette.error[40].hsl),
-      onError: simplifyHsl(palette.error[100].hsl),
-      errorContainer: simplifyHsl(palette.error[90].hsl),
-      onErrorContainer: simplifyHsl(palette.error[10].hsl),
-      background: simplifyHsl(palette.neutral[98].hsl),
-      onBackground: simplifyHsl(palette.neutral[10].hsl),
-      surface: simplifyHsl(palette.neutral[98].hsl),
-      onSurface: simplifyHsl(palette.neutral[10].hsl),
-      surfaceVariant: simplifyHsl(palette.neutralVariant[90].hsl),
-      onSurfaceVariant: simplifyHsl(palette.neutralVariant[30].hsl),
-      outline: simplifyHsl(palette.neutralVariant[50].hsl),
-      outlineVariant: simplifyHsl(palette.neutralVariant[80].hsl),
-      shadow: simplifyHsl(palette.neutral[0].hsl),
-      scrim: simplifyHsl(palette.neutral[0].hsl),
-      inverseSurface: simplifyHsl(palette.neutral[20].hsl),
-      inverseOnSurface: simplifyHsl(palette.neutral[95].hsl),
-      inversePrimary: simplifyHsl(palette.primary[80].hsl),
-      surfaceDim: simplifyHsl(palette.neutral[87].hsl),
-      surfaceBright: simplifyHsl(palette.neutral[98].hsl),
-      surfaceContainerLowest: simplifyHsl(palette.neutral[100].hsl),
-      surfaceContainerLow: simplifyHsl(palette.neutral[96].hsl),
-      surfaceContainer: simplifyHsl(palette.neutral[94].hsl),
-      surfaceContainerHigh: simplifyHsl(palette.neutral[92].hsl),
-      surfaceContainerHighest: simplifyHsl(palette.neutral[90].hsl),
-      success: simplifyHsl(palette.success[40].hsl),
-      onSuccess: simplifyHsl(palette.success[100].hsl),
-      successContainer: simplifyHsl(palette.success[90].hsl),
-      onSuccessContainer: simplifyHsl(palette.success[10].hsl),
-      info: simplifyHsl(palette.info[40].hsl),
-      onInfo: simplifyHsl(palette.info[100].hsl),
-      infoContainer: simplifyHsl(palette.info[90].hsl),
-      onInfoContainer: simplifyHsl(palette.info[10].hsl),
-      warning: simplifyHsl(palette.warning[40].hsl),
-      onWarning: simplifyHsl(palette.warning[100].hsl),
-      warningContainer: simplifyHsl(palette.warning[90].hsl),
-      onWarningContainer: simplifyHsl(palette.warning[10].hsl),
-      surfaceFixed: simplifyHsl(palette.neutral[98].hsl),
-      onSurfaceFixed: simplifyHsl(palette.neutral[10].hsl),
-      surfaceFixedDim: simplifyHsl(palette.neutral[87].hsl),
-      onSurfaceFixedDim: simplifyHsl(palette.neutral[30].hsl),
-
-      primaryFixed: simplifyHsl(palette.primary[90].hsl),
-      primaryFixedDim: simplifyHsl(palette.primary[80].hsl),
-      onPrimaryFixed: simplifyHsl(palette.primary[10].hsl),
-      onPrimaryFixedVariant: simplifyHsl(palette.primary[30].hsl),
-      secondaryFixed: simplifyHsl(palette.secondary[90].hsl),
-      secondaryFixedDim: simplifyHsl(palette.secondary[80].hsl),
-      onSecondaryFixed: simplifyHsl(palette.secondary[10].hsl),
-      onSecondaryFixedVariant: simplifyHsl(palette.secondary[30].hsl),
-      tertiaryFixed: simplifyHsl(palette.tertiary[90].hsl),
-      tertiaryFixedDim: simplifyHsl(palette.tertiary[80].hsl),
-      onTertiaryFixed: simplifyHsl(palette.tertiary[10].hsl),
-      onTertiaryFixedVariant: simplifyHsl(palette.tertiary[30].hsl),
+      ...light,
+      ...fixed,
     },
-    dark: {
-      primary: simplifyHsl(palette.primary[80].hsl),
-      onPrimary: simplifyHsl(palette.primary[20].hsl),
-      primaryContainer: simplifyHsl(palette.primary[30].hsl),
-      onPrimaryContainer: simplifyHsl(palette.primary[90].hsl),
-      secondary: simplifyHsl(palette.secondary[80].hsl),
-      onSecondary: simplifyHsl(palette.secondary[20].hsl),
-      secondaryContainer: simplifyHsl(palette.secondary[30].hsl),
-      onSecondaryContainer: simplifyHsl(palette.secondary[90].hsl),
-      tertiary: simplifyHsl(palette.tertiary[80].hsl),
-      onTertiary: simplifyHsl(palette.tertiary[20].hsl),
-      tertiaryContainer: simplifyHsl(palette.tertiary[30].hsl),
-      onTertiaryContainer: simplifyHsl(palette.tertiary[90].hsl),
-      error: simplifyHsl(palette.error[80].hsl),
-      onError: simplifyHsl(palette.error[20].hsl),
-      errorContainer: simplifyHsl(palette.error[30].hsl),
-      onErrorContainer: simplifyHsl(palette.error[90].hsl),
-      background: simplifyHsl(palette.neutral[6].hsl),
-      onBackground: simplifyHsl(palette.neutral[90].hsl),
-      surface: simplifyHsl(palette.neutral[6].hsl),
-      onSurface: simplifyHsl(palette.neutral[90].hsl),
-      surfaceVariant: simplifyHsl(palette.neutralVariant[30].hsl),
-      onSurfaceVariant: simplifyHsl(palette.neutralVariant[80].hsl),
-      outline: simplifyHsl(palette.neutralVariant[60].hsl),
-      outlineVariant: simplifyHsl(palette.neutralVariant[30].hsl),
-      shadow: simplifyHsl(palette.neutral[0].hsl),
-      scrim: simplifyHsl(palette.neutral[0].hsl),
-      inverseSurface: simplifyHsl(palette.neutral[90].hsl),
-      inverseOnSurface: simplifyHsl(palette.neutral[20].hsl),
-      inversePrimary: simplifyHsl(palette.primary[40].hsl),
-      surfaceDim: simplifyHsl(palette.neutral[6].hsl),
-      surfaceBright: simplifyHsl(palette.neutral[24].hsl),
-      surfaceContainerLowest: simplifyHsl(palette.neutral[4].hsl),
-      surfaceContainerLow: simplifyHsl(palette.neutral[10].hsl),
-      surfaceContainer: simplifyHsl(palette.neutral[12].hsl),
-      surfaceContainerHigh: simplifyHsl(palette.neutral[17].hsl),
-      surfaceContainerHighest: simplifyHsl(palette.neutral[22].hsl),
-      success: simplifyHsl(palette.success[80].hsl),
-      onSuccess: simplifyHsl(palette.success[20].hsl),
-      successContainer: simplifyHsl(palette.success[30].hsl),
-      onSuccessContainer: simplifyHsl(palette.success[90].hsl),
-      info: simplifyHsl(palette.info[80].hsl),
-      onInfo: simplifyHsl(palette.info[20].hsl),
-      infoContainer: simplifyHsl(palette.info[30].hsl),
-      onInfoContainer: simplifyHsl(palette.info[90].hsl),
-      warning: simplifyHsl(palette.warning[80].hsl),
-      onWarning: simplifyHsl(palette.warning[20].hsl),
-      warningContainer: simplifyHsl(palette.warning[30].hsl),
-      onWarningContainer: simplifyHsl(palette.warning[90].hsl),
-    },
+    dark,
   }
 
   Object.entries(theme.root).forEach(([colorName, color]) => {
@@ -327,7 +387,8 @@ export function generateHSLRepresentation(
 
   cssVariables += ':root {\n' + cssVariablesLight + radiusVariable + '}\n'
   cssVariables += '.dark {\n' + cssVariablesDark + '}\n'
-  return cssVariables
+
+  return { cssVariables, palette: simplifyPalette(palette), colorRoles }
 }
 
 export function colorsFromScheme(scheme: ColorsScheme) {

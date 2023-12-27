@@ -1,6 +1,6 @@
 export const ROUTES = {
   HOME: '/',
-  FONTS: '/fonts',
-  STYLES: '/styles',
+  TYPOGRAPHY: '/docs/typography',
+  THEME: '/theme',
   COMPONENTS: '/components',
 }
