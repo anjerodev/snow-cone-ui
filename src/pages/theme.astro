@@ -1,0 +1,32 @@
+---
+import RootLayout from '@/layouts/root-layout.astro'
+import { ColorFormatSelector } from '@/components/react/color-format-selector'
+import { ColorsPalettes } from '@/components/react/colors-palettes'
+import { ColorsToggle } from '@/components/react/colors-toggle'
+import { CopyPaletteButton } from '@/components/react/copy-palette-button'
+import PageHeader from '@/components/page-header.astro'
+---
+
+<RootLayout title="Snow Cone Theme">
+  <main>
+    <PageHeader
+      title="Theme"
+      subtitle="Create accessible, personal color schemes communicating your product's hierarchy, state, and brand."
+      img={{
+        default:
+          'https://lh3.googleusercontent.com/-3U4GA9CsYQZvdlgoW8DciDLwCgFQaPeo0bE5mP5GWfe0FMKgg5O5pesWpDXGocuTc7qdkkmfC9-cFOWi6Swq5KAtqLpr-k5YI3VsQQGTQnH_O5vUeQ=w2400-rj',
+        dark: 'https://lh3.googleusercontent.com/HlbnJmSX9lPKAzw3PIgcWlotRXK1gKby51ni9mjugFHiOuDQSCNKXP6hQWW053Z_SpyIoD-J-XPCCGB03IrdCmC7NkzLQgJgNUXv10BIW99PWRZjtRI=w2400-rj',
+      }}
+    />
+    <div class="flex flex-col items-start gap-10 md:flex-row">
+      <div class="flex w-[300px] shrink-0 flex-col gap-4">
+        <ColorFormatSelector client:idle />
+        <ColorsToggle client:idle />
+        <CopyPaletteButton client:idle />
+      </div>
+      <div>
+        <ColorsPalettes client:idle />
+      </div>
+    </div>
+  </main>
+</RootLayout>

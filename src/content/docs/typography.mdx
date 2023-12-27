@@ -1,0 +1,210 @@
+---
+title: 'Typography'
+subtitle: 'Styles for headings, paragraphs, lists, etc'
+thumbnail: 'https://lh3.googleusercontent.com/FlzIBMEVPo7rwUyiQE5TZuVOjo2EVPl0s0IlNPc4ntQDf6oGj4w9FMN35nDV7CLZJjj3i3jJGMUW92fuMP2MPHWiY_WcEImw3ThABZEtyhXTOMCl4P4=w2400-rj'
+thumbnailDark: 'https://lh3.googleusercontent.com/epA6d7XUlOsJWcN09FA86Ifli4Q3RYN__NwHm170jue12MdKK9otB9KVOWHdu4Adpl-b7cZh1rGkjUi8Rju44bSqRyhe62yRUmsqzrFeArnhYA-_LY0=w2400-rj'
+---
+
+import ComponentContainer from '@/components/component-container.astro'
+
+If you have followed the installation guide, you'll unlock access to the text style utility classes. These classes are designed for effortless application, requiring only a single class addition to your element to streamline the styling process.
+
+By default each class is available in three sizes: **large (lg)**, **medium (md)**, and **small (sm)**. These sizes adjust font size, line height, and font width for optimal readability and aesthetics.
+
+## Display
+
+Display styles are reserved for short, important text or numerals. They work best on large screens.
+
+<ComponentContainer slotContainerClassname='justify-start'>
+<div slot="preview" className='space-y-4'>
+   <h1 className="text-display-lg">
+      Top Bread Recipes
+    </h1>
+
+    <h1 className="text-display-md">
+      Top Bread Recipes
+    </h1>
+
+    <h1 className="text-display-sm">
+      Top Bread Recipes
+    </h1>
+
+</div>
+
+```tsx
+export function DisplayExamples() {
+  return (
+    <div className="space-y-4">
+      <h1 className="text-display-lg">Top Bread Recipes</h1>
+
+      <h1 className="text-display-md">Top Bread Recipes</h1>
+
+      <h1 className="text-display-sm">Top Bread Recipes</h1>
+    </div>
+  )
+}
+```
+
+</ComponentContainer>
+
+## Headline
+
+Headlines are best-suited for short, high-emphasis text on smaller screens. These styles can be good for marking primary passages of text or important regions of content.
+
+<ComponentContainer slotContainerClassname='justify-start'>
+<div slot="preview" className='space-y-4'>
+   <h2 className="text-headline-lg">
+      Class details
+    </h2>
+
+    <h2 className="text-headline-md">
+      Class details
+    </h2>
+
+    <h2 className="text-headline-sm">
+      Class details
+    </h2>
+
+</div>
+
+```tsx
+export function HeadlineExamples() {
+  return (
+    <div className="space-y-4">
+      <h2 className="text-headline-lg">Class details</h2>
+
+      <h2 className="text-headline-md">Class details</h2>
+
+      <h2 className="text-headline-sm">Class details</h2>
+    </div>
+  )
+}
+```
+
+</ComponentContainer>
+
+## Title
+
+Titles are smaller than headline styles, and should be used for medium-emphasis text that remains relatively short.
+
+<ComponentContainer slotContainerClassname='justify-start'>
+<div slot="preview" className='space-y-4'>
+   <h3 className=" text-title-lg">
+      The Quiet, Yet Powerful Healthcare Revolution
+    </h3>
+
+    <h3 className=" text-title-md">
+      The Quiet, Yet Powerful Healthcare Revolution
+    </h3>
+
+    <h3 className=" text-title-sm">
+      The Quiet, Yet Powerful Healthcare Revolution
+    </h3>
+
+</div>
+
+```tsx
+export function TitleExamples() {
+  return (
+    <div className="space-y-4">
+      <h3 className="text-title-lg">
+        The Quiet, Yet Powerful Healthcare Revolution
+      </h3>
+
+      <h3 className="text-title-md">
+        The Quiet, Yet Powerful Healthcare Revolution
+      </h3>
+
+      <h3 className="text-title-sm">
+        The Quiet, Yet Powerful Healthcare Revolution
+      </h3>
+    </div>
+  )
+}
+```
+
+</ComponentContainer>
+
+## Body
+
+Body styles are used for longer passages of text.
+
+<ComponentContainer slotContainerClassname='justify-start'>
+<div slot="preview" className='space-y-4'>
+   <p className="text-body-lg">The general consensus is that artists using aigital turntables are just pushing random buttons when they perform live. But is that true? In the DMC Championships it's obvious that some artists are putting their various honed skills on display. Most of the scorn for solo performers comes from the many who headline huge festivals. There must be some specialty skill they do in their performance to explain their million-dollar fees.</p>
+
+    <p className="text-body-md">The general consensus is that artists using aigital turntables are just pushing random buttons when they perform live. But is that true? In the DMC Championships it's obvious that some artists are putting their various honed skills on display. Most of the scorn for solo performers comes from the many who headline huge festivals. There must be some specialty skill they do in their performance to explain their million-dollar fees.</p>
+
+    <p className="text-body-sm">The general consensus is that artists using aigital turntables are just pushing random buttons when they perform live. But is that true? In the DMC Championships it's obvious that some artists are putting their various honed skills on display. Most of the scorn for solo performers comes from the many who headline huge festivals. There must be some specialty skill they do in their performance to explain their million-dollar fees.</p>
+
+</div>
+
+```tsx
+export function BodyExamples() {
+  return (
+    <div className="space-y-4">
+      <p className="text-body-lg">
+        The general consensus is that artists using aigital turntables are just
+        pushing random buttons when they perform live. But is that true? In the
+        DMC Championships it's obvious that some artists are putting their
+        various honed skills on display. Most of the scorn for solo performers
+        comes from the many who headline huge festivals. There must be some
+        specialty skill they do in their performance to explain their
+        million-dollar fees.
+      </p>
+
+      <p className="text-body-md">
+        The general consensus is that artists using aigital turntables are just
+        pushing random buttons when they perform live. But is that true? In the
+        DMC Championships it's obvious that some artists are putting their
+        various honed skills on display. Most of the scorn for solo performers
+        comes from the many who headline huge festivals. There must be some
+        specialty skill they do in their performance to explain their
+        million-dollar fees.
+      </p>
+
+      <p className="text-body-sm">
+        The general consensus is that artists using aigital turntables are just
+        pushing random buttons when they perform live. But is that true? In the
+        DMC Championships it's obvious that some artists are putting their
+        various honed skills on display. Most of the scorn for solo performers
+        comes from the many who headline huge festivals. There must be some
+        specialty skill they do in their performance to explain their
+        million-dollar fees.
+      </p>
+    </div>
+  )
+}
+```
+
+</ComponentContainer>
+
+## Label
+
+Label styles are smaller, utilitarian styles, used for things like the text inside components or for very small text in the content body, such as captions.
+
+<ComponentContainer slotContainerClassname='justify-start'>
+<div slot="preview" className='space-y-4'>
+   <p className="text-label-lg">Newsletter</p>
+
+    <p className="text-label-md">Newsletter</p>
+
+    <p className="text-label-sm">Newsletter</p>
+
+</div>
+
+```tsx
+export function LabelExamples() {
+  return (
+    <div className="space-y-4">
+      <p className="text-label-lg">Newsletter</p>
+
+      <p className="text-label-md">Newsletter</p>
+
+      <p className="text-label-sm">Newsletter</p>
+    </div>
+  )
+}
+```
+
+</ComponentContainer>
