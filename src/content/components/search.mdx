@@ -1,0 +1,211 @@
+---
+group: 'navigation'
+title: 'Search'
+subtitle: 'Search lets people enter a keyword or phrase to get relevant information'
+preview: 'https://lh3.googleusercontent.com/ZQhiDxTNcAfmuo7I59jl9RSCvT4xnTCVPHRLy6GPKmMjE2LrTnVYbZLGfZtZmZcJf1wdBKDJ8wVGF8FhIp4Le76rkdw4Ju-lRoV43OaaDiXo2vOIuA=s0'
+previewDark: 'https://lh3.googleusercontent.com/O_-kh_ObYDoIeCw_rS8vrrVdTDdhVub3gNgcwUZshLKLVPazC6FYDxjXLoMfy74wURNZpupWzPqUeEzENDz8zhX1crQ0Fsj-AN-gPiygQrBYhQa_iw=s0'
+thumbnail: 'https://lh3.googleusercontent.com/D_fDGSoek40ktrQb4TjcfftWF9RZZ6x8v-a5vD2ZJYIyoN53ENuo5bNdJmJVurWxOFL-UAnnbweMlxB98iJq9g9BAVdb412AQQQj33qtCwU9SYtiBBQa=w2400'
+thumbnailDark: 'https://lh3.googleusercontent.com/LjB-1eutRa6qo5bM0zvLom2b9oZky4lSxM8i8M7LIJgS0ZuwEpGe7Ev4230jIREcZH-EvsKfOz0K1pFb564V3ZDK6i8CCDc467bobNYqTojytdrN5EyD=w2400'
+guidelines: 'https://m3.material.io/components/search/guidelines'
+---
+
+import {
+  SearchExample,
+  SearchViewExample,
+} from '@/components/react/examples/search'
+import ComponentContainer from '@/components/component-container.astro'
+import ComponentSource from '@/components/component-source.astro'
+import Step from '@/components/step.astro'
+import Steps from '@/components/steps.astro'
+
+## Usage
+
+Search is a navigation method that allows people to quickly find information across an app. Users input a query into the search bar or text field of the search view and then see related results.
+
+## Instalation
+
+<Steps>
+
+<Step>
+  #### Copy and paste the following code into your project.
+  <ComponentSource name="search" />
+</Step>
+
+<Step>
+#### Update the import paths to match your project setup.
+
+</Step>
+
+</Steps>
+
+## Examples
+
+### Search bar with a leading and trailing icons
+
+<ComponentContainer>
+  <SearchExample slot='preview' client:visible/>
+
+```tsx
+import { Avatar } from '@/components/ui/avatar'
+import { Icon } from '@/components/ui/icon'
+import { IconButton } from '@/components/ui/icon-button'
+import { SearchBar } from '@/components/ui/search'
+
+export const SearchExample = () => {
+  return (
+    <div className="flex-center bg-background w-full rounded-md p-4">
+      <div className="flex-center w-full max-w-sm">
+        <SearchBar>
+          <SearchBar.LeftSection>
+            <Icon symbol="search" />
+          </SearchBar.LeftSection>
+          <SearchBar.Input placeholder="Search your library" />
+          <SearchBar.RightSection className="pr-2">
+            <IconButton variant="standard">
+              <Icon symbol="mic" />
+            </IconButton>
+            <IconButton variant="standard">
+              <Avatar className="h-[30px]">
+                <Avatar.Image src="https://github.com/jepricreations.png" />
+              </Avatar>
+            </IconButton>
+          </SearchBar.RightSection>
+        </SearchBar>
+      </div>
+    </div>
+  )
+}
+```
+
+</ComponentContainer>
+
+### Search view
+
+Search view, which can display dynamic suggestions, is the focused state of search bar.
+
+<ComponentContainer>
+  <SearchViewExample slot='preview' client:visible/>
+
+```tsx
+import { useRef, useState } from 'react'
+import { CommandInput } from 'cmdk'
+
+import { cn } from '@/lib/utils'
+import { Avatar } from '@/components/ui/avatar'
+import { Command } from '@/components/ui/command'
+import { Icon } from '@/components/ui/icon'
+import { IconButton } from '@/components/ui/icon-button'
+import { SearchBar } from '@/components/ui/search'
+
+const Contact = (id: number, name: string, pic: string) => ({ id, name, pic })
+
+const contacts = [
+  Contact(1, 'Jepri', 'https://github.com/jepricreations.png'),
+  Contact(
+    2,
+    'Alex',
+    'https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?q=80&w=2980&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'
+  ),
+  Contact(
+    3,
+    'Nikita',
+    'https://images.unsplash.com/photo-1599566150163-29194dcaad36?q=80&w=3087&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'
+  ),
+  Contact(
+    4,
+    'Riccardo',
+    'https://images.unsplash.com/photo-1610186594416-2c7c0131e35d?q=80&w=3087&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'
+  ),
+  Contact(
+    5,
+    'Mina',
+    'https://images.unsplash.com/photo-1549351512-c5e12b11e283?q=80&w=2187&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'
+  ),
+]
+
+const historyItems = ['Peanut', 'End of school year', 'Renee']
+
+export const SearchViewExample = () => {
+  const inputRef = useRef<HTMLInputElement>(null)
+
+  const [isOpen, setOpen] = useState(false)
+
+  return (
+    <Command className="bg-transparent">
+      <SearchBar
+        className={cn(
+          'transition-[border-radius] duration-100',
+          isOpen && 'rounded-b-none'
+        )}
+      >
+        <SearchBar.LeftSection className="pl-2">
+          <IconButton
+            variant="standard"
+            className={cn(
+              'animate-in fade-in-20 zoom-in-50',
+              isOpen ? 'hidden' : 'grid'
+            )}
+          >
+            <Icon symbol="menu" />
+          </IconButton>
+          <IconButton
+            variant="standard"
+            className={cn(
+              'animate-in fade-in-20 zoom-in-50',
+              isOpen ? 'grid' : 'hidden'
+            )}
+          >
+            <Icon symbol="arrow_back" />
+          </IconButton>
+        </SearchBar.LeftSection>
+        <SearchBar.Input asChild>
+          <CommandInput
+            ref={inputRef}
+            placeholder="Search replies"
+            onFocus={() => setOpen(true)}
+            onBlur={() => setOpen(false)}
+          />
+        </SearchBar.Input>
+        <SearchBar.RightSection className="pr-2">
+          <IconButton variant="standard">
+            <Icon symbol="more_vert" />
+          </IconButton>
+        </SearchBar.RightSection>
+      </SearchBar>
+
+      {isOpen && (
+        <SearchBar.ViewContainer>
+          <Command.List>
+            <Command.Group>
+              {historyItems.map((item) => (
+                <Command.Item key={item} value={item}>
+                  <Icon symbol="history" />
+                  <p>{item}</p>
+                </Command.Item>
+              ))}
+            </Command.Group>
+          </Command.List>
+          <div className="p-4">
+            <p className="text-label-lg mb-2">Contacts</p>
+            <div className="flex items-center gap-4">
+              {contacts.map(({ id, name, pic }) => (
+                <div key={id} className="flex flex-col items-center gap-1">
+                  <Avatar>
+                    <Avatar.Image src={pic} />
+                    <Avatar.Fallback className="text-label-md">
+                      {name.charAt(0).toUpperCase()}
+                    </Avatar.Fallback>
+                  </Avatar>
+                  <span className="text-label-md">{name}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+        </SearchBar.ViewContainer>
+      )}
+    </Command>
+  )
+}
+```
+
+</ComponentContainer>
