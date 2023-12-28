@@ -181,9 +181,6 @@
 }
 
 @layer utilities {
-  .balance {
-    text-wrap: balance;
-  }
   .flex-center {
     display: flex;
     align-items: center;
