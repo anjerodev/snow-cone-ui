@@ -5,12 +5,9 @@ import { cva, type VariantProps } from 'class-variance-authority'
 import { cn } from '@/lib/utils'
 
 const iconButtonVariants = cva(
-  'shrink-0 relative group overflow-hidden grid place-items-center rounded-xl transition outline-none disabled:pointer-events-none disabled:text-onSurface/38 active:scale-[0.98]',
+  'shrink-0 relative group h-10 w-10 overflow-hidden grid place-items-center rounded-xl transition outline-none disabled:pointer-events-none disabled:text-onSurface/38 active:scale-[0.98]',
   {
     variants: {
-      size: {
-        default: 'h-10 w-10',
-      },
       variant: {
         filled: 'bg-primary text-onPrimary disabled:bg-onSurface/12',
         tonal:
@@ -21,7 +18,6 @@ const iconButtonVariants = cva(
       },
     },
     defaultVariants: {
-      size: 'default',
       variant: 'filled',
     },
   }
@@ -53,15 +49,7 @@ export interface IconButtonProps
 
 const IconButton = React.forwardRef<HTMLButtonElement, IconButtonProps>(
   (
-    {
-      className,
-      variant,
-      size,
-      asChild,
-      disableStateLayer,
-      children,
-      ...props
-    },
+    { className, variant, asChild, disableStateLayer, children, ...props },
     ref
   ) => {
     const Comp = asChild ? Slot : 'button'
@@ -69,7 +57,7 @@ const IconButton = React.forwardRef<HTMLButtonElement, IconButtonProps>(
     return (
       <Comp
         ref={ref}
-        className={cn(iconButtonVariants({ variant, size, className }))}
+        className={cn(iconButtonVariants({ variant, className }))}
         {...props}
       >
         <Slottable>{children}</Slottable>

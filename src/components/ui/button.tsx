@@ -21,7 +21,7 @@ const buttonVariants = cva(
           'bg-surfaceContainerLow shadow-sm text-primary  hover:shadow-md focus-visible:shadow-sm active:shadow-sm disabled:bg-onSurface/12',
         outlined:
           'border border-outline text-primary focus-visible:border-primary active:border-outline disabled:border-onSurface/12',
-        text: 'px-3 text-onSurface',
+        text: 'px-3 text-primary',
         destructive:
           'bg-error text-onError hover:shadow-sm focus-visible:shadow-none active:shadow-none disabled:bg-onSurface/12',
       },

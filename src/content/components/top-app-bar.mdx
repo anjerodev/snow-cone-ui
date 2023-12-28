@@ -1,0 +1,208 @@
+---
+group: 'navigation'
+title: 'Top app bars'
+subtitle: 'Top app bars display navigation, actions, and text at the top of a screen'
+preview: 'https://lh3.googleusercontent.com/kqtR51iAG8pD3FNYKNrdWOGwxhJfBpESsrBdrXm6GZkFUsgHh_p2zvaXlWImzZUw12ojylXavmfWv6k8sEuQ42hb3Mmtzj8M1QW3u67jRKDT1WMteg=s0'
+previewDark: 'https://lh3.googleusercontent.com/lK0kPhYRygAmUxkbiOOJKIuzaAsXbxONPo13nE4wzaBGsNHcMDD237jdgPFQ68iToQl5TEmw0Of4tfc6cTmSGmVZ7JWNhw1-QgzFsxkaN5HHtbo_XRE=s0'
+thumbnail: 'https://lh3.googleusercontent.com/btk59mzzSeDHwvGzz0gCqmRf2mDrRdZJ21EibjjuMzWzEC4mMKp9pTTYd42HIVjQhsx6J4-SYw8Gq2cQy3meVFoSpNoiRSEsJlHBAZmyJDLHaq6mFjo=w2400'
+thumbnailDark: 'https://lh3.googleusercontent.com/GuU1qgXKnmBdhqd4v_fObCdAgd7VkmfSqRw-TvPlXJR1sHFH5-tGOaeTRLiOTwK7ZAMVIDX0Zdlh0wyUNMFb-evuqvEIc6069But16ZtCqnJf5BG1D3a=w2400'
+guidelines: 'https://m3.material.io/components/top-app-bar/guidelines'
+---
+
+import {
+  CenterAlignedTopAppBar,
+  LargeTopAppBar,
+  MediumTopAppBar,
+  SmallTopAppBar,
+} from '@/components/react/examples/top-app-bars'
+
+import ComponentContainer from '@/components/component-container.astro'
+import ComponentSource from '@/components/component-source.astro'
+import Step from '@/components/step.astro'
+import Steps from '@/components/steps.astro'
+
+## Usage
+
+Use a top app bar to provide content and actions related to a current screen, such as navigation, screen headlines, and actions.
+
+The information and actions offered are primarily contextual and specific to a screen, but may also include access to key cross-app journeys.
+
+## Instalation
+
+<Steps>
+
+<Step>
+  #### Copy and paste the following code into your project.
+  <ComponentSource name="top-app-bar" />
+</Step>
+
+<Step>
+#### Update the import paths to match your project setup.
+
+</Step>
+
+</Steps>
+
+## Examples
+
+### Center-aligned top app bar
+
+<ComponentContainer>
+  <CenterAlignedTopAppBar slot='preview'/>
+
+```tsx
+import { Icon } from '@/components/ui/icon'
+import { IconButton } from '@/components/ui/icon-button'
+import { TopAppBar } from '@/components/ui/top-app-bar'
+
+export const CenterAlignedTopAppBar = () => {
+  return (
+    <TopAppBar>
+      <TopAppBar.Toolbar>
+        <TopAppBar.LeadingSection>
+          <IconButton variant="standard">
+            <Icon symbol="menu" />
+          </IconButton>
+        </TopAppBar.LeadingSection>
+        <TopAppBar.Headline className="px-6 text-center">
+          Summer Hits
+        </TopAppBar.Headline>
+        <TopAppBar.TrailingSection>
+          <IconButton variant="standard">
+            <Icon symbol="account_circle" className="font-filled" />
+          </IconButton>
+        </TopAppBar.TrailingSection>
+      </TopAppBar.Toolbar>
+    </TopAppBar>
+  )
+}
+```
+
+</ComponentContainer>
+
+### Small top app bar
+
+<ComponentContainer>
+  <SmallTopAppBar slot='preview'/>
+
+```tsx
+import { Icon } from '@/components/ui/icon'
+import { IconButton } from '@/components/ui/icon-button'
+import { TopAppBar } from '@/components/ui/top-app-bar'
+
+export const SmallTopAppBar = () => {
+  return (
+    <TopAppBar>
+      <TopAppBar.Toolbar>
+        <TopAppBar.LeadingSection>
+          <IconButton variant="standard">
+            <Icon symbol="arrow_back" />
+          </IconButton>
+        </TopAppBar.LeadingSection>
+        <TopAppBar.Headline>Thrift Stores in LA</TopAppBar.Headline>
+        <TopAppBar.TrailingSection>
+          <IconButton variant="standard">
+            <Icon symbol="attach_file" className="font-filled" />
+          </IconButton>
+          <IconButton variant="standard">
+            <Icon symbol="today" className="font-filled" />
+          </IconButton>
+          <IconButton variant="standard">
+            <Icon symbol="more_vert" className="font-filled" />
+          </IconButton>
+        </TopAppBar.TrailingSection>
+      </TopAppBar.Toolbar>
+    </TopAppBar>
+  )
+}
+```
+
+</ComponentContainer>
+
+### Medium top app bar
+
+<ComponentContainer>
+  <MediumTopAppBar slot='preview'/>
+
+```tsx
+import { Icon } from '@/components/ui/icon'
+import { IconButton } from '@/components/ui/icon-button'
+import { TopAppBar } from '@/components/ui/top-app-bar'
+
+export const MediumTopAppBar = () => {
+  return (
+    <TopAppBar>
+      <TopAppBar.Toolbar>
+        <TopAppBar.LeadingSection>
+          <IconButton variant="standard">
+            <Icon symbol="arrow_back" />
+          </IconButton>
+        </TopAppBar.LeadingSection>
+        <div className="grow" />
+        <TopAppBar.TrailingSection>
+          <IconButton variant="standard">
+            <Icon symbol="attach_file" className="font-filled" />
+          </IconButton>
+          <IconButton variant="standard">
+            <Icon symbol="today" className="font-filled" />
+          </IconButton>
+          <IconButton variant="standard">
+            <Icon symbol="more_vert" className="font-filled" />
+          </IconButton>
+        </TopAppBar.TrailingSection>
+      </TopAppBar.Toolbar>
+      <TopAppBar.Toolbar className="px-4 pb-6">
+        <TopAppBar.Headline className="text-headline-sm">
+          Saved podcasts
+        </TopAppBar.Headline>
+      </TopAppBar.Toolbar>
+    </TopAppBar>
+  )
+}
+```
+
+</ComponentContainer>
+
+### Large top app bar
+
+<ComponentContainer>
+  <LargeTopAppBar slot='preview'/>
+
+```tsx
+import { Icon } from '@/components/ui/icon'
+import { IconButton } from '@/components/ui/icon-button'
+import { TopAppBar } from '@/components/ui/top-app-bar'
+
+export const LargeTopAppBar = () => {
+  return (
+    <TopAppBar>
+      <TopAppBar.Toolbar>
+        <TopAppBar.LeadingSection>
+          <IconButton variant="standard">
+            <Icon symbol="arrow_back" />
+          </IconButton>
+        </TopAppBar.LeadingSection>
+        <div className="grow" />
+        <TopAppBar.TrailingSection>
+          <IconButton variant="standard">
+            <Icon symbol="attach_file" className="font-filled" />
+          </IconButton>
+          <IconButton variant="standard">
+            <Icon symbol="today" className="font-filled" />
+          </IconButton>
+          <IconButton variant="standard">
+            <Icon symbol="more_vert" className="font-filled" />
+          </IconButton>
+        </TopAppBar.TrailingSection>
+      </TopAppBar.Toolbar>
+      <TopAppBar.Toolbar className="h-24 items-end px-4 pb-7">
+        <TopAppBar.Headline className="text-headline-md">
+          The best sushi spots in Los Angeles and Orange County
+        </TopAppBar.Headline>
+      </TopAppBar.Toolbar>
+    </TopAppBar>
+  )
+}
+```
+
+</ComponentContainer>

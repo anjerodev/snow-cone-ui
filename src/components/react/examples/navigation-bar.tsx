@@ -1,6 +1,5 @@
 import { useState } from 'react'
 
-import { Fab } from '@/components/ui/fab'
 import { Icon } from '@/components/ui/icon'
 import { NavigationBar } from '@/components/ui/navigation-bar'
 
