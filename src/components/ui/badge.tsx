@@ -61,7 +61,7 @@ function Badge({
   ...props
 }: BadgeProps) {
   return (
-    <div className="relative h-fit w-fit">
+    <div className="relative inline-flex h-fit w-fit items-center">
       {children}
       <span
         className={cn(badgeVariants({ size, align }), className)}

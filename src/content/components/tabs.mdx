@@ -1,0 +1,207 @@
+---
+group: 'navigation'
+title: 'Tabs'
+subtitle: 'Tabs organize content across different screens and views'
+preview: 'https://lh3.googleusercontent.com/09kJDE9lVRS8Z6HOFdHPt5haeoPfCvpLP_U-B0573RSKrEukiQ__Ix7AXSuLNSwheLaI6p4n8moIyg9GzKZXQIlfTvoPFjjixAyZfA2ciOAEegZyEe0=s0'
+previewDark: 'https://lh3.googleusercontent.com/on2iVkTn7IdNK6-oNJA4qawZ66zZ6WOqBUg4R7D3-1zOH2Y250P925jttkEUGHx3QCMwgWPGfDT0zgMgl7fIMBFoBuxboiUSV5kvFOumdGZ5x9vYlBN1=s0'
+thumbnail: 'https://lh3.googleusercontent.com/9cPJg--zTtEqCHCz2uurTW-ZbRooP6O8pCcC4t7tbPRQV9aL0znV8XOj7vVzD8UB2lmaIKRuZ740qIXrfdZ5nqL5l-2MGXuCrkQ5XvF5leSq_Tkuig=w2400'
+thumbnailDark: 'https://lh3.googleusercontent.com/izBY7w9UcmEkkJ1IDGid-vfXq0Jyu2V8FRmJhFRT75wBir45TvV1DKzMLFd327tUlPd0Hp5nWryLgSLB14DK2VqYsY8ZbWi0jZ486nRgQU4mtWUd-g=w2400'
+guidelines: 'https://m3.material.io/components/tabs/guidelines'
+shadcn: 'https://ui.shadcn.com/docs/components/tabs'
+---
+
+import {
+  PrimaryTabsWithIcons,
+  ScrollableTabs,
+  SecondaryTabs,
+} from '@/components/react/examples/tabs'
+import ComponentContainer from '@/components/component-container.astro'
+import ComponentSource from '@/components/component-source.astro'
+import Step from '@/components/step.astro'
+import Steps from '@/components/steps.astro'
+
+## Usage
+
+Tabs organize groups of related content that are at the same level of hierarchy.
+
+## Instalation
+
+<Steps>
+
+<Step>
+#### Run the following command:
+
+```bash
+npm i @radix-ui/react-tabs
+```
+
+</Step>
+
+<Step>
+  #### Copy and paste the following code into your project.
+  <ComponentSource name="tabs" />
+</Step>
+
+<Step>
+#### Update the import paths to match your project setup.
+
+</Step>
+
+</Steps>
+
+## Examples
+
+### Primary Tabs
+
+Primary tabs are placed at the top of the content pane under a top app bar. They display the main content destinations.
+
+<ComponentContainer>
+  <PrimaryTabsWithIcons slot='preview' client:visible/>
+
+```tsx
+export const PrimaryTabsWithIcons = () => {
+  return (
+    <Tabs defaultValue="flights">
+      <Tabs.List className="h-16">
+        <Tabs.Trigger value="flights">
+          <Icon symbol="flight" />
+          Flights
+        </Tabs.Trigger>
+        <Tabs.Trigger value="trips">
+          <Badge content="3" size="large">
+            <Icon symbol="trip" />
+          </Badge>
+          Trips
+        </Tabs.Trigger>
+        <Tabs.Trigger value="discover">
+          <Icon symbol="explore" />
+          Discover
+        </Tabs.Trigger>
+      </Tabs.List>
+      <Tabs.Content value="flights" className="p-6">
+        <h2 className="text-title-lg">Flights</h2>
+      </Tabs.Content>
+      <Tabs.Content value="trips" className="p-6">
+        <h2 className="text-title-lg">Trips</h2>
+      </Tabs.Content>
+      <Tabs.Content value="discover" className="p-6">
+        <h2 className="text-title-lg">Discover</h2>
+      </Tabs.Content>
+    </Tabs>
+  )
+}
+```
+
+</ComponentContainer>
+
+### Secondary Tabs
+
+Secondary tabs are used within a content area to further separate related content and establish hierarchy.
+
+<ComponentContainer>
+  <SecondaryTabs slot='preview' client:visible/>
+
+```tsx
+export const SecondaryTabs = () => {
+  return (
+    <Tabs defaultValue="flights">
+      <Tabs.List className="[&_.indicator]:w-full [&_.indicator]:rounded-none">
+        <Tabs.Trigger value="flights">Flights</Tabs.Trigger>
+        <Tabs.Trigger value="trips">
+          <Badge content="3" size="large" className="static ml-2">
+            Trips
+          </Badge>
+        </Tabs.Trigger>
+        <Tabs.Trigger value="discover">Discover</Tabs.Trigger>
+      </Tabs.List>
+      <Tabs.Content value="flights" className="p-6">
+        <h2 className="text-title-lg">Flights</h2>
+      </Tabs.Content>
+      <Tabs.Content value="trips" className="p-6">
+        <h2 className="text-title-lg">Trips</h2>
+      </Tabs.Content>
+      <Tabs.Content value="discover" className="p-6">
+        <h2 className="text-title-lg">Discover</h2>
+      </Tabs.Content>
+    </Tabs>
+  )
+}
+```
+
+</ComponentContainer>
+
+### Scrollable Tabs
+
+When a set of tabs cannot fit on screen, use scrollable tabs. Scrollable tabs can use longer text labels and a larger number of tabs.
+
+Optionaly you can add the utility class `scrollbar-hidden` to your `main.css` to hide the scrollbar.
+
+<ComponentContainer>
+  <ScrollableTabs slot='preview' client:visible/>
+
+```tsx
+export const ScrollableTabs = () => {
+  return (
+    <Tabs defaultValue="akita" className="max-w-sm overflow-hidden">
+      <div className="scrollbar-hidden max-w-full overflow-auto pl-14">
+        <Tabs.List className="flex-nowrap justify-start">
+          <Tabs.Trigger value="akita">Akita</Tabs.Trigger>
+          <Tabs.Trigger value="alaskan">Alaskan</Tabs.Trigger>
+          <Tabs.Trigger value="australian_shepard">
+            Australian Shepard
+          </Tabs.Trigger>
+          <Tabs.Trigger value="Azawakh">Azawakh</Tabs.Trigger>
+          <Tabs.Trigger value="labrador-retriever">
+            Labrador Retriever
+          </Tabs.Trigger>
+          <Tabs.Trigger value="french-bulldog">French Bulldog</Tabs.Trigger>
+          <Tabs.Trigger value="beagle">Beagle</Tabs.Trigger>
+          <Tabs.Trigger value="rottweiler">Rottweiler</Tabs.Trigger>
+        </Tabs.List>
+      </div>
+      <Tabs.Content value="akita" className="p-6">
+        <h2 className="text-title-lg">Akita</h2>
+      </Tabs.Content>
+      <Tabs.Content value="alaskan" className="p-6">
+        <h2 className="text-title-lg">Alaskan</h2>
+      </Tabs.Content>
+      <Tabs.Content value="australian_shepard" className="p-6">
+        <h2 className="text-title-lg">Australian Shepard</h2>
+      </Tabs.Content>
+      <Tabs.Content value="Azawakh" className="p-6">
+        <h2 className="text-title-lg">Azawakh</h2>
+      </Tabs.Content>
+      <Tabs.Content value="labrador-retriever" className="p-6">
+        <h2 className="text-title-lg">Labrador Retriever</h2>
+      </Tabs.Content>
+      <Tabs.Content value="french-bulldog" className="p-6">
+        <h2 className="text-title-lg">French Bulldog</h2>
+      </Tabs.Content>
+      <Tabs.Content value="beagle" className="p-6">
+        <h2 className="text-title-lg">Beagle</h2>
+      </Tabs.Content>
+      <Tabs.Content value="rottweiler" className="p-6">
+        <h2 className="text-title-lg">Rottweiler</h2>
+      </Tabs.Content>
+    </Tabs>
+  )
+}
+```
+
+```css
+// main.css
+@layer utilities {
+  .scrollbar-hidden {
+    /* Hide scrollbar for Chrome, Safari, and Opera */
+    &::-webkit-scrollbar {
+      display: none;
+    }
+
+    /* Hide scrollbar for IE, Edge, and Firefox */
+    -ms-overflow-style: none; /* IE and Edge */
+    scrollbar-width: none; /* Firefox */
+  }
+}
+```
+
+</ComponentContainer>
