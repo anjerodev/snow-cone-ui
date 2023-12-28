@@ -10,7 +10,7 @@ const NavigationRailRoot = React.forwardRef<
   <aside
     ref={ref}
     className={cn(
-      'navigation-bar fixed inset-x-0 bottom-0 z-30 flex items-center bg-surfaceContainer py-4 pt-3 md:-inset-x-px md:inset-y-0 md:w-[88px] md:flex-col md:px-0 md:py-5',
+      'bottom-bar fixed inset-x-0 bottom-0 z-30 flex items-center bg-surfaceContainer py-4 pt-3 md:-inset-x-px md:inset-y-0 md:w-[88px] md:flex-col md:px-0 md:py-5',
       className
     )}
     {...props}

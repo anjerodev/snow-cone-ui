@@ -1,0 +1,76 @@
+---
+group: 'navigation'
+title: 'Bottom app bar'
+subtitle: 'Bottom app bars display navigation and key actions at the bottom of mobile and tablet screens'
+preview: 'https://lh3.googleusercontent.com/QPiA_77wodceCKYswWjv_MWgckEVwqiGsT3ZMAY-SC6QQ4Kbm-WblW2CcWTpPfkynhJ0RROo7plpgfJWmNXt8tLggBu3Tboreljxr1FtjgaQTnHPZQ=s0'
+previewDark: 'https://lh3.googleusercontent.com/BOeWHxeWfQ-KpicKwpCeOY4VjmdwdGs0uTw8nLjKV_tTaOeEuCVXQXqYOx2ILa7QPBeUQBxS_XFMSlHbbH5gHrqGfcu0Glxy_XCgtrxuYa-LFrTmDu8=s0'
+thumbnail: 'https://lh3.googleusercontent.com/3VHnUox8H-9RKDEF4x0EHAaxENhCpe1PfF54VHAwtK178_w3D2gYC1LGCkWE_Hu2G3KuCEVh0etHENT8pJ5YrwuTT-R95Ox6-FU4oLHTZN8xrWmXyw=w2400'
+thumbnailDark: 'https://lh3.googleusercontent.com/gAed5lfmYcmMFxOguVV0HPGHIHvYameU3izMPxsKW1EzbgpUkTYc6OhpqOAEvHO7M3iiM05EvfEGdxc3nL8D8pX2-igfLTsvqdW3Jj8l5QNNgCirApE=w2400'
+guidelines: 'https://m3.material.io/components/bottom-app-bar/guidelines'
+---
+
+import { DefaultBottomAppBar } from '@/components/react/examples/bottom-app-bar'
+import ComponentContainer from '@/components/component-container.astro'
+import ComponentSource from '@/components/component-source.astro'
+import Step from '@/components/step.astro'
+import Steps from '@/components/steps.astro'
+
+## Usage
+
+Bottom app bars provide access to up to four actions, including the [floating action button (FAB)]('/components/fab').
+
+## Instalation
+
+<Steps>
+
+<Step>
+  #### Copy and paste the following code into your project.
+  <ComponentSource name="bottom-app-bar" />
+</Step>
+
+<Step>
+#### Update the import paths to match your project setup.
+
+</Step>
+
+</Steps>
+
+## Examples
+
+### Bottom App Bar
+
+<ComponentContainer>
+  <DefaultBottomAppBar slot='preview'/>
+
+```tsx
+import { BottomAppBar } from '@/components/ui/bottom-app-bar'
+import { Fab } from '@/components/ui/fab'
+import { Icon } from '@/components/ui/icon'
+import { IconButton } from '@/components/ui/icon-button'
+
+export const DefaultBottomAppBar = () => {
+  return (
+    <BottomAppBar>
+      <IconButton variant="standard">
+        <Icon symbol="check_box" />
+      </IconButton>
+      <IconButton variant="standard">
+        <Icon symbol="brush" />
+      </IconButton>
+      <IconButton variant="standard">
+        <Icon symbol="mic" />
+      </IconButton>
+      <IconButton variant="standard">
+        <Icon symbol="image" />
+      </IconButton>
+      <Fab className="ml-auto shadow-none hover:shadow-none">
+        <Fab.Icon>
+          <Icon symbol="add" />
+        </Fab.Icon>
+      </Fab>
+    </BottomAppBar>
+  )
+}
+```
+
+</ComponentContainer>

@@ -10,7 +10,7 @@ const NavigationBarRoot = React.forwardRef<
   <aside
     ref={ref}
     className={cn(
-      'navigation-bar fixed inset-x-0 bottom-0 z-30 flex items-center bg-surfaceContainer py-4 pt-3',
+      'bottom-bar fixed inset-x-0 bottom-0 z-30 flex items-center bg-surfaceContainer py-4 pt-3',
       className
     )}
     {...props}
