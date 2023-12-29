@@ -1,0 +1,242 @@
+---
+group: 'containment'
+title: 'Lists'
+subtitle: 'Lists are continuous, vertical indexes of text and images'
+preview: 'https://lh3.googleusercontent.com/4c4MhfoX4i8GcYLDN_g9ePwtbSEy3lNG6OrEnYkOAWmgnGAD0SITydJ-IuNZVhVg2hVoYMwFvN80Ka2yXq2JuxQTDojnJlMTcb5fS-w-Bu-nJusQHa4=s0'
+previewDark: 'https://lh3.googleusercontent.com/pw7MFli47ybST_Dr_K6h0hW4wBePQLZUiBMmt8ncWCGQone4Mczmp5T9FnG7xi2M1a7xMRqFweghN-lwORoUnpKf2aaLM6_2_ItU7sfCUBqooSQKvZA=s0'
+thumbnail: 'https://lh3.googleusercontent.com/ntgLt1UkHb9e2CHQyRtKXPwT6ebBVfnmaifE1TgIrFMSH_GQCJOrLuBy8YYCzq7u1oxLe-GjoBlpDyBmf3vrIUAjN0A92-lAKBWsGNT_WqJiSijuA4M=w2400'
+thumbnailDark: 'https://lh3.googleusercontent.com/GfhcM6RJMbdXBtNeOBVPPoAxkdW0RyXip4oZ5LQn2HvebFkRWNaB5ZdCn3UmSi54sbCe73CoGahl4GXYosWXtdyJjXkVDzRFgY6FvIaSa_GJmPNVsKMN=w2400'
+guidelines: 'https://m3.material.io/components/lists/guidelines'
+---
+
+import {
+  DoubleLineListExample,
+  LinksListExample,
+  ListWithThumbnailAndTrailingSupportingText,
+  SortableListExample,
+} from '@/components/react/examples/lists.tsx'
+import ComponentContainer from '@/components/component-container.astro'
+import ComponentSource from '@/components/component-source.astro'
+import Step from '@/components/step.astro'
+import Steps from '@/components/steps.astro'
+
+## Usage
+
+Cards are used to display content and actions on a single topic.
+
+## Instalation
+
+<Steps>
+
+<Step>
+#### Run the following command if is not already installed:
+
+```bash
+npm i @radix-ui/react-slot
+```
+
+</Step>
+
+<Step>
+  #### Copy and paste the following code into your project.
+  <ComponentSource name="list" />
+</Step>
+
+<Step>
+#### Update the import paths to match your project setup.
+
+</Step>
+
+</Steps>
+
+## Examples
+
+### Thumbnail and trailing supporting text
+
+<ComponentContainer>
+  <ListWithThumbnailAndTrailingSupportingText slot='preview'/>
+
+```tsx
+import { List } from '@/components/ui/list'
+
+import { mockStore } from './data'
+
+export const ListWithThumbnailAndTrailingSupportingText = () => {
+  return (
+    <List>
+      {mockStore.map(({ sku, name, stock, price, thumbnail }) => (
+        <List.Item key={sku}>
+          <img
+            src={thumbnail}
+            alt={name}
+            className="size-14 bg-outlineVariant shrink-0"
+          />
+          <div className="grow">
+            <List.Headline>{name}</List.Headline>
+            <List.SupportingText>
+              {stock ? 'In Stock' : 'Out of Stock'}
+            </List.SupportingText>
+          </div>
+          <p className="text-label-lg">${price}</p>
+        </List.Item>
+      ))}
+    </List>
+  )
+}
+```
+
+</ComponentContainer>
+
+### Action area
+
+<ComponentContainer>
+  <LinksListExample slot='preview' client:visible/>
+
+```tsx
+import { Icon } from '@/components/ui/icon'
+import { IconButton } from '@/components/ui/icon-button'
+import { List } from '@/components/ui/list'
+
+import { mockFolders } from './data'
+
+export const LinksListExample = () => {
+  return (
+    <List asChild>
+      <nav>
+        {mockFolders.map(({ url, name, updated, icon }) => (
+          <List.Item asChild key={url}>
+            <div>
+              <List.ActionArea asChild>
+                <a href={url}>
+                  <div className="size-10 bg-primaryContainer text-onPrimaryContainer grid shrink-0 place-items-center rounded-full">
+                    <Icon symbol={icon} />
+                  </div>
+                  <div className="grow">
+                    <List.Headline>{name}</List.Headline>
+                    <List.SupportingText>{`updated ${updated}`}</List.SupportingText>
+                  </div>
+                </a>
+              </List.ActionArea>
+              <IconButton
+                variant="standard"
+                onClick={() => console.log({ name })}
+              >
+                <Icon symbol="info" />
+              </IconButton>
+            </div>
+          </List.Item>
+        ))}
+      </nav>
+    </List>
+  )
+}
+```
+
+</ComponentContainer>
+
+### With dividers
+
+Place a divider between rows with lots of content, such as those with two- or three-line lists
+
+<ComponentContainer>
+  <DoubleLineListExample slot='preview'/>
+
+```tsx
+import { List } from '@/components/ui/list'
+
+import { mockCategories } from './data'
+
+export const DoubleLineListExample = () => {
+  return (
+    <List className="max-w-md">
+      {mockCategories.map(({ thumbnail, name, description, date }) => (
+        <List.Item key={name} className="border-outlineVariant border-b">
+          <img
+            src={thumbnail}
+            alt={name}
+            className="size-14 bg-outlineVariant shrink-0 rounded-md object-cover"
+          />
+          <div className="grow">
+            <List.Headline>{name}</List.Headline>
+            <List.SupportingText className="line-clamp-2">
+              {description}
+            </List.SupportingText>
+          </div>
+          <p className="text-label-sm shrink-0 self-start">{date}</p>
+        </List.Item>
+      ))}
+    </List>
+  )
+}
+```
+
+</ComponentContainer>
+
+### Sortable
+
+The drag-and-drop sortable functionality utilizes the [`@dnd-kit`](https://github.com/clauderic/dnd-kit) library. To use this feature, you will have to follow these additional steps:
+
+<Steps>
+
+<Step>
+#### Run the following command:
+
+```bash
+npm i @dnd-kit/core @dnd-kit/sortable @dnd-kit/utilities
+```
+
+</Step>
+
+<Step>
+  #### Copy and paste the following code into your project.
+  <ComponentSource name="sortable-list" />
+</Step>
+
+<Step>
+#### Update the import paths to match your project setup.
+
+</Step>
+
+</Steps>
+
+<ComponentContainer>
+  <SortableListExample slot='preview' client:only/>
+
+```tsx
+import { useState } from 'react'
+
+import { Icon } from '@/components/ui/icon'
+import { List } from '@/components/ui/list'
+import { SortableList } from '@/components/ui/sortable-list'
+
+import { mockDogs } from './data'
+
+export const SortableListExample = () => {
+  const [items, setItems] = useState(mockDogs)
+
+  return (
+    <SortableList
+      items={items}
+      onChange={setItems}
+      renderItem={({ id, headline, supportingText }) => (
+        <SortableList.Item key={id} id={id}>
+          <div className="size-10 bg-primaryContainer text-onPrimaryContainer grid shrink-0 place-items-center rounded-full">
+            {headline.slice(0, 1).toLocaleUpperCase()}
+          </div>
+          <div className="grow">
+            <List.Headline>{headline}</List.Headline>
+            <List.SupportingText className="line-clamp-1">
+              {supportingText}
+            </List.SupportingText>
+          </div>
+          <SortableList.Handle>
+            <Icon symbol="drag_handle" />
+          </SortableList.Handle>
+        </SortableList.Item>
+      )}
+    />
+  )
+}
+```
+
+</ComponentContainer>

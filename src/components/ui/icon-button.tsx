@@ -5,7 +5,7 @@ import { cva, type VariantProps } from 'class-variance-authority'
 import { cn } from '@/lib/utils'
 
 const iconButtonVariants = cva(
-  'shrink-0 relative group h-10 w-10 overflow-hidden grid place-items-center rounded-xl transition outline-none disabled:pointer-events-none disabled:text-onSurface/38 active:scale-[0.98]',
+  'shrink-0 relative group/button h-10 w-10 overflow-hidden grid place-items-center rounded-xl transition outline-none disabled:pointer-events-none disabled:text-onSurface/38 active:scale-[0.98]',
   {
     variants: {
       variant: {
@@ -24,7 +24,7 @@ const iconButtonVariants = cva(
 )
 
 const stateLayerVariants = cva(
-  'transition-opacity absolute inset-0 z-0 opacity-0 group-hover:opacity-8 group-focus:opacity-12 group-active:opacity-12',
+  'transition-opacity absolute inset-0 z-0 opacity-0 group-hover/button:opacity-8 group-focus/button:opacity-12 group-active/button:opacity-12',
   {
     variants: {
       variant: {
