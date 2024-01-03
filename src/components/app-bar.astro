@@ -2,11 +2,10 @@
 import Logo from '@/components/logo.astro'
 ---
 
-<header class="bg-background sticky z-50 top-0 w-full">
-  <div class="container flex items-center justify-between h-16">
-    <div>
-      <Logo small class="block h-8 sm:hidden" />
-      <Logo class="hidden h-8 sm:block" />
+<header class="fixed top-0 z-50 w-full bg-surface md:hidden">
+  <div class="container flex h-16 items-center justify-between">
+    <div class="flex items-center gap-2">
+      <Logo class="block h-8 text-primary" />
     </div>
   </div>
 </header>

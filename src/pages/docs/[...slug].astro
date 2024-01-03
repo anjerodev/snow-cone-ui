@@ -2,6 +2,7 @@
 import { getCollection } from 'astro:content'
 
 import RootLayout from '@/layouts/root-layout.astro'
+import ContentContainer from '@/components/content-container.astro'
 import OnThisPage from '@/components/on-this-page.astro'
 import PageHeader from '@/components/page-header.astro'
 import Pre from '@/components/pre.astro'
@@ -26,7 +27,7 @@ const headings = contentHeadings.filter(
 ---
 
 <RootLayout title={`Docs - ${title}`}>
-  <main>
+  <ContentContainer>
     <PageHeader
       title={title}
       subtitle={subtitle}
@@ -36,7 +37,7 @@ const headings = contentHeadings.filter(
       }}
     />
     <div class="flex w-full">
-      <section class="mdx z-0 max-w-5xl flex-1 px-4 xl:ml-40">
+      <section class="mdx z-0 max-w-5xl flex-1 pb-24 md:px-4 md:pb-4 xl:ml-40">
         <Content
           components={{
             pre: Pre,
@@ -45,5 +46,5 @@ const headings = contentHeadings.filter(
       </section>
       <OnThisPage title={title} links={headings} />
     </div>
-  </main>
+  </ContentContainer>
 </RootLayout>

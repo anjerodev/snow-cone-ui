@@ -1,18 +1,25 @@
 ---
 import { getCollection } from 'astro:content'
-import Layout from '@/layouts/root-layout.astro'
 
-const docsEntries = await getCollection('docs')
+import Layout from '@/layouts/root-layout.astro'
+import ContentContainer from '@/components/content-container.astro'
+
+// const docsEntries = await getCollection('docs')
 ---
 
 <Layout title="Docs Index layout">
-  <ul>
-    {
-      docsEntries.map((blogPostEntry) => (
-        <li>
-          <a href={`/docs/${blogPostEntry.slug}`}>{blogPostEntry.data.title}</a>
-        </li>
-      ))
-    }
-  </ul>
+  <ContentContainer>
+    <h1>Introduction</h1>
+    <!-- <ul>
+      {
+        docsEntries.map((blogPostEntry) => (
+          <li>
+            <a href={`/docs/${blogPostEntry.slug}`}>
+              {blogPostEntry.data.title}
+            </a>
+          </li>
+        ))
+      }
+    </ul> -->
+  </ContentContainer>
 </Layout>

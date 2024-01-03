@@ -3,7 +3,7 @@ import { useState } from 'react'
 import { imagesRootPath } from '@/lib/data'
 import { Avatar } from '@/components/ui/avatar'
 import { Button } from '@/components/ui/button'
-import { ActionCard, Card, CardContent } from '@/components/ui/card'
+import { ActionCard, Card } from '@/components/ui/card'
 import { Icon } from '@/components/ui/icon'
 import { IconButton } from '@/components/ui/icon-button'
 
@@ -19,10 +19,10 @@ export const FilledCard = () => {
           <Card.Headline>Glass Souls' World Tour</Card.Headline>
           <Card.Subhead>From your recent favorites</Card.Subhead>
         </Card.Header>
-        <CardContent>
+        <Card.Content>
           Glass Souls will deliver a show that will keep you on the edge of your
           seat.
-        </CardContent>
+        </Card.Content>
         <Card.Footer>
           <Button>Buy Tickets</Button>
         </Card.Footer>
@@ -42,10 +42,10 @@ export const ElevatedCard = () => {
         <Card.Headline>Glass Souls' World Tour</Card.Headline>
         <Card.Subhead>From your recent favorites</Card.Subhead>
       </Card.Header>
-      <CardContent>
+      <Card.Content>
         Glass Souls will deliver a show that will keep you on the edge of your
         seat.
-      </CardContent>
+      </Card.Content>
       <Card.Footer>
         <Button>Buy Tickets</Button>
       </Card.Footer>
@@ -64,10 +64,10 @@ export const OutlinedCard = () => {
         <Card.Headline>Glass Souls' World Tour</Card.Headline>
         <Card.Subhead>From your recent favorites</Card.Subhead>
       </Card.Header>
-      <CardContent>
+      <Card.Content>
         Glass Souls will deliver a show that will keep you on the edge of your
         seat.
-      </CardContent>
+      </Card.Content>
       <Card.Footer>
         <Button>Buy Tickets</Button>
       </Card.Footer>
@@ -138,10 +138,10 @@ export const CardWithTopActions = () => {
           Clay pot fair on Saturday?
         </Card.Headline>
       </Card.Header>
-      <CardContent>
+      <Card.Content>
         I think it's time for us to finally try that new noodle shop downtown
         that doesn't use menus. Anyone els...
-      </CardContent>
+      </Card.Content>
     </Card>
   )
 }

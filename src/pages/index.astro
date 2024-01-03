@@ -1,9 +1,341 @@
 ---
+import { siteConfig } from '@/config/site'
+import { imagesRootPath } from '@/lib/data'
 import RootLayout from '@/layouts/root-layout.astro'
+import { Card } from '@/components/ui/card'
+import { Checkbox } from '@/components/ui/checkbox'
+import { Fab } from '@/components/ui/fab'
+import { Icon } from '@/components/ui/icon'
+import { IconButton } from '@/components/ui/icon-button'
+import { List } from '@/components/ui/list'
+import { LinearProgress } from '@/components/ui/progress-indicator'
+import { Switch } from '@/components/ui/switch'
+import {
+  NavigationBarDemo,
+  RadioButtonDemo,
+  TooltipDemo,
+} from '@/components/react/home'
+import Button from '@/components/button.astro'
+import Chip from '@/components/chip.astro'
+import GithubIcon from '@/components/icons/github.svg.astro'
+import XIcon from '@/components/icons/x.svg.astro'
+import ProjectCard from '@/components/project-card.astro'
+import SectionCard from '@/components/section-card.astro'
+import CilinderShape from '@/components/shapes/cilinder.svg.astro'
+import RoundedStarShape from '@/components/shapes/rounded-star.svg.astro'
+import RoundedWavesShape from '@/components/shapes/rounded-waves.svg.astro'
+import Wave from '@/components/shapes/wave.svg.astro'
 ---
 
 <RootLayout title="Snow Cone UI">
-  <main class="container space-y-8 py-4">
-    <h1 class="font-bold">Snow Cone UI</h1>
+  <main>
+    <div class="w-full overflow-x-clip">
+      <section
+        class="flex-center relative z-10 mx-auto h-screen w-full max-w-7xl p-2 2xl:h-[calc(100vh-120px)] 2xl:max-h-[850px] 2xl:min-h-0"
+      >
+        <div class="relative z-20 mx-auto max-w-2xl space-y-6 text-center">
+          <div class="flex-center space-x-4">
+            <Chip
+              as="a"
+              href="https://ui.shadcn.com/"
+              target="_blank"
+              rel="noreferrer noopener"
+            >
+              Inspired by Shadcn UI
+            </Chip>
+          </div>
+          <div>
+            <h1 class="mb-4">Snow Cone UI</h1>
+            <h2 class="mb-6 text-pretty md:text-headline-lg">
+              A copy-paste <span class="text-tertiary"
+                >open source components collection</span
+              > based on Material 3 design guidelines.
+            </h2>
+            <h3 class="text-onSurfaceVariant">
+              Customizable Good Looking UI Effortless
+            </h3>
+          </div>
+          <div class="flex-center space-x-4">
+            <Button as="a" href="/docs/installation">Get started</Button>
+            <Button
+              variant="outlined"
+              as="a"
+              href={siteConfig.links.github}
+              class="pl-4"
+            >
+              <GithubIcon class="mr-2 size-5" />
+              Github
+            </Button>
+          </div>
+        </div>
+        <div class="absolute inset-0 z-10 hidden md:block">
+          <div class="relative h-full w-full">
+            <div class="floating-component absolute bottom-[26%] right-[25%]">
+              <IconButton variant="tonal">
+                <Icon symbol="settings" />
+              </IconButton>
+            </div>
+            <div class="floating-component absolute bottom-[22%] left-[30%]">
+              <Checkbox client:visible />
+            </div>
+            <div class="floating-component absolute bottom-[12%] right-[55%]">
+              <RadioButtonDemo client:visible />
+            </div>
+            <div class="floating-component absolute bottom-[10%] left-[10%]">
+              <Fab>
+                <Icon symbol="edit" />
+              </Fab>
+            </div>
+            <div
+              class="floating-component absolute right-[2%] top-[1%] w-full max-w-sm"
+            >
+              <NavigationBarDemo client:visible />
+            </div>
+            <div
+              class="floating-component absolute left-[1%] top-[10%] w-full max-w-sm"
+            >
+              <List>
+                <List.Item className="border-b border-outlineVariant">
+                  <List.Content>
+                    <List.Headline>Components</List.Headline>
+                  </List.Content>
+                  <List.EdgeSection>
+                    <Switch client:visible />
+                  </List.EdgeSection>
+                </List.Item>
+                <List.Item className="border-b border-outlineVariant">
+                  <List.Content>
+                    <List.Headline>Text styles</List.Headline>
+                  </List.Content>
+                  <List.EdgeSection>
+                    <Switch client:visible />
+                  </List.EdgeSection>
+                </List.Item>
+                <List.Item>
+                  <List.Content>
+                    <List.Headline>Color styles</List.Headline>
+                  </List.Content>
+                  <List.EdgeSection>
+                    <Switch client:visible />
+                  </List.EdgeSection>
+                </List.Item>
+              </List>
+            </div>
+            <div
+              class="floating-component absolute bottom-[5%] right-[10%] w-full max-w-sm"
+            >
+              <LinearProgress />
+            </div>
+            <div
+              class="floating-component absolute bottom-[50%] left-[10%] w-full max-w-sm"
+            >
+              <TooltipDemo client:visible />
+            </div>
+            <div
+              class="floating-component absolute bottom-[30%] right-0 translate-x-[50%]"
+            >
+              <Card className="max-w-[350px]">
+                <Card.Thumbnail
+                  src={imagesRootPath + 'cards/card_example_thumbnail'}
+                  className="h-[200px]"
+                />
+                <Card.Header>
+                  <Card.Headline>Glass Souls' World Tour</Card.Headline>
+                  <Card.Subhead>From your recent favorites</Card.Subhead>
+                </Card.Header>
+                <Card.Content>
+                  Glass Souls will deliver a show that will keep you on the edge
+                  of your seat.
+                </Card.Content>
+                <Card.Footer>
+                  <Button>Buy Tickets</Button>
+                </Card.Footer>
+              </Card>
+            </div>
+          </div>
+        </div>
+        <!-- Decoration shapes start -->
+        <div
+          class="absolute right-[-200px] top-[60vh] z-0 text-primaryContainer 2xl:top-[600px]"
+        >
+          <RoundedStarShape class="size-96 animate-beat-slow md:size-[520px]" />
+        </div>
+        <div
+          class="absolute left-[-200px] top-[25vh] z-0 text-secondaryContainer md:left-[-100px] xl:top-[450px]"
+        >
+          <RoundedWavesShape
+            class="size-[300px] animate-spin-slow md:size-96"
+          />
+        </div>
+        <div
+          class="absolute right-[-20%] top-0 z-0 translate-y-[-60%] text-tertiaryContainer md:right-[5%]"
+        >
+          <CilinderShape
+            class="size-[380px] animate-bounce-slow md:size-[600px]"
+          />
+        </div>
+        <!-- Decoration shapes end -->
+      </section>
+    </div>
+    <section
+      class="relative z-10 mx-auto flex w-full max-w-7xl flex-col gap-2 px-2 md:flex-row"
+    >
+      <div class="flex flex-col items-center justify-center md:w-1/2">
+        <section
+          class="flex min-h-[75vh] max-w-xl flex-col justify-center space-y-8 2xl:h-[calc(100vh-120px)] 2xl:max-h-[850px] 2xl:min-h-0"
+        >
+          <div class="space-y-4">
+            <h2>When to use it?</h2>
+            <p class="max-w-[60ch] text-pretty">
+              This collection of components is great for speeding up your
+              project's development time by using the well-tested Material UI 3
+              design guidelines.
+            </p>
+            <p>Some good uses cases will be:</p>
+          </div>
+          <ul class="space-y-2">
+            <SectionCard
+              title="Projects where a differential ui is not the key"
+              description="Ideal for functionality-focused projects, user-friendly and efficient interface without spending time in design."
+            >
+              <Icon
+                slot="icon"
+                symbol="timer"
+                className="z-10 text-onTertiaryContainer"
+              />
+            </SectionCard>
+            <SectionCard
+              title="Beautiful responsive & accessible projects"
+              description="Perfect for providing the best user experience regardless of your design skills."
+            >
+              <Icon
+                slot="icon"
+                symbol="responsive_layout"
+                className="z-10 text-onTertiaryContainer"
+              />
+            </SectionCard>
+            <SectionCard
+              title="To achieve Consistency and Familiarity"
+              description="Ensure a consistent and familiar user experience, reducing the users learning curve."
+            >
+              <Icon
+                slot="icon"
+                symbol="group"
+                className="z-10 text-onTertiaryContainer"
+              />
+            </SectionCard>
+            <SectionCard
+              title="You simply like material design"
+              description="There is no doubt that Google's design team knows what they are doing."
+            >
+              <Icon
+                slot="icon"
+                symbol="favorite"
+                className="z-10 text-onTertiaryContainer"
+              />
+            </SectionCard>
+          </ul>
+        </section>
+      </div>
+
+      <div
+        class="flex flex-col items-center justify-center py-2 md:h-screen md:w-1/2 2xl:h-[calc(100vh-120px)] 2xl:max-h-[850px] 2xl:min-h-0"
+      >
+        <picture
+          class="relative inline-flex h-full flex-col overflow-hidden rounded-xl"
+        >
+          <img
+            src="/assets/when_to_use_dark.webp"
+            class="hidden h-full object-cover object-left dark:flex"
+          />
+          <img
+            src="/assets/when_to_use_light.webp"
+            class="flex h-full object-cover object-left dark:hidden"
+          />
+        </picture>
+      </div>
+    </section>
+    <Wave class="mx-auto my-40 text-primaryContainer" />
+    <section class="mb-40 text-center">
+      <div class="mx-auto max-w-2xl p-2">
+        <h2 class="mb-4">
+          Join the <span class="text-primary">Community</span>
+        </h2>
+        <p class="mb-8 text-pretty text-headline-sm">
+          <span class="font-semibold">Snow Cone UI</span> is a <span
+            class="font-semibold">free</span
+          >
+          components collection, that you are able to use for personal and commercial
+          projects. Get involve in the community to make Snow Cone UI better.
+        </p>
+        <div class="grid gap-2 sm:grid-cols-2">
+          <a
+            href={siteConfig.links.github}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="flex items-start gap-4 rounded-lg bg-surfaceContainerLow p-4 text-start transition-colors hover:bg-primaryContainer hover:text-onPrimaryContainer"
+          >
+            <GithubIcon class="size-8 shrink-0" />
+            <div class="grow space-y-1">
+              <h3 class="text-title-lg">Github</h3>
+              <p class="text-pretty">
+                To report bugs, request features and contribute to the project.
+              </p>
+            </div>
+          </a>
+          <a
+            href={siteConfig.links.twitter}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="flex items-start gap-4 rounded-lg bg-surfaceContainerLow p-4 text-start transition-colors hover:bg-primaryContainer hover:text-onPrimaryContainer"
+          >
+            <XIcon class="size-8 shrink-0" />
+            <div class="grow space-y-1">
+              <h3 class="text-title-lg">Twitter</h3>
+              <p class="text-pretty">
+                For announcements tips and general information.
+              </p>
+            </div>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <Wave class="mx-auto my-40 text-primaryContainer" />
+    <section class="mb-40 text-center">
+      <div class="mx-auto max-w-2xl">
+        <h2 class="mb-8">
+          Projects using <span class="text-primary">Snow Cone UI</span>
+        </h2>
+      </div>
+      <div
+        class="mx-auto grid max-w-5xl grid-cols-1 gap-2 p-2 sm:grid-cols-2 lg:grid-cols-3"
+      >
+        <ProjectCard
+          name="Teammates"
+          description="The powerhouse platform for connecting visionaries and Cultivating Success."
+          url="https://teammates.mov"
+          logo="https://rzdhauetxoeqlmearyle.supabase.co/storage/v1/object/public/icons/782fb53f-ec7c-4c3e-98e0-8f37349a2557?timestamp=1697867394679"
+        />
+        <ProjectCard
+          name="Your project"
+          description="It would be great if you could let me know if you use Snow Cone UI in your project."
+          disabled
+        />
+        <ProjectCard name="" description="" disabled />
+      </div>
+    </section>
   </main>
 </RootLayout>
+
+<style>
+  .floating-component {
+    padding: 16px;
+    opacity: 30%;
+    transition: opacity 0.2s ease-in-out;
+    will-change: opacity;
+    &:hover {
+      opacity: 100%;
+    }
+  }
+</style>

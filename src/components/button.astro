@@ -1,0 +1,26 @@
+---
+import { type HTMLTag, type Polymorphic } from 'astro/types'
+
+import * as UIButton from '@/components/ui/button'
+
+type Props<Tag extends HTMLTag> = Polymorphic<{ as: Tag }> & {
+  class?: string
+} & UIButton.ButtonProps
+
+const {
+  as: Tag = 'button',
+  class: className,
+  disableStateLayer,
+  variant,
+  ...props
+} = Astro.props
+---
+
+<Tag class:list={[className, UIButton.buttonVariants({ variant })]} {...props}>
+  <slot />
+  {
+    !disableStateLayer && (
+      <span class={UIButton.stateLayerVariants({ variant })} />
+    )
+  }
+</Tag>

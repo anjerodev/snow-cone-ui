@@ -77,7 +77,7 @@ const [ChipProvider, useChipContext] = createSafeContext<ChipContextType>({
   name: 'Chip',
 })
 
-export interface ButtonChipProps
+interface ButtonChipProps
   extends React.ButtonHTMLAttributes<HTMLButtonElement>,
     VariantProps<typeof chipVariants> {
   selected?: boolean
@@ -253,3 +253,5 @@ export {
   stateLayerVariants,
   chipIconVariants,
 }
+
+export type { ButtonChipProps }

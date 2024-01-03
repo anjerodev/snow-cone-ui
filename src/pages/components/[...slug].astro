@@ -9,10 +9,11 @@ import { Icon } from '@/components/ui/icon'
 import { CreditsChip } from '@/components/react/credits-chip'
 import BottomNavigation from '@/components/bottom-navigation.astro'
 import ComponentsHeader from '@/components/components-header.astro'
+import ContentContainer from '@/components/content-container.astro'
+import RadixIcon from '@/components/icons/radix.svg.astro'
+import ShadcnIcon from '@/components/icons/shadcn.svg.astro'
 import OnThisPage from '@/components/on-this-page.astro'
 import Pre from '@/components/pre.astro'
-import RadixIcon from '@/components/radix-icon.astro'
-import ShadcnIcon from '@/components/shadcn-icon.astro'
 
 export async function getStaticPaths() {
   const docsEntries = await getCollection('components')
@@ -62,7 +63,7 @@ const prevAndNext = (() => {
 ---
 
 <RootLayout title={`Components - ${title}`}>
-  <main>
+  <ContentContainer>
     <ComponentsHeader
       title={title}
       subtitle={subtitle}
@@ -73,19 +74,19 @@ const prevAndNext = (() => {
       bgImage={componentsSections[group as keyof typeof componentsSections].bg}
     />
     <div class="flex w-full">
-      <section class="mdx z-0 max-w-5xl flex-1 px-4 xl:ml-40">
+      <section class="mdx z-0 max-w-5xl flex-1 pb-24 md:px-4 md:pb-4 xl:ml-40">
         <div class="flex w-full flex-wrap gap-3 py-4">
           {
             shadcn && (
               <CreditsChip href={shadcn} label="Shadcn UI">
-                <ShadcnIcon />
+                <ShadcnIcon class="h-[18px] w-[18px]" />
               </CreditsChip>
             )
           }
           {
             radix && (
               <CreditsChip href={radix} label="Radix UI">
-                <RadixIcon />
+                <RadixIcon class="h-[18px] w-[18px] p-0.5" />
               </CreditsChip>
             )
           }
@@ -106,5 +107,5 @@ const prevAndNext = (() => {
       </section>
       <OnThisPage title={title} links={headings} />
     </div>
-  </main>
+  </ContentContainer>
 </RootLayout>

@@ -16,6 +16,9 @@
   p:not(.preview p) {
     @apply my-4 text-body-lg first-of-type:mt-0;
   }
+  a:not(.preview a) {
+    @apply font-semibold underline transition-colors hover:text-primary;
+  }
 }
 
 /* Prism styles */

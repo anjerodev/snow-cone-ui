@@ -5,6 +5,8 @@ import { Icon } from '@/components/ui/icon'
 import { NavigationRail, styles } from '@/components/ui/navigation-rail'
 import ThemeIcon from '@/components/theme-icon.astro'
 
+import Logo from './logo.astro'
+
 const navigationItem = (url: string, icon: string, label: string) => ({
   url,
   icon,
@@ -12,7 +14,7 @@ const navigationItem = (url: string, icon: string, label: string) => ({
 })
 
 const navigationItems = [
-  navigationItem(ROUTES.HOME, 'home', 'Home'),
+  navigationItem(ROUTES.DOCS, 'description', 'Docs'),
   navigationItem(ROUTES.TYPOGRAPHY, 'font_download', 'Typography'),
   navigationItem(ROUTES.THEME, 'palette', 'Theme'),
   navigationItem(ROUTES.COMPONENTS, 'add_circle', 'Components'),
@@ -22,13 +24,11 @@ const [, section, subsection] = pathname.split('/')
 ---
 
 <NavigationRail>
-  <span class="mb-6 hidden h-10 w-10 text-primary md:block">
-    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <path
-        d="M13.736 4.192a4.325 4.325 0 0 0-5.698 2.227.779.779 0 0 1-1.426-.625 5.883 5.883 0 0 1 11.09 3.805.779.779 0 0 1-.065 1.554H6.363a.779.779 0 1 1 0-1.557h9.715-7.786a11.776 11.776 0 0 0 6.749-4.518 4.324 4.324 0 0 0-1.306-.886ZM11.088 19.12c-.487 0-.8.517-.576.948l.573 1.104a1.031 1.031 0 0 0 1.83 0l2.148-4.14a.703.703 0 0 0-.622-1.026h-1.796a.779.779 0 0 1 0-1.557h3.34a.855.855 0 0 0-.002-1.71H7.866a.703.703 0 0 0-.624 1.026l1.107 2.133a3.086 3.086 0 0 0 2.74 1.665.779.779 0 0 1 0 1.558Z"
-        fill="currentColor"></path>
-    </svg>
-  </span>
+  <a href={ROUTES.HOME} class="mb-6 transition-transform hover:scale-105">
+    <span class="hidden h-10 w-10 text-primary md:block">
+      <Logo />
+    </span>
+  </a>
   <NavigationRail.Container>
     {
       navigationItems.map(({ url, icon, label }) => (

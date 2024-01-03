@@ -19,7 +19,7 @@ export const DefaultBottomAppBar = () => {
         <IconButton variant="standard">
           <Icon symbol="image" />
         </IconButton>
-        <Fab className="ml-auto shadow-none hover:shadow-none">
+        <Fab className="ml-auto shadow-none hover:shadow-none active:shadow-none">
           <Fab.Icon>
             <Icon symbol="add" />
           </Fab.Icon>

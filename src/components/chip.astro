@@ -1,0 +1,21 @@
+---
+import { type HTMLTag, type Polymorphic } from 'astro/types'
+
+import { cn } from '@/lib/utils'
+import * as UIChip from '@/components/ui/chip'
+
+type Props<Tag extends HTMLTag> = Polymorphic<{ as: Tag }> & {
+  class?: string
+} & UIChip.ButtonChipProps
+
+const { as: Tag = 'button', class: className, variant, ...props } = Astro.props
+---
+
+<Tag class={cn(UIChip.chipVariants({ variant, className }))} {...props}>
+  <span
+    class="truncate whitespace-nowrap px-2 text-label-lg text-current group-disabled:text-onSurface/38 group-data-[selected]:group-disabled:text-onSurface/38"
+  >
+    <slot />
+  </span>
+  <span class={UIChip.stateLayerVariants({ variant })}></span>
+</Tag>

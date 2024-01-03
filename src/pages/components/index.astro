@@ -5,6 +5,7 @@ import { getCollection } from 'astro:content'
 import { imagesRootPath } from '@/lib/data'
 import RootLayout from '@/layouts/root-layout.astro'
 import CategoryCardsGroup from '@/components/category-cards-group.astro'
+import ContentContainer from '@/components/content-container.astro'
 import PageHeader from '@/components/page-header.astro'
 
 const componentCard = (
@@ -59,7 +60,7 @@ const sections = Object.entries(componentsSections).map(([name, info]) => ({
 ---
 
 <RootLayout title="Snow Cone Components">
-  <main>
+  <ContentContainer>
     <PageHeader
       title="Components"
       subtitle="Components are interactive building blocks for creating an user interface. They can be organized into categories based on their purpose: Action, containment, communication, navigation, selection, and text input."
@@ -70,7 +71,7 @@ const sections = Object.entries(componentsSections).map(([name, info]) => ({
     />
     {
       sections.map(({ name, description, components, style }) => (
-        <section class="container p-0">
+        <section class="container mt-16 p-0 pb-24 md:pb-4">
           <div class="p-6">
             <h2 class="capitalize">{name}</h2>
             <p class="sm:text-title-lg">{description}</p>
@@ -83,5 +84,5 @@ const sections = Object.entries(componentsSections).map(([name, info]) => ({
         </section>
       ))
     }
-  </main>
+  </ContentContainer>
 </RootLayout>

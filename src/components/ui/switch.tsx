@@ -31,7 +31,7 @@ const Switch = React.forwardRef<
     >
       <SwitchPrimitives.Thumb
         className={cn(
-          'pointer-events-none flex aspect-square h-4 items-center justify-center rounded-xl bg-outline ring-0 transition-[transform,width,height] group-active:scale-125 group-disabled:bg-onSurface/38 data-[state=checked]:h-6 data-[state=checked]:translate-x-[calc(100%-2px)] data-[state=unchecked]:translate-x-1.5 data-[state=checked]:bg-onPrimary data-[state=unchecked]:group-active:scale-[1.8] data-[state=unchecked]:group-active:bg-onSurfaceVariant data-[state=checked]:group-disabled:bg-surface',
+          'pointer-events-none flex aspect-square h-4 items-center justify-center rounded-xl bg-outline ring-0 transition-[transform,width,height] group-active:scale-125 group-disabled:bg-onSurface/38 data-[state=checked]:h-6 data-[state=checked]:translate-x-[calc(100%-2px)] data-[state=unchecked]:translate-x-1.5 data-[state=checked]:bg-onPrimary data-[state=unchecked]:group-active:scale-[1.8] data-[state=checked]:group-disabled:bg-surface',
           withIcons &&
             'h-6 data-[state=unchecked]:translate-x-0.5 data-[state=unchecked]:group-active:scale-125'
         )}

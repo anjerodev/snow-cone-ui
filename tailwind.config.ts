@@ -445,6 +445,26 @@ const config = {
           '0%': { opacity: '0' },
           '100%': { opacity: '1' },
         },
+        'small-bounce': {
+          '0%, 100%': {
+            transform: 'translateY(-5%)',
+            'animation-timing-function': 'ease-in-out',
+          },
+          '50%': {
+            transform: 'translateY(0)',
+            'animation-timing-function': 'ease-in-out',
+          },
+        },
+        beat: {
+          '0%, 100%': {
+            transform: 'scale(0.8) rotate(5deg)',
+            'animation-timing-function': 'ease-in-out',
+          },
+          '50%': {
+            transform: 'scale(1) rotate(0deg)',
+            'animation-timing-function': 'ease-in-out',
+          },
+        },
       },
       animation: {
         'accordion-down': 'accordion-down 0.2s ease-out',
@@ -460,6 +480,9 @@ const config = {
         'progress-spin': 'progress-spin 2s infinite linear',
         'snackbar-in':
           'zoom-in-y 0.25s cubic-bezier(.2,0,0,1), fade-in 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275)',
+        'spin-slow': 'spin 80s linear infinite',
+        'bounce-slow': 'small-bounce 20s infinite',
+        'beat-slow': 'beat 15s infinite',
       },
     },
   },

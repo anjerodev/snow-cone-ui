@@ -6,7 +6,9 @@ import 'material-symbols/rounded.css'
 import { ViewTransitions } from 'astro:transitions'
 
 import { SnackbarProvider } from '@/components/ui/snackbar'
+import AppBar from '@/components/app-bar.astro'
 import DevToolbar from '@/components/dev-toolbar.astro'
+import Footer from '@/components/footer.astro'
 import NavigationSideBar from '@/components/navigation-side-bar.astro'
 
 interface Props {
@@ -28,16 +30,16 @@ const { title } = Astro.props
     <ViewTransitions />
   </head>
   <body
-    class="min-h-[100dvh] bg-background font-sans text-onBackground antialiased selection:bg-primary/30 dark:selection:text-surface"
+    class="min-h-[100vh] max-w-[100vw] bg-background font-sans text-onBackground antialiased selection:bg-primary/30 dark:selection:text-surface"
   >
+    <AppBar />
     <NavigationSideBar />
     <div class="flex flex-1 flex-col md:ml-[88px]">
-      <section class="p-2 pb-20">
-        <slot />
-      </section>
+      <slot />
     </div>
     <DevToolbar />
     <SnackbarProvider client:only />
+    <Footer />
     <style is:global id="theme">
       :root {
         --font-symbols: 'Material Symbols Rounded';

@@ -23,9 +23,9 @@ const cardVariants = cva(
 const actionCardVariants = cva('group outline-none z-0', {
   variants: {
     variant: {
-      elevated: 'hover:shadow-md [&.disabled]:bg-surfaceVariant',
-      filled: 'hover:shadow-sm [&.disabled]:bg-surface',
-      outlined: '[&.disabled]:border-outline/70',
+      elevated: 'hover:shadow-md aria-disabled:bg-surfaceVariant',
+      filled: 'hover:shadow-sm',
+      outlined: 'aria-disabled:border-outline/70',
     },
   },
   defaultVariants: {
@@ -57,11 +57,12 @@ const ActionCardRoot = React.forwardRef<
   return (
     <Slot
       ref={ref}
+      aria-disabled={disabled}
       className={cn(
         cardVariants({ variant, className }),
         actionCardVariants({ variant, className }),
         disabled &&
-          'disabled opacity-38 shadow-none hover:shadow-none [&>a]:pointer-events-none'
+          'disabled pointer-events-none opacity-38 shadow-none hover:shadow-none'
       )}
       {...props}
     >
@@ -170,4 +171,6 @@ export {
   CardSubhead,
   CardContent,
   CardFooter,
+  cardVariants,
+  actionCardVariants,
 }
