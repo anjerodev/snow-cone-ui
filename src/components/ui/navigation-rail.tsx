@@ -51,6 +51,7 @@ const NavigationRailItemIcon = React.forwardRef<
     <span className="absolute inset-0 z-0 rounded-2xl bg-onSurfaceVariant opacity-0 transition-opacity group-hover:opacity-8 group-focus:opacity-12 group-active:opacity-12" />
   </span>
 ))
+NavigationRailItemIcon.displayName = 'NavigationRailItemIcon'
 
 const NavigationRailItemLabel = React.forwardRef<
   HTMLSpanElement,
@@ -67,6 +68,7 @@ const NavigationRailItemLabel = React.forwardRef<
     {children}
   </span>
 ))
+NavigationRailItemLabel.displayName = 'NavigationRailItemLabel'
 
 interface NavigationRailItemProps
   extends React.AnchorHTMLAttributes<HTMLAnchorElement> {
