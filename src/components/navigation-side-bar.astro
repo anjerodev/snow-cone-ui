@@ -3,7 +3,7 @@ import { ROUTES } from '@/constants/routes'
 
 import { Icon } from '@/components/ui/icon'
 import { NavigationRail, styles } from '@/components/ui/navigation-rail'
-import ThemeIcon from '@/components/theme-icon.astro'
+import { ThemeToggle } from '@/components/react/theme-toggle'
 
 import Logo from './logo.astro'
 
@@ -20,10 +20,10 @@ const navigationItems = [
   navigationItem(ROUTES.COMPONENTS, 'add_circle', 'Components'),
 ]
 const { pathname } = Astro.url
-const [, section, subsection] = pathname.split('/')
+const [, section] = pathname.split('/')
 ---
 
-<NavigationRail>
+<NavigationRail className="hidden md:flex">
   <a href={ROUTES.HOME} class="mb-6 transition-transform hover:scale-105">
     <span class="hidden h-10 w-10 text-primary md:block">
       <Logo />
@@ -31,21 +31,27 @@ const [, section, subsection] = pathname.split('/')
   </a>
   <NavigationRail.Container>
     {
-      navigationItems.map(({ url, icon, label }) => (
-        <NavigationRail.Item
-          key={url}
-          href={url}
-          active={url === `/${section}` || url === `/${section}/${subsection}`}
-        >
-          <NavigationRail.ItemIcon>
-            <Icon symbol={icon} className={styles.icon} />
-          </NavigationRail.ItemIcon>
-          <NavigationRail.ItemLabel>{label}</NavigationRail.ItemLabel>
-        </NavigationRail.Item>
-      ))
+      navigationItems.map(({ url, icon, label }) => {
+        const isActive = () => {
+          if (url === ROUTES.COMPONENTS) {
+            return section === 'components'
+          }
+
+          return url === pathname
+        }
+
+        return (
+          <NavigationRail.Item key={url} href={url} active={isActive()}>
+            <NavigationRail.ItemIcon>
+              <Icon symbol={icon} className={styles.icon} />
+            </NavigationRail.ItemIcon>
+            <NavigationRail.ItemLabel>{label}</NavigationRail.ItemLabel>
+          </NavigationRail.Item>
+        )
+      })
     }
   </NavigationRail.Container>
   <div class="hidden grow flex-col items-center justify-end md:flex">
-    <ThemeIcon />
+    <ThemeToggle client:idle />
   </div>
 </NavigationRail>

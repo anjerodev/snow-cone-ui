@@ -48,6 +48,7 @@ const NavigationBarItemIcon = React.forwardRef<
     <span className="absolute inset-0 z-0 rounded-2xl bg-onSurfaceVariant opacity-0 transition-opacity group-hover:opacity-8 group-focus:opacity-12 group-active:opacity-12" />
   </span>
 ))
+NavigationBarItemIcon.displayName = 'NavigationBarItemIcon'
 
 const NavigationBarItemLabel = React.forwardRef<
   HTMLSpanElement,
@@ -64,6 +65,7 @@ const NavigationBarItemLabel = React.forwardRef<
     {children}
   </span>
 ))
+NavigationBarItemLabel.displayName = 'NavigationBarItemLabel'
 
 interface NavigationBarItemProps
   extends React.AnchorHTMLAttributes<HTMLAnchorElement> {

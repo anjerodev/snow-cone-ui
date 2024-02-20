@@ -18,6 +18,7 @@ export default defineConfig({
   vite: {
     ssr: {
       external: ['prismjs'],
+      noExternal: ['react-dropzone']
     },
   },
 })
