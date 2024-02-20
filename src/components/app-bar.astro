@@ -1,10 +1,12 @@
 ---
+import { NavDrawer } from '@/components/react/nav-drawer'
 import Logo from '@/components/logo.astro'
 ---
 
 <header class="fixed top-0 z-50 w-full bg-surface md:hidden">
-  <div class="container flex h-16 items-center justify-between">
+  <div class="flex h-16 items-center justify-between px-2">
     <div class="flex items-center gap-2">
+      <NavDrawer client:idle />
       <Logo class="block h-8 text-primary" />
     </div>
   </div>

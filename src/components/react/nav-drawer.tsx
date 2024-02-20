@@ -1,7 +1,7 @@
-import { Button } from '@/components/ui/button'
 import { Icon } from '@/components/ui/icon'
 import { IconButton } from '@/components/ui/icon-button'
 import { NavigationDrawer } from '@/components/ui/navigation-drawer'
+import { ThemeToggle } from '@/components/react/theme-toggle'
 
 const schema = {
   favorites: { children: ['label_3', 'label_4'] },
@@ -10,14 +10,17 @@ const schema = {
   'sub-sub-labels': { parent: 'sub-labels', children: ['label_9', 'label_10'] },
 }
 
-export const NavigationDrawerExample = () => {
+export const NavDrawer = () => {
   const value = 'label_7'
 
   return (
     <NavigationDrawer>
       <NavigationDrawer.Trigger asChild>
-        <Button>Open</Button>
+        <IconButton variant="standard">
+          <Icon symbol="menu" />
+        </IconButton>
       </NavigationDrawer.Trigger>
+
       <NavigationDrawer.Content value={value} schema={schema}>
         <NavigationDrawer.Close asChild>
           <IconButton variant="standard">
@@ -143,7 +146,9 @@ export const NavigationDrawerExample = () => {
           </NavigationDrawer.Item>
         </NavigationDrawer.SubGroup>
 
-        <NavigationDrawer.Footer>Footer</NavigationDrawer.Footer>
+        <NavigationDrawer.Footer>
+          <ThemeToggle />
+        </NavigationDrawer.Footer>
       </NavigationDrawer.Content>
     </NavigationDrawer>
   )

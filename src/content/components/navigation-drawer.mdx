@@ -1,0 +1,58 @@
+---
+group: 'navigation'
+title: 'Navigation drawer'
+subtitle: 'Navigation drawers let people switch between UI views on larger devices'
+preview: 'https://lh3.googleusercontent.com/W5KXckuj5QI1LZzHe_ZcVk-SLM4de_7RspI74hENhGDaoZQMREUkCGgcHcKOxCqxk8a9zBCLeQupSOYhya6FgvEcFrw5A_lyF2iQQJYRphNRgfHobME=s0'
+previewDark: 'https://lh3.googleusercontent.com/0lE7pKqXFvm5fnVTOFdXFoT8JrMs2FC17W3ioURwEsjh4jv8EJURiy6W_A3BC6oOfH7Yfi67EAYS9Yn-EWkMTJcQpU1rFUmL2zpyTB8DGRM-JGDLvhBC=s0'
+thumbnail: 'https://lh3.googleusercontent.com/qmsTZM1n0Ew_AUCoLz-Xjuyb1Qu57kyfi_Vp59yS9INAJcUEzDyvSsAfYOXBupPCE0sygWhSDvl155dOfNEAty_VeR4UPkbmhYeSDObQ9svkWnB1ifQ=w2400'
+thumbnailDark: 'https://lh3.googleusercontent.com/Y1ku0H_FfFizTV-3qWeuPXUyEhJ0UpC84YEldalsmRKsrUZQvytrkQOsktd3QtkIczOTJactq_96t3tNfKsYStQ37A0DkGFdezhLbk_j_Ut2vcJS6X0=w2400'
+guidelines: 'https://m3.material.io/components/navigation-drawer/guidelines'
+---
+
+import { NavigationDrawerExample } from '@/components/react/examples/navigation-drawer'
+import ComponentContainer from '@/components/component-container.astro'
+import ComponentSource from '@/components/component-source.astro'
+import Step from '@/components/step.astro'
+import Steps from '@/components/steps.astro'
+
+## Usage
+
+Navigation drawers provide access to destinations and app functionality, such as switching accounts. They can either be permanently on-screen or opened and closed by a navigation menu icon.
+
+## Instalation
+
+<Steps>
+
+<Step>
+#### Run the following command:
+
+```bash
+npm i @radix-ui/react-dialog @radix-ui/react-accordion @radix-ui/react-slot
+```
+
+</Step>
+
+<Step>
+  #### Copy and paste the following code into your project.
+  <ComponentSource name="navigation-drawer" />
+</Step>
+
+<Step>
+#### Update the import paths to match your project setup.
+
+</Step>
+
+</Steps>
+
+## Examples
+
+### Navigation Drawer
+
+<ComponentContainer>
+  <NavigationDrawerExample slot='preview' client:visible/>
+
+```tsx
+
+```
+
+</ComponentContainer>
