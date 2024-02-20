@@ -1,0 +1,254 @@
+---
+group: 'inputs'
+title: 'Dropzone'
+subtitle: 'Dropzone lets users upload files into a UI'
+preview: ''
+previewDark: ''
+thumbnail: ''
+thumbnailDark: ''
+---
+
+import {
+  MultipleFilesDropzone,
+  OutlinedDropzone,
+  SingleFileDropzone,
+} from '@/components/react/examples/drop-zone.tsx'
+import ComponentContainer from '@/components/component-container.astro'
+import ComponentSource from '@/components/component-source.astro'
+import Step from '@/components/step.astro'
+import Steps from '@/components/steps.astro'
+
+## Usage
+
+Use a dropzone when the user needs to upload an image or file.
+
+## Instalation
+
+<Steps>
+
+<Step>
+#### Run the following command to install the `react-dropzone` package:
+
+```bash
+npm i react-dropzone
+```
+
+</Step>
+
+<Step>
+  #### Copy and paste the following code into your project.
+  <ComponentSource name="drop-zone" />
+</Step>
+
+<Step>
+#### Update the import paths to match your project setup.
+
+</Step>
+
+</Steps>
+
+## Examples
+
+### Single file
+
+<ComponentContainer>
+    <SingleFileDropzone slot='preview' client:visible/>
+
+```tsx
+import { useState } from 'react'
+
+import { DropZone, IMAGE_MIME_TYPE } from '@/components/ui/drop-zone'
+import { Icon } from '@/components/ui/icon'
+
+export const SingleFileDropzone = () => {
+  const [image, setImage] = useState<File | null>(null)
+
+  return (
+    <DropZone
+      accept={IMAGE_MIME_TYPE}
+      onDropAccepted={(files) => {
+        setImage(files[0])
+      }}
+    >
+      <DropZone.Content>
+        <DropZone.Accept>
+          <Icon symbol="thumb_up" className="text-6xl opacity-60" />
+        </DropZone.Accept>
+        <DropZone.Reject>
+          <Icon symbol="thumb_down" className="text-6xl opacity-60" />
+        </DropZone.Reject>
+        <DropZone.Idle>
+          {image ? (
+            <img
+              src={URL.createObjectURL(image)}
+              alt="Preview"
+              className="animate-in zoom-in-0 mx-auto mb-4 aspect-square h-[60px] rounded-sm object-cover object-center"
+            />
+          ) : (
+            <Icon symbol="image" className="text-6xl opacity-60" />
+          )}
+        </DropZone.Idle>
+        <div className="space-y-2">
+          <p>Click to upload an Image. Or drag and drop</p>
+          <p className="text-body-sm opacity-60">
+            Allowed formats: .png, .jpeg, .webp
+          </p>
+        </div>
+      </DropZone.Content>
+    </DropZone>
+  )
+}
+```
+
+</ComponentContainer>
+
+### Multiple files
+
+<ComponentContainer>
+    <MultipleFilesDropzone slot='preview' client:visible/>
+
+```tsx
+import { useState } from 'react'
+
+import { parseFileSize } from '@/lib/utils'
+import {
+  DropZone,
+  IMAGE_MIME_TYPE,
+  PDF_MIME_TYPE,
+} from '@/components/ui/drop-zone'
+import { Icon } from '@/components/ui/icon'
+import { IconButton } from '@/components/ui/icon-button'
+
+export const MultipleFilesDropzone = () => {
+  const [files, setFiles] = useState<File[]>([])
+
+  return (
+      <DropZone
+        multiple
+        accept={[...IMAGE_MIME_TYPE, ...PDF_MIME_TYPE]}
+        onDropAccepted={(files) => {
+          setFiles(files)
+        }}
+      >
+        <DropZone.Content>
+          <DropZone.Accept>
+            <Icon symbol="thumb_up" className="text-6xl opacity-60" />
+          </DropZone.Accept>
+          <DropZone.Reject>
+            <Icon symbol="thumb_down" className="text-6xl opacity-60" />
+          </DropZone.Reject>
+          <DropZone.Idle>
+            <Icon symbol="upload_file" className="text-6xl opacity-60" />
+          </DropZone.Idle>
+          <div className="space-y-2">
+            <p>Click to upload files. Or drag and drop</p>
+            <p className="text-body-sm opacity-60">
+              Allowed formats: .png, .jpeg, .webp, .pdf
+            </p>
+          </div>
+        </DropZone.Content>
+      </DropZone>
+      {files.length > 0 && (
+        <div className="w-full space-y-2 p-4">
+          {files.map((file) => (
+            <div key={file.name} className="flex items-center text-start">
+              <DropZone.Preview>
+                {(() => {
+                  if (PDF_MIME_TYPE.includes(file.type)) {
+                    return (
+                      <Icon
+                        symbol="description"
+                        className="text-3xl opacity-60"
+                      />
+                    )
+                  }
+                  if (IMAGE_MIME_TYPE.includes(file.type)) {
+                    return (
+                      <img
+                        src={URL.createObjectURL(file)}
+                        alt="Preview"
+                        className="animate-in zoom-in-0 aspect-square h-full object-cover object-center"
+                      />
+                    )
+                  }
+                  return (
+                    <Icon symbol="folder" className="text-3xl opacity-60" />
+                  )
+                })()}
+              </DropZone.Preview>
+              <div>
+                <p className="text-title-md">{file.name}</p>
+                <p className="text-body-sm text-onSurfaceVariant">
+                  {parseFileSize({ size: file.size, metric: 'MB' })} MB
+                </p>
+              </div>
+              <IconButton
+                variant="standard"
+                className="ml-auto opacity-50 hover:opacity-100"
+                onClick={() => setFiles(files.filter((f) => f !== file))}
+              >
+                <Icon symbol="close" />
+              </IconButton>
+            </div>
+          ))}
+        </div>
+      )}
+  )
+}
+```
+
+</ComponentContainer>
+
+### Outlined dropzone
+
+<ComponentContainer>
+    <OutlinedDropzone slot='preview' client:visible/>
+
+```tsx
+import { useState } from 'react'
+
+import { DropZone, IMAGE_MIME_TYPE } from '@/components/ui/drop-zone'
+import { Icon } from '@/components/ui/icon'
+
+export const OutlinedDropzone = () => {
+  const [image, setImage] = useState<File | null>(null)
+
+  return (
+    <DropZone
+      variant="outlined"
+      accept={IMAGE_MIME_TYPE}
+      onDropAccepted={(files) => {
+        setImage(files[0])
+      }}
+    >
+      <DropZone.Content>
+        <DropZone.Accept>
+          <Icon symbol="thumb_up" className="text-6xl opacity-60" />
+        </DropZone.Accept>
+        <DropZone.Reject>
+          <Icon symbol="thumb_down" className="text-6xl opacity-60" />
+        </DropZone.Reject>
+        <DropZone.Idle>
+          {image ? (
+            <img
+              src={URL.createObjectURL(image)}
+              alt="Preview"
+              className="animate-in zoom-in-0 mx-auto mb-4 aspect-square h-[60px] rounded-sm object-cover object-center"
+            />
+          ) : (
+            <Icon symbol="image" className="text-6xl opacity-60" />
+          )}
+        </DropZone.Idle>
+        <div className="space-y-2">
+          <p>Click to upload an Image. Or drag and drop</p>
+          <p className="text-body-sm opacity-60">
+            Allowed formats: .png, .jpeg, .webp
+          </p>
+        </div>
+      </DropZone.Content>
+    </DropZone>
+  )
+}
+```
+
+</ComponentContainer>

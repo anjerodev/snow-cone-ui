@@ -90,8 +90,8 @@ export const componentsSections = {
       dark: '#3e4a36',
     },
   },
-  'text-inputs': {
-    description: 'Text input components let people enter and edit text.',
+  'inputs': {
+    description: 'Input components let people enter and edit text, numbers, dates, files and more.',
     bg: {
       default: imagesRootPath + 'm3-yellow-theming-thumbnail',
       dark: imagesRootPath + 'm3-yellow-theming-thumbnail-dark',
