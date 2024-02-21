@@ -18,6 +18,7 @@ type Colors = {
 }
 
 interface PaletteState {
+  sourceColor: string
   palette: Record<keyof KeyColorsAndTones, Record<Tones, string>>
   colors: Colors
   colorFormat: keyof Color
@@ -27,6 +28,7 @@ interface PaletteState {
 }
 
 export const usePaletteStore = create<PaletteState>()((set) => ({
+  sourceColor: '#006c4b',
   palette: defaultPalette,
   colors: {
     palettes: defaultColors.palettes,

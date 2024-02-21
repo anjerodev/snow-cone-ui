@@ -25,7 +25,7 @@ export const ColorsPalettes = () => {
 
   return (
     <section>
-      <section className="mb-12">
+      <section className="mb-12 max-w-screen-lg">
         <h2>Color roles</h2>
         <h3 className="mb-2 mt-6 text-headline-md">Light Scheme</h3>
         <ColorRoles colors={colorRoles.light} colorFormat={colorFormat} />
@@ -42,7 +42,7 @@ export const ColorsPalettes = () => {
             <h3 className="mb-2 mt-6 text-headline-md">
               {tones[key as keyof typeof tones]}
             </h3>
-            <div className="flex w-full flex-wrap py-2">
+            <div className="flex w-full max-w-[832px] flex-wrap py-2">
               {Object.entries(value).map(([key, value]) => (
                 <ColorTone
                   key={key}

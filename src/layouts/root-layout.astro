@@ -6,10 +6,12 @@ import 'material-symbols/rounded.css'
 import { ViewTransitions } from 'astro:transitions'
 
 import { SnackbarProvider } from '@/components/ui/snackbar'
+import Theme from '@/components/react/theme'
 import AppBar from '@/components/app-bar.astro'
 import DevToolbar from '@/components/dev-toolbar.astro'
 import Footer from '@/components/footer.astro'
 import NavigationSideBar from '@/components/navigation-side-bar.astro'
+import ThemeHandler from '@/components/theme-handler.astro'
 
 interface Props {
   title: string
@@ -34,9 +36,11 @@ const { title } = Astro.props
   >
     <AppBar />
     <NavigationSideBar />
-    <div class="flex flex-1 flex-col md:ml-[88px]">
+    <div class="flex flex-1 flex-col pt-16 md:ml-[88px] md:pt-0">
       <slot />
     </div>
+    <ThemeHandler />
+    <Theme client:only />
     <DevToolbar />
     <SnackbarProvider client:only />
     <Footer />
