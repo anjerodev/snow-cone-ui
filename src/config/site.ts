@@ -2,7 +2,13 @@ import { ROUTES } from '@/constants/routes'
 
 export type SiteConfig = typeof siteConfig
 
-const navItem = (title: string, slug: string) => ({ title, slug })
+const navItem = (title: string, slug?: string) => {
+  const s = slug || title.toLowerCase().replace(' ', '-')
+  return {
+    title,
+    slug: s,
+  }
+}
 
 export const siteConfig = {
   name: 'Snow Cone UI',
@@ -11,16 +17,5 @@ export const siteConfig = {
   links: {
     github: 'https://github.com/JepriCreations/snow-cone-ui',
     twitter: 'https://twitter.com/jepricreations',
-  },
-  sideNav: {
-    [ROUTES.DOCS]: [],
-    [ROUTES.TYPOGRAPHY]: [],
-    [ROUTES.THEME]: [],
-    [ROUTES.COMPONENTS]: [
-      navItem('Buttons', 'buttons'),
-      navItem('Floating Action Buttons', 'fab'),
-      navItem('Icon buttons', 'icon-buttons'),
-      navItem('Segmented buttons', 'segmented-buttons'),
-    ],
   },
 }

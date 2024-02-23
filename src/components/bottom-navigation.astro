@@ -16,7 +16,10 @@ const { prev, next } = Astro.props
     prev && (
       <a
         href={prev.url}
-        class={cn(buttonVariants({ variant: 'outlined' }), 'pl-4')}
+        class={cn(
+          buttonVariants({ variant: 'outlined' }),
+          'pl-4 !no-underline'
+        )}
       >
         <Icon
           symbol="arrow_back"
@@ -31,7 +34,10 @@ const { prev, next } = Astro.props
     next && (
       <a
         href={next.url}
-        class={cn(buttonVariants({ variant: 'outlined' }), 'ml-auto pr-4')}
+        class={cn(
+          buttonVariants({ variant: 'outlined' }),
+          'ml-auto pr-4 !no-underline'
+        )}
       >
         {next.title}
         <Icon
