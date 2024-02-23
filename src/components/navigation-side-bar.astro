@@ -37,7 +37,7 @@ const [, section] = pathname.split('/')
             return section === 'components'
           }
 
-          return url === pathname
+          return pathname.startsWith(url)
         }
 
         return (
