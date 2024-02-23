@@ -1,0 +1,39 @@
+---
+import { cn } from '@/lib/utils'
+
+import { Icon } from './ui/icon'
+
+type Props = {
+  variant: 'info' | 'warning' | 'error'
+}
+
+const { variant = 'info' } = Astro.props
+const symbol = {
+  info: 'info',
+  warning: 'warning',
+  error: 'error',
+}
+---
+
+<div
+  class={cn(
+    'flex gap-4 text-pretty rounded-lg px-4 py-3',
+    variant === 'info' && 'bg-infoContainer text-onInfoContainer',
+    variant === 'warning' && 'bg-warningContainer text-onWarningContainer',
+    variant === 'error' && 'bg-errorContainer text-onErrorContainer'
+  )}
+>
+  <div
+    class={cn(
+      'shrink-0',
+      variant === 'info' && 'text-info',
+      variant === 'warning' && 'text-warning',
+      variant === 'error' && 'text-error'
+    )}
+  >
+    <Icon symbol={symbol[variant]} />
+  </div>
+  <div>
+    <slot />
+  </div>
+</div>

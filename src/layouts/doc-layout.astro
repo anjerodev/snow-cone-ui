@@ -1,29 +1,11 @@
 ---
-import { getCollection } from 'astro:content'
-
 import RootLayout from '@/layouts/root-layout.astro'
 import ContentContainer from '@/components/content-container.astro'
 import OnThisPage from '@/components/on-this-page.astro'
 import PageHeader from '@/components/page-header.astro'
-import Pre from '@/components/pre.astro'
 
-export async function getStaticPaths() {
-  const docsEntries = await getCollection('docs')
-  return docsEntries.map((entry) => ({
-    params: { slug: entry.slug },
-    props: { entry },
-  }))
-}
-
-const { entry } = Astro.props
-const { Content, headings: contentHeadings } = await entry.render()
-const {
-  data: { title, subtitle, thumbnail, thumbnailDark },
-} = entry
-
-const headings = contentHeadings.filter(
-  (heading) => heading.depth > 1 && heading.depth <= 3
-)
+const { frontmatter, headings } = Astro.props
+const { title, subtitle, thumbnail, thumbnailDark } = frontmatter
 ---
 
 <RootLayout title={`Docs - ${title}`}>
@@ -38,11 +20,7 @@ const headings = contentHeadings.filter(
     />
     <div class="flex w-full">
       <section class="mdx z-0 max-w-5xl flex-1 pb-24 md:px-4 md:pb-4 xl:ml-40">
-        <Content
-          components={{
-            pre: Pre,
-          }}
-        />
+        <slot />
       </section>
       <OnThisPage title={title} links={headings} />
     </div>

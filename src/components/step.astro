@@ -1,16 +1,19 @@
 <div
-  class="step last:bg-0 border-l pb-8 pl-8 last:border-l-0 [&>h4]:text-title-sm [&>h4]:before:font-mono"
+  class={`step last:bg-0 border-l pb-8 pl-8 last:border-l-0 
+  [&>h3]:!mt-0 [&>h3]:!text-title-lg [&>h3]:before:font-mono [&>h3]:before:!text-title-sm
+  [&>h4]:!text-title-lg [&>h4]:!mb-0 [&>h4]:!mt-6
+  `}
 >
   <slot />
 </div>
 
 <style is:global>
-  .step h4 {
+  .step h3 {
     counter-increment: step;
     margin-top: 0;
   }
 
-  .step h4::before {
+  .step h3::before {
     position: absolute;
     display: inline-flex;
     height: 36px;
@@ -24,8 +27,8 @@
     text-indent: -1px;
     color: hsl(var(--onPrimaryContainer));
     margin-left: -50px;
-    margin-top: -8px;
+    margin-top: -2px;
     font-weight: 600;
-    content: counter(step);
+    content: counter(step) !important;
   }
 </style>

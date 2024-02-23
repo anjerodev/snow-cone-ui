@@ -3,6 +3,9 @@
 }
 
 .mdx {
+  h1:not(.preview h1) {
+    @apply mb-6 mt-20 first-of-type:mt-0;
+  }
   h2:not(.preview h2) {
     @apply mb-6 mt-20 text-display-md first-of-type:mt-0;
   }

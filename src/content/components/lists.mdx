@@ -29,7 +29,7 @@ Cards are used to display content and actions on a single topic.
 <Steps>
 
 <Step>
-#### Run the following command if is not already installed:
+### Run the following command if is not already installed:
 
 ```bash
 npm i @radix-ui/react-slot
@@ -38,12 +38,12 @@ npm i @radix-ui/react-slot
 </Step>
 
 <Step>
-  #### Copy and paste the following code into your project.
+  ### Copy and paste the following code into your project.
   <ComponentSource name="list" />
 </Step>
 
 <Step>
-#### Update the import paths to match your project setup.
+### Update the import paths to match your project setup.
 
 </Step>
 
@@ -69,7 +69,7 @@ export const ListWithThumbnailAndTrailingSupportingText = () => {
           <img
             src={thumbnail}
             alt={name}
-            className="size-14 bg-outlineVariant shrink-0"
+            className="bg-outlineVariant size-14 shrink-0"
           />
           <div className="grow">
             <List.Headline>{name}</List.Headline>
@@ -108,7 +108,7 @@ export const LinksListExample = () => {
             <div>
               <List.ActionArea asChild>
                 <a href={url}>
-                  <div className="size-10 bg-primaryContainer text-onPrimaryContainer grid shrink-0 place-items-center rounded-full">
+                  <div className="bg-primaryContainer text-onPrimaryContainer grid size-10 shrink-0 place-items-center rounded-full">
                     <Icon symbol={icon} />
                   </div>
                   <div className="grow">
@@ -154,7 +154,7 @@ export const DoubleLineListExample = () => {
           <img
             src={thumbnail}
             alt={name}
-            className="size-14 bg-outlineVariant shrink-0 rounded-md object-cover"
+            className="bg-outlineVariant size-14 shrink-0 rounded-md object-cover"
           />
           <div className="grow">
             <List.Headline>{name}</List.Headline>
@@ -220,7 +220,7 @@ export const SortableListExample = () => {
       onChange={setItems}
       renderItem={({ id, headline, supportingText }) => (
         <SortableList.Item key={id} id={id}>
-          <div className="size-10 bg-primaryContainer text-onPrimaryContainer grid shrink-0 place-items-center rounded-full">
+          <div className="bg-primaryContainer text-onPrimaryContainer grid size-10 shrink-0 place-items-center rounded-full">
             {headline.slice(0, 1).toLocaleUpperCase()}
           </div>
           <div className="grow">

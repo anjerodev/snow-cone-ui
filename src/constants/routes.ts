@@ -1,7 +1,7 @@
 export const ROUTES = {
   HOME: '/',
   DOCS: '/docs',
-  TYPOGRAPHY: '/docs/typography',
+  TYPOGRAPHY: '/typography',
   THEME: '/theme',
   COMPONENTS: '/components',
 }

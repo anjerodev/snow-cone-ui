@@ -1,0 +1,167 @@
+---
+title: 'Documentation'
+subtitle: 'Snow Cone UI Installation Guide'
+thumbnail: 'https://lh3.googleusercontent.com/FlzIBMEVPo7rwUyiQE5TZuVOjo2EVPl0s0IlNPc4ntQDf6oGj4w9FMN35nDV7CLZJjj3i3jJGMUW92fuMP2MPHWiY_WcEImw3ThABZEtyhXTOMCl4P4=w2400-rj'
+thumbnailDark: 'https://lh3.googleusercontent.com/epA6d7XUlOsJWcN09FA86Ifli4Q3RYN__NwHm170jue12MdKK9otB9KVOWHdu4Adpl-b7cZh1rGkjUi8Rju44bSqRyhe62yRUmsqzrFeArnhYA-_LY0=w2400-rj'
+---
+
+import Alert from '@/components/alert.astro'
+import CodeSource from '@/components/code-source.astro'
+import ComponentSource from '@/components/component-source.astro'
+import Pre from '@/components/pre.astro'
+import Step from '@/components/step.astro'
+import Steps from '@/components/steps.astro'
+
+export const components = { pre: Pre }
+
+# Introduction
+
+As the [shadcn UI](https://ui.shadcn.com/), this is also a collection of re-usable components that you can copy and paste into your apps. It is based in Radix UI Primitives and others unstyled libraries.
+
+The biggest difference is that this colection follows the Material 3 Design principles and components are designed to be used in the M3 design system.
+
+# Getting Started
+
+At the moment, the collection is only available for React and frameworks that use React as Next.js, Astro, Remix, Gatsby etc.
+
+The components are written in TypeScript. So it is recommended using TypeScript for your project as well.
+
+# Installation
+
+<Steps>
+
+<Step>
+  ### Typescript
+
+    Edit your `tsconfig.json` file to resolve paths:
+
+    ```json
+    {
+      "compilerOptions": {
+      // ...
+      "baseUrl": ".",
+      "paths": {
+        "@/*": ["src/*"]
+      }
+      // ...
+      }
+    }
+    ```
+
+</Step>
+
+<Step>
+  ### Tailwind CSS
+
+    For starters you will need to install [Tailwind CSS]((https://tailwindcss.com/docs/installation/framework-guides)) in your project. If don't
+    have it yet, follow your framework guide to install it.
+
+    Once Tailwind CSS is installed, create a file to keep the theme, for example in `src/config/theme.ts` and add the next code:
+
+    <CodeSource lang="ts" path={'/constants/snippets/theme.ts'} />
+
+    <Alert>
+    <span>You can create your custom colors palette from [Custom Theme](/theme) and then, replace it in the theme.</span>
+    </Alert>
+
+    As you can see in the theme object, I have used the font [Outfit Variable](https://fontsource.org/fonts/outfit) because I think it is pretty similar to the one Google uses. You can install it in your project with the following command, or remove it from the object if you don't want to use custom font:
+
+    ```bash
+    npm install @fontsource-variable/outfit
+    ```
+    Now you can modify your `tailwind.config.ts` to include the custom theme:
+
+    ```ts
+    import type { Config } from 'tailwindcss'
+
+    import theme from './src/config/theme.ts'
+
+    const config = {
+      // ...
+      theme,
+      // ...
+    } satisfies Config
+
+    export default config
+    ```
+    #### base.css
+
+    Modify the base.css file to include the following color variables and utilities:
+
+    <CodeSource lang="css" path={'/constants/snippets/base.css'} />
+
+    #### Root layout
+
+    In your root layout import the styles, and the fonts.
+
+    ```tsx
+    import '@fontsource-variable/outfit'
+    import '@/styles/base.css'
+    //...
+    ```
+    #### Animations
+
+    For the animations install `tailwindcss-animate` plugin and add it to your `tailwind.config.ts`
+
+    ```bash
+    npm install tailwindcss-animate
+    ```
+    `tailwind.config.ts`
+
+    ```tsx
+    // ...
+    import TailwindAnimate from 'tailwindcss-animate'
+
+    const config = {
+      //...
+      plugins: [
+      TailwindAnimate,
+      // ...
+      ],
+    } satisfies Config
+
+    export default config
+    ```
+
+</Step>
+
+<Step>
+    ### Icons
+
+    We will be using the [Material Symbols](https://fonts.google.com/icons?icon.style=Rounded) for the icons.
+
+    ```bash
+    npm install material-symbols
+    ```
+    In your `root layout` import the Material Symbols.
+
+    ```tsx
+    // ...
+    import 'material-symbols/rounded.css'
+    //...
+    ```
+    And create the component Icon in `src/components/ui/icon.tsx`
+    <ComponentSource name="icon" />
+
+    Now you will be able to use it in your components as:
+
+    ```tsx
+    import { Icon } from '@/components/ui/icon'
+
+    //...
+      <Icon symbol="home" />
+    //...
+    ```
+
+</Step>
+
+<Step>
+    ### Utils
+
+    Finally create the file `src/lib/utils.ts` and add the following code:
+
+    <CodeSource lang="ts" path={'/constants/snippets/utils.ts'} />
+
+</Step>
+
+</Steps>

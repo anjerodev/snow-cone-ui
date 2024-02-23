@@ -14,7 +14,7 @@ import {
   FullWidthDivider,
   FullWidthDividerCard,
   InsetDivider,
-  VerticalDivider
+  VerticalDivider,
 } from '@/components/react/examples/divider.tsx'
 import ComponentContainer from '@/components/component-container.astro'
 import ComponentSource from '@/components/component-source.astro'
@@ -30,7 +30,7 @@ Dividers are one way to visually group components and create hierarchy. They can
 <Steps>
 
 <Step>
-#### Run the following command:
+### Run the following command:
 
 ```bash
 npm i @radix-ui/react-separator
@@ -39,12 +39,12 @@ npm i @radix-ui/react-separator
 </Step>
 
 <Step>
-  #### Copy and paste the following code into your project.
+  ### Copy and paste the following code into your project.
   <ComponentSource name="divider" />
 </Step>
 
 <Step>
-#### Update the import paths to match your project setup.
+### Update the import paths to match your project setup.
 
 </Step>
 
@@ -187,13 +187,13 @@ export const InsetDivider = () => {
 
 </ComponentContainer>
 
-
 ### Vertical Dividers
+
 A vertical divider can be used to arrange content horizontally.
 
 <ComponentContainer>
 
-<VerticalDivider slot='preview'/>
+<VerticalDivider slot="preview" />
 
 ```tsx
 import { Divider } from '@/components/ui/divider'
@@ -202,7 +202,7 @@ import { IconButton } from '@/components/ui/icon-button'
 
 export const VerticalDivider = () => {
   return (
-    <div className="flex items-center bg-background p-1 rounded-sm">
+    <div className="bg-background flex items-center rounded-sm p-1">
       <IconButton variant="standard" className="rounded-xs">
         <Icon symbol="format_align_left" />
       </IconButton>

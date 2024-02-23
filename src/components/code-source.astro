@@ -6,14 +6,19 @@ import { cn } from '@/lib/utils'
 import { CodeBlockWrapper } from '@/components/react/code-block-wrapper'
 
 interface Props {
-  path: string
+  path?: string
   lang?: string
+  content?: string
 }
 
-const { path, lang } = Astro.props
+const { path, lang, content } = Astro.props
 
-const url = new URL('../../src' + path, import.meta.url)
-const content = await fs.readFile(url, 'utf-8')
+let code = content || ''
+
+if (!content && path) {
+  const url = new URL('../../src' + path, import.meta.url)
+  code = await fs.readFile(url, 'utf-8')
+}
 ---
 
 <CodeBlockWrapper
@@ -21,5 +26,5 @@ const content = await fs.readFile(url, 'utf-8')
   className={cn('my-6 overflow-hidden rounded-lg')}
   client:visible
 >
-  <Prism lang={lang ?? 'tsx'} code={content} />
+  <Prism lang={lang ?? 'tsx'} code={code} />
 </CodeBlockWrapper>

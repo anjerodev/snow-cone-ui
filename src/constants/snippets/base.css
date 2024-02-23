@@ -1,8 +1,5 @@
 @import 'tailwindcss/base';
-@import './mdx.css';
-
 @import 'tailwindcss/components';
-
 @import 'tailwindcss/utilities';
 
 @layer base {
@@ -134,26 +131,6 @@
       'calt' 1;
   }
 
-  h1 {
-    @apply text-display-md sm:text-display-lg;
-  }
-
-  h2 {
-    @apply text-headline-md sm:text-display-md;
-  }
-
-  code {
-    font-family:
-      Menlo,
-      Monaco,
-      Lucida Console,
-      Liberation Mono,
-      DejaVu Sans Mono,
-      Bitstream Vera Sans Mono,
-      Courier New,
-      monospace;
-  }
-
   i {
     font-family: var(--font-symbols);
     font-style: normal;
@@ -183,23 +160,6 @@
 }
 
 @layer utilities {
-  .flex-center {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-
-  .scrollbar-hidden {
-    /* Hide scrollbar for Chrome, Safari, and Opera */
-    &::-webkit-scrollbar {
-      display: none;
-    }
-
-    /* Hide scrollbar for IE, Edge, and Firefox */
-    -ms-overflow-style: none; /* IE and Edge */
-    scrollbar-width: none; /* Firefox */
-  }
-
   .font-regular {
     font-variation-settings:
       'GRAD' 0,
