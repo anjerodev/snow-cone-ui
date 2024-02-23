@@ -5,6 +5,7 @@ import 'material-symbols/rounded.css'
 
 import { ViewTransitions } from 'astro:transitions'
 
+import { siteConfig } from '@/config/site'
 import { SnackbarProvider } from '@/components/ui/snackbar'
 import Theme from '@/components/react/theme'
 import AppBar from '@/components/app-bar.astro'
@@ -15,19 +16,17 @@ import ThemeHandler from '@/components/theme-handler.astro'
 
 interface Props {
   title: string
+  description?: string
 }
 
-const { title } = Astro.props
+const { title, description } = Astro.props
 ---
 
 <!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta
-      name="description"
-      content="Snow Cone UI, a collection of components based in Material 3 design guidelines for build your projects faster"
-    />
+    <meta name="description" content={description || siteConfig.description} />
     <meta name="viewport" content="width=device-width" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="generator" content={Astro.generator} />

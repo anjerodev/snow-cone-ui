@@ -1,18 +1,16 @@
 ---
 import {
   // @ts-ignore
-  components,
   Content,
   frontmatter,
   getHeadings,
 } from '@/content/docs/typography.mdx'
 
 import DocLayout from '@/layouts/doc-layout.astro'
-import Pre from '@/components/pre.astro'
 
 const headings = getHeadings().filter((heading) => heading.depth <= 3)
 ---
 
 <DocLayout frontmatter={frontmatter} headings={headings}>
-  <Content components={{ ...components, pre: Pre }} />
+  <Content />
 </DocLayout>
