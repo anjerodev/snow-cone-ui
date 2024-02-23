@@ -1,7 +1,7 @@
 'use client'
 
 import * as React from 'react'
-import { Slot, Slottable } from '@radix-ui/react-slot'
+import { Slot } from '@radix-ui/react-slot'
 
 import { cn } from '@/lib/utils'
 
