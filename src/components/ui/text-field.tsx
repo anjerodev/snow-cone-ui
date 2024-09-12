@@ -129,6 +129,8 @@ const FilledTextFieldInput = React.forwardRef<
   )
 })
 
+FilledTextFieldInput.displayName = 'FilledTextFieldInput'
+
 const OutlinedTextFieldInput = React.forwardRef<
   HTMLInputElement,
   React.InputHTMLAttributes<HTMLInputElement>
@@ -146,6 +148,8 @@ const OutlinedTextFieldInput = React.forwardRef<
   )
 })
 
+OutlinedTextFieldInput.displayName = 'OutlinedTextFieldInput'
+
 const InputDecoration = React.forwardRef<
   HTMLSpanElement,
   React.HTMLAttributes<HTMLSpanElement>
@@ -161,6 +165,8 @@ const InputDecoration = React.forwardRef<
     />
   )
 })
+
+InputDecoration.displayName = 'InputDecoration'
 
 const SupportingText = React.forwardRef<
   HTMLParagraphElement,

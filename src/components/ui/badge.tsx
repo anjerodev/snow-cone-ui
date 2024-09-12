@@ -4,12 +4,12 @@ import { cva, type VariantProps } from 'class-variance-authority'
 import { cn } from '@/lib/utils'
 
 const badgeVariants = cva(
-  'absolute flex items-center justify-center rounded-2xl text-label-sm text-onError transition-transform outline-none',
+  'absolute flex items-center bg-error justify-center rounded-2xl text-label-sm text-onError transition-transform outline-none',
   {
     variants: {
       size: {
-        small: 'h-1.5 w-1.5 bg-error top-0',
-        large: 'h-4 min-w-[16px] bg-error px-1 bottom-1/2',
+        small: 'h-1.5 w-1.5 top-0',
+        large: 'h-4 min-w-[16px] px-1 bottom-1/2',
       },
       align: {
         left: '',
